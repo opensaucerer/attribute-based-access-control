@@ -102,11 +102,32 @@ def getRecord(user):
     key = current_app.config['SECRET_KEY'].encode()
     gc = generateCipher(key)
 
-    mp = Patient.get_mp(user['public_id'])
-    vi = Patient.get_vi(user['public_id'])
-    dt = Patient.get_dt(user['public_id'])
+    # creating the worker att
+    att1 = user['role'] + '+' + user['public_id']
+    att2 = user['role'] + '-' + user['public_id']
 
-    return render_template('patients2/select-record-w.html', user=user, patient=patient)
+    # Getting the ciphertext from DB
+    mp = Patient.get_mp(id)
+    vi = Patient.get_vi(id)
+    dt = Patient.get_dt(id)
+    vip = None
+    mpp = None
+    dtp = None
+    # extracting the policy from the ciphertext
+    if mp:
+        mp = mp['record']
+        _mp = gc.decode(mp)['policy']
+        mpp = gc.validate(_mp, att1, att2)
+    if vi:
+        vi = vi['record']
+        _vi = gc.decode(mp)['policy']
+        vip = gc.validate(_vi, att1, att2)
+    if dt:
+        dt = dt['record']
+        _dt = gc.decode(mp)['policy']
+        dtp = gc.validate(_dt, att1, att2)
+
+    return render_template('patients2/select-record-w.html', user=user, patient=patient, mpp=mpp, vip=vip, dtp=dtp)
 
 
 # the view records route
@@ -134,21 +155,18 @@ def viewRecord(user):
         records = Patient.get_mp(id)
         if records:
             records = Patient.get_mp(id)['record']
-            policy = gc.decode(records)['policy']
             records = gc.decode(records)['record']
     elif data == 'vi':
         view = 'Vitals'
         records = Patient.get_vi(id)
         if records:
             records = Patient.get_vi(id)['record']
-            policy = gc.decode(records)['policy']
             records = gc.decode(records)['record']
     elif data == 'dt':
         view = 'Recommended Diagnostic Tests'
         records = Patient.get_dt(id)
         if records:
             records = Patient.get_dt(id)['record']
-            policy = gc.decode(records)['policy']
             records = gc.decode(records)['record']
 
-    return render_template('patients2/data-table.html', user=user, patient=patient, view=view, data=data, records=records, json=json, gc=gc)
+    return render_template('patients2/data-table-w.html', user=user, patient=patient, view=view, data=data, records=records, json=json, gc=gc)

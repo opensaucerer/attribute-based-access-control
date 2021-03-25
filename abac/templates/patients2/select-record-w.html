@@ -81,6 +81,17 @@
                           View and edit {{patient['name'].split(' ')[0]}}'s
                           medicinal prescriptions
                         </td>
+                        {% if not mpp %}
+                        <td colspan="2">
+                          <a
+                            href="/workers/patients/edit/?id={{patient['public_id']}}&data=mp"
+                            class="btn btn-primary"
+                            >Request Access</a
+                          >
+                        </td>
+
+                        {% else %} {% if 'r' in mpp %}
+
                         <td>
                           <a
                             href="/workers/patients/view/?id={{patient['public_id']}}&data=mp"
@@ -88,6 +99,7 @@
                             >View</a
                           >
                         </td>
+                        {% elif 'w' in mpp %}
                         <td>
                           <a
                             href="/workers/patients/edit/?id={{patient['public_id']}}&data=mp"
@@ -95,6 +107,8 @@
                             >Edit</a
                           >
                         </td>
+
+                        {% endif %} {% endif %}
                       </tr>
                       <tr>
                         <td><b>Patient Vitals</b></td>
@@ -102,6 +116,18 @@
                           Read and write {{patient['name'].split(' ')[0]}}'s
                           vital statistics
                         </td>
+
+                        {% if not vip %}
+                        <td colspan="2">
+                          <a
+                            href="/workers/patients/edit/?id={{patient['public_id']}}&data=vi"
+                            class="btn btn-primary"
+                            >Request Access</a
+                          >
+                        </td>
+
+                        {% else %} {% if 'r' in vip %}
+
                         <td>
                           <a
                             href="/workers/patients/view/?id={{patient['public_id']}}&data=vi"
@@ -109,6 +135,7 @@
                             >View</a
                           >
                         </td>
+                        {% elif 'w' in vip %}
                         <td>
                           <a
                             href="/workers/patients/edit/?id={{patient['public_id']}}&data=vi"
@@ -116,12 +143,26 @@
                             >Edit</a
                           >
                         </td>
+
+                        {% endif %} {% endif %}
                       </tr>
                       <tr>
                         <td><b>Diagnostic Tests</b></td>
                         <td>
                           Recommened tests that will help improve overall health
                         </td>
+
+                        {% if not dtp %}
+                        <td colspan="2">
+                          <a
+                            href="/workers/patients/edit/?id={{patient['public_id']}}&data=dt"
+                            class="btn btn-primary"
+                            >Request Access</a
+                          >
+                        </td>
+
+                        {% else %} {% if 'r' in dtp %}
+
                         <td>
                           <a
                             href="/workers/patients/view/?id={{patient['public_id']}}&data=dt"
@@ -129,6 +170,7 @@
                             >View</a
                           >
                         </td>
+                        {% elif 'w' in dtp %}
                         <td>
                           <a
                             href="/workers/patients/edit/?id={{patient['public_id']}}&data=dt"
@@ -136,6 +178,8 @@
                             >Edit</a
                           >
                         </td>
+
+                        {% endif %} {% endif %}
                       </tr>
                     </tbody>
                   </table>
