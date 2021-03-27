@@ -426,7 +426,10 @@
                                 </div>
                                 <div class="ml-3">
                                   <h5 class="">{{record}}</h5>
-                                  <p class="mb-0">395 kcal / h</p>
+                                  <p class="mb-0">
+                                    {{textwrap.shorten(dt[record], width=35,
+                                    placeholder='......')}}
+                                  </p>
                                 </div>
                               </div>
                             </div>
@@ -502,9 +505,9 @@
                                 <a class="dropdown-item" href="#"
                                   ><i class="ri-pencil-fill mr-2"></i>Edit</a
                                 > -->
-                                <a class="dropdown-item" href="#"
+                                <!-- <a class="dropdown-item" href="#"
                                   ><i class="ri-printer-fill mr-2"></i>Print</a
-                                >
+                                > -->
                                 <a class="dropdown-item" href="#"
                                   ><i class="ri-file-download-fill mr-2"></i
                                   >Download</a

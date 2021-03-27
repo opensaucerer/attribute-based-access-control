@@ -48,3 +48,38 @@ class Worker:
             session['worker_authenticated'] = False
             del session['worker_user']
         return True
+
+    @staticmethod
+    def get_worker(id):
+        return mongo.db.workers.find_one({'public_id': id})
+
+    # profile update helper function
+    def update_profile(self, id, data):
+        try:
+            updateData = data
+            user = self.get_worker(id)
+
+            # creating the update and commiting to the DB
+            if len(updateData) > 0:
+                update = {"$set": updateData}
+                filterData = {'public_id': user['public_id']}
+                mongo.db.workers.update_one(filterData, update)
+
+            # getting the new data of the user
+            userUpdate = self.get_worker(id)
+            # starting a new session for the user
+            userData = self.init_session(userUpdate)
+
+            response = {
+                "status": True,
+                "message": "Your profile has been updated successfully",
+                "userData": userData
+            }
+
+        except:
+            response = {
+                "status": False,
+                "error": "Something went wrong. Please try again."
+            }
+            # return response
+        return response

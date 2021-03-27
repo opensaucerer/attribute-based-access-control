@@ -70,6 +70,37 @@ def dashboard(user):
     return render_template('patients2/dashboard-w.html', user=user, data=data, patients=patients)
 
 
+# the patient profile edit route
+@workers.get('/edit_profile/')
+@worker_login_required
+def editProfile(user):
+    url = '/workers/edit_profile/'
+    return render_template('patients2/worker_edit.html', user=user, worker=user)
+
+
+# the patient profile edit POST route
+@workers.post('/edit_profile/')
+@worker_login_required
+def postEditProfile(user):
+    # collecting form data
+    form = request.form
+    data = {
+        "fname": form['fname'],
+        "lname": form['lname'],
+        "email": form['email'],
+        "address": form['address'],
+        "number": form['number'],
+        "gender": form['gender'],
+    }
+
+    try:
+        user = user['public_id']
+        response = Worker().update_profile(user, data)
+        return redirect(url_for('workers.dashboard'))
+    except:
+        return redirect(url_for('workers.editProfile'))
+
+
 # the patient public profile
 @workers.get('/patients/profile/')
 @worker_login_required

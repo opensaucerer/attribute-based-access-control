@@ -28,7 +28,7 @@ def worker_already_logged_in(f):
         if 'worker_user' in session:
             if session['worker_authenticated'] and "worker_user" in session:
                 user = session['worker_user']
-                return redirect(url_for('worker.dashboard'))
+                return redirect(url_for('workers.dashboard'))
 
         return f(*args, **kwargs)
 

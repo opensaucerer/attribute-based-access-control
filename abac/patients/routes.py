@@ -3,6 +3,7 @@ from abac.patients.models import Patient
 from abac.patients.utils import login_required, already_logged_in
 from rsb import generateCipher
 import json
+import textwrap
 
 # attaching the patients blueprint
 patients = Blueprint('patients', __name__)
@@ -107,7 +108,7 @@ def dashboard(user):
         dt = dt['record']
         dt = gc.decode(dt)['record']
 
-    return render_template('patients2/dashboard-3.html', user=user, mp=mp, vi=vi, dt=dt, list=list, dict=dict, json=json)
+    return render_template('patients2/dashboard-3.html', user=user, mp=mp, vi=vi, dt=dt, list=list, dict=dict, json=json, textwrap=textwrap)
 
 
 # the patient profile route

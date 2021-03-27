@@ -235,7 +235,9 @@
                         </div>
                         <hr />
                         <div class="doctor-description">
-                          <a href="/doctors/profile" class="btn btn-primary"
+                          <a
+                            href="/admin/workers/profile/?id={{worker['public_id']}}"
+                            class="btn btn-primary"
                             >View Profile</a
                           >
                         </div>
@@ -249,7 +251,7 @@
             </div>
             <div class="col-md-12 col-lg-8">
               <div class="row">
-                <div class="col-sm-12">
+                <!-- <div class="col-sm-12">
                   <div
                     class="iq-card iq-card-block iq-card-stretch iq-card-height"
                   >
@@ -542,7 +544,7 @@
                       </div>
                     </div>
                   </div>
-                </div>
+                </div> -->
                 <div class="col-md-12 col-lg-6">
                   <div class="row">
                     <div class="col-md-6 col-lg-12">
@@ -563,8 +565,8 @@
                               />
                             </div>
                             <div class="info-text">
-                              <h3>120</h3>
-                              <span>Total Appointments</span>
+                              <h3>0</h3>
+                              <span>Connected Hospitals</span>
                             </div>
                           </div>
                         </div>
@@ -588,39 +590,15 @@
                               />
                             </div>
                             <div class="info-text">
-                              <h3>5000</h3>
-                              <span>Completed Appointments</span>
+                              <h3>{{data['pc'] + data['dc'] + data['nc']}}</h3>
+                              <span>Total Workers</span>
                             </div>
                           </div>
                         </div>
                       </div>
                     </div>
-                    <div class="col-md-6 col-lg-12">
-                      <div
-                        class="
-                          iq-card iq-card-block iq-card-stretch iq-card-height
-                        "
-                      >
-                        <div class="iq-card-body">
-                          <div
-                            class="iq-info-box d-flex align-items-center p-3"
-                          >
-                            <div class="info-image mr-3">
-                              <img
-                                src="../../static/patients2/images/page-img/32.png"
-                                class="img-fluid"
-                                alt="image-box"
-                              />
-                            </div>
-                            <div class="info-text">
-                              <h3>1500</h3>
-                              <span>Cancelled Appointments</span>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                    <div class="col-md-6 col-lg-12">
+
+                    <!-- <div class="col-md-6 col-lg-12">
                       <div
                         class="
                           iq-card iq-card-block iq-card-stretch iq-card-height
@@ -644,7 +622,7 @@
                           </div>
                         </div>
                       </div>
-                    </div>
+                    </div> -->
                   </div>
                 </div>
                 <div class="col-md-12 col-lg-6">
@@ -659,13 +637,13 @@
                         class="iq-card-header-toolbar d-flex align-items-center"
                       >
                         <div class="dropdown">
-                          <span
+                          <!-- <span
                             class="dropdown-toggle text-primary"
                             id="dropdownMenuButton4"
                             data-toggle="dropdown"
                           >
                             View All
-                          </span>
+                          </span> -->
                           <div
                             class="dropdown-menu dropdown-menu-right"
                             aria-labelledby="dropdownMenuButton4"
@@ -694,37 +672,11 @@
                     <div class="iq-card-body">
                       <ul class="iq-timeline">
                         <li>
-                          <div class="timeline-dots-fill"></div>
-                          <h6 class="float-left mb-2 text-dark">
-                            <i class="ri-user-fill"></i> 5 min ago
-                          </h6>
-                          <small class="float-right mt-1">Active</small>
-                          <div class="d-inline-block w-100">
-                            <p>
-                              Lorem ipsum dolor sit amet, consectetur adipiscing
-                              elit. Quisque scelerisque
-                            </p>
-                          </div>
-                        </li>
-                        <li>
-                          <div class="timeline-dots-fill bg-success"></div>
-                          <h6 class="float-left mb-2 text-dark">
-                            <i class="ri-user-fill"></i> 6 min ago
-                          </h6>
-                          <small class="float-right mt-1">Away</small>
-                          <div class="d-inline-block w-100">
-                            <p>
-                              Lorem ipsum dolor sit amet, consectetur adipiscing
-                              elit. Quisque scelerisque
-                            </p>
-                          </div>
-                        </li>
-                        <li>
                           <div class="timeline-dots-fill bg-info"></div>
                           <h6 class="float-left mb-2 text-dark">
                             <i class="ri-user-fill"></i> 10 min ago
                           </h6>
-                          <small class="float-right mt-1">Active</small>
+                          <!-- <small class="float-right mt-1">Active</small> -->
                           <div class="d-inline-block w-100">
                             <p>
                               Lorem ipsum dolor sit amet, consectetur adipiscing
@@ -737,7 +689,7 @@
                           <h6 class="float-left mb-2 text-dark">
                             <i class="ri-user-fill"></i> 15 min ago
                           </h6>
-                          <small class="float-right mt-1">Offline</small>
+                          <!-- <small class="float-right mt-1">Offline</small> -->
                           <div class="d-inline-block w-100">
                             <p>
                               Lorem ipsum dolor sit amet, consectetur adipiscing
@@ -750,7 +702,7 @@
                           <h6 class="float-left mb-2 text-dark">
                             <i class="ri-user-fill"></i> 18 min ago
                           </h6>
-                          <small class="float-right mt-1">Away</small>
+                          <!-- <small class="float-right mt-1">Away</small> -->
                           <div class="d-inline-block w-100">
                             <p>
                               Lorem ipsum dolor sit amet, consectetur adipiscing
@@ -790,7 +742,7 @@
                   </div>
                 </div>
               </div>
-              <div class="iq-card">
+              <!-- <div class="iq-card">
                 <div class="iq-card-header d-flex justify-content-between">
                   <div class="iq-header-title">
                     <h4 class="card-title">Total Death Report</h4>
@@ -814,8 +766,8 @@
                     </div>
                   </div>
                 </div>
-              </div>
-              <div class="iq-card">
+              </div> -->
+              <!-- <div class="iq-card">
                 <div class="iq-card-header d-flex justify-content-between">
                   <div class="iq-header-title">
                     <h4 class="card-title">Overall Progress</h4>
@@ -824,7 +776,7 @@
                 <div class="iq-card-body">
                   <div id="apex-radialbar-chart"></div>
                 </div>
-              </div>
+              </div> -->
             </div>
           </div>
         </div>

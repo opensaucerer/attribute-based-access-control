@@ -1,6 +1,7 @@
 from flask import Blueprint, render_template, request, url_for, redirect, flash, jsonify, current_app
 from abac.admin.models import Admin
 from abac.patients.models import Patient
+from abac.workers.models import Worker
 from abac.admin.utils import admin_login_required, admin_already_logged_in
 import json
 import textwrap
@@ -70,7 +71,7 @@ def dashboard(user):
 
 
 # the hospital stats route
-@admin.get('/stats/')
+@admin.get('/sharing/')
 @admin_login_required
 def stats(user):
     return render_template('patients2/dashboard-2.html', user=user)
@@ -129,6 +130,18 @@ def listWorkers(user):
     workers = Admin.get_workers()
 
     return render_template('patients2/doctor-list.html', user=user, workers=workers)
+
+
+# the view workers profile route
+@admin.get('/workers/profile/')
+@admin_login_required
+def viewWorkers(user):
+    # getting the query parameters
+    id = request.args.get('id')
+    worker = Worker.get_worker(id)
+    print(user)
+
+    return render_template('patients2/worker_profile.html', user=user, worker=worker)
 
 
 # the list patients route
