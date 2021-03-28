@@ -61,6 +61,11 @@ class generateCipher():
 
             att = policy['att']
             act = policy['act']
+            print('\n\n\n')
+            print(policies)
+            print(act)
+            print(att1)
+            print(att2)
 
             if att1 in att:
                 print("You can access that data")

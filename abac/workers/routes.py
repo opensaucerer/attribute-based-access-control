@@ -101,6 +101,28 @@ def postEditProfile(user):
         return redirect(url_for('workers.editProfile'))
 
 
+# the worker password update route
+@workers.post('/edit_password/')
+@worker_login_required
+def editPassword(user):
+
+    # collecting form data
+    form = request.form
+    data = {
+        "cpass": form['cpass'],
+        "npass": form['npass'],
+    }
+    # updating the user password
+    try:
+        user = user['public_id']
+        response = Worker().update_password(user, data)
+        return redirect(url_for('workers.dashboard'))
+
+    except:
+        flash('Invalid Password Provided', 'danger')
+        return redirect(url_for('workers.editProfile'))
+
+
 # the patient public profile
 @workers.get('/patients/profile/')
 @worker_login_required
@@ -141,22 +163,25 @@ def getRecord(user):
     mp = Patient.get_mp(id)
     vi = Patient.get_vi(id)
     dt = Patient.get_dt(id)
-    vip = None
-    mpp = None
-    dtp = None
+    vip = True
+    mpp = True
+    dtp = True
     # extracting the policy from the ciphertext
     if mp:
         mp = mp['record']
         _mp = gc.decode(mp)['policy']
         mpp = gc.validate(_mp, att1, att2)
+        print(mp)
     if vi:
         vi = vi['record']
-        _vi = gc.decode(mp)['policy']
+        _vi = gc.decode(vi)['policy']
         vip = gc.validate(_vi, att1, att2)
+        print(vi)
     if dt:
         dt = dt['record']
-        _dt = gc.decode(mp)['policy']
+        _dt = gc.decode(dt)['policy']
         dtp = gc.validate(_dt, att1, att2)
+        print(dt)
 
     return render_template('patients2/select-record-w.html', user=user, patient=patient, mpp=mpp, vip=vip, dtp=dtp)
 
@@ -201,3 +226,21 @@ def viewRecord(user):
             records = gc.decode(records)['record']
 
     return render_template('patients2/data-table-w.html', user=user, patient=patient, view=view, data=data, records=records, json=json, gc=gc)
+
+# the view records route
+
+
+@workers.get('/request/')
+@worker_login_required
+def requestAccess(user):
+    # getting the query parameters
+    id = request.args.get('id')
+    data = request.args.get('data')
+    # getting the patient
+    patient = Patient.get_user(id)
+    print(id)
+    print(patient)
+
+    Worker.requestAccess(patient, user, data)
+
+    return redirect(url_for('workers.getRecord', id=id, data=data))

@@ -81,10 +81,15 @@
                           View and edit {{patient['name'].split(' ')[0]}}'s
                           medicinal prescriptions
                         </td>
-                        {% if not mpp %}
+                        {% if mpp == True %}
+                        <td colspan="2">
+                          <a href="#" class="btn btn-primary">No Records Yet</a>
+                        </td>
+
+                        {% else %} {% if not mpp %}
                         <td colspan="2">
                           <a
-                            href="/workers/patients/edit/?id={{patient['public_id']}}&data=mp"
+                            href="/workers/request/?id={{patient['public_id']}}&data=mp"
                             class="btn btn-primary"
                             >Request Access</a
                           >
@@ -99,7 +104,7 @@
                             >View</a
                           >
                         </td>
-                        {% elif 'w' in mpp %}
+                        {% endif %} {% if 'w' in mpp %}
                         <td>
                           <a
                             href="/workers/patients/edit/?id={{patient['public_id']}}&data=mp"
@@ -108,7 +113,7 @@
                           >
                         </td>
 
-                        {% endif %} {% endif %}
+                        {% endif %} {% endif %} {% endif %}
                       </tr>
                       <tr>
                         <td><b>Patient Vitals</b></td>
@@ -117,10 +122,15 @@
                           vital statistics
                         </td>
 
-                        {% if not vip %}
+                        {% if vip == True %}
+                        <td colspan="2">
+                          <a href="#" class="btn btn-primary">No Records Yet</a>
+                        </td>
+
+                        {% else %} {% if not vip %}
                         <td colspan="2">
                           <a
-                            href="/workers/patients/edit/?id={{patient['public_id']}}&data=vi"
+                            href="/workers/request/?id={{patient['public_id']}}&data=vi"
                             class="btn btn-primary"
                             >Request Access</a
                           >
@@ -135,7 +145,7 @@
                             >View</a
                           >
                         </td>
-                        {% elif 'w' in vip %}
+                        {% endif %} {% if 'w' in vip %}
                         <td>
                           <a
                             href="/workers/patients/edit/?id={{patient['public_id']}}&data=vi"
@@ -144,7 +154,7 @@
                           >
                         </td>
 
-                        {% endif %} {% endif %}
+                        {% endif %} {% endif %} {% endif %}
                       </tr>
                       <tr>
                         <td><b>Diagnostic Tests</b></td>
@@ -152,10 +162,15 @@
                           Recommened tests that will help improve overall health
                         </td>
 
-                        {% if not dtp %}
+                        {% if dtp == True %}
+                        <td colspan="2">
+                          <a href="#" class="btn btn-primary">No Records Yet</a>
+                        </td>
+
+                        {% else %} {% if not dtp %}
                         <td colspan="2">
                           <a
-                            href="/workers/patients/edit/?id={{patient['public_id']}}&data=dt"
+                            href="/workers/request/?id={{patient['public_id']}}&data=dt"
                             class="btn btn-primary"
                             >Request Access</a
                           >
@@ -170,7 +185,7 @@
                             >View</a
                           >
                         </td>
-                        {% elif 'w' in dtp %}
+                        {% endif %} {% if 'w' in dtp %}
                         <td>
                           <a
                             href="/workers/patients/edit/?id={{patient['public_id']}}&data=dt"
@@ -179,7 +194,7 @@
                           >
                         </td>
 
-                        {% endif %} {% endif %}
+                        {% endif %} {% endif %} {% endif %}
                       </tr>
                     </tbody>
                   </table>

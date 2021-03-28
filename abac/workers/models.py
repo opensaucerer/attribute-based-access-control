@@ -83,3 +83,43 @@ class Worker:
             }
             # return response
         return response
+
+    # password update helper function
+    def update_password(self, id, data):
+
+        updateData = {}
+
+        user = self.get_worker(id)
+        # checking the old password
+        if not (bcrypt.check_password_hash(user['password'], data['cpass'])):
+            raise ValueError
+
+        # hashing the new password
+        newPassword = bcrypt.generate_password_hash(
+            data['npass']).decode("utf-8")
+
+        # adding password to the db
+        mongo.db.workers.update_one(
+            {'public_id': id}, {'$set': {'password': newPassword}})
+
+    # helper function for requesting access to data
+    @staticmethod
+    def requestAccess(patient, user, data):
+
+        # computing the message to send
+        messages = {
+            "mp": f"Hello {patient['name']}, This is to inform you that {user['role'].capitalize()} {user['fname']} {user['lname']} is requesting access to your Medical Prescription records. Please review or reach out to the {user['role']}. You can either proceed to accept or decline this request.",
+            "vi": f"Hello {patient['name']}, This is to inform you that {user['role'].capitalize()} {user['fname']} {user['lname']} is requesting to access records of your Medical Health Vitals. Please review or reach out to the {user['role']}. You can either proceed to accept or decline this request.",
+            "dt": f"Hello {patient['name']}, This is to inform you that {user['role'].capitalize()} {user['fname']} {user['lname']} is requesting access to your Recommended Diagnostic Tests. Please review or reach out to the {user['role']}. You can either proceed to accept or decline this request.",
+        }
+        # creating the message object
+        new_message = {
+            "receiver": patient['public_id'],
+            "senderName": f"{user['fname'], user['lname']}",
+            "senderId": user['public_id'],
+            "dateSent": datetime.utcnow(),
+            "hasRead": False,
+            "message": messages[data]
+        }
+        # adding the message to the database
+        mongo.db.messages.insert(new_message)

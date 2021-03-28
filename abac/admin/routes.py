@@ -270,6 +270,12 @@ def saveRecord(user):
     # getting the type of record and patient to be updated
     record = request.args.get('record')
     pid = request.args.get('id')
+
+    print('\n\n\n')
+    print(ciphertext)
+    print(data)
+    print(record)
+
     if record == 'mp':
         Patient().save_mp(pid, ciphertext)
     elif record == 'vi':

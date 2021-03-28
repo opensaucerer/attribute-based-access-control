@@ -199,6 +199,7 @@ class Patient:
         }
 
         if self.get_vi(id):
+            print('GOT HERE')
             update = {"$set": obj2}
             filterData = {'patient': id}
             mongo.db.vitals.update_one(filterData, update)
@@ -223,6 +224,7 @@ class Patient:
         }
 
         if self.get_dt(id):
+
             update = {"$set": obj2}
             filterData = {'patient': id}
             mongo.db.tests.update_one(filterData, update)

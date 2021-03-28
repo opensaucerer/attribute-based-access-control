@@ -289,7 +289,9 @@
 
       //adding new record input cells
       rAdd.onclick = function () {
-        document.querySelector('#rec-con').innerHTML += nRecord;
+        document
+          .querySelector('#rec-con')
+          .insertAdjacentHTML('beforeend', nRecord);
       };
       //removing record input cells
       recCon.onclick = function (e) {
