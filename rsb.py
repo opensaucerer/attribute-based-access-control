@@ -61,15 +61,10 @@ class generateCipher():
 
             att = policy['att']
             act = policy['act']
-            print('\n\n\n')
-            print(policies)
-            print(act)
-            print(att1)
-            print(att2)
 
             if att1 in att:
-                print("You can access that data")
-                print(f'You have an access to {policy["act"]}')
+                # print("You can access that data")
+                # print(f'You have an access to {policy["act"]}')
                 if act == 'write':
                     return 'rw'
                 elif act == 'read':
@@ -77,8 +72,8 @@ class generateCipher():
                 else:
                     return 'rw'
             elif att1 in att:
-                print("You can access that data")
-                print(f'You have an access to {policy["act"]}')
+                # print("You can access that data")
+                # print(f'You have an access to {policy["act"]}')
                 if act == 'write':
                     return 'rw'
                 elif act == 'read':

@@ -41,11 +41,11 @@
     <!-- Wrapper Start -->
     <div class="wrapper">
       <!-- Sidebar  -->
-      {% include 'patients2/adminnav.html' %}
+      {% include 'patients2/workernav.html' %}
       <!-- Page Content  -->
       <div id="content-page" class="content-page">
         <!-- TOP Nav Bar -->
-        {% include 'patients2/admintopnav.html' %}
+        {% include 'patients2/workertopnav.html' %}
         <!-- TOP Nav Bar END -->
         <div class="container-fluid">
           <div class="row">
@@ -147,105 +147,10 @@
                         {% endfor %} {% endif %}
                       </tbody>
                     </table>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <div class="col-lg-12">
-              <div class="iq-card">
-                <div class="iq-card-header d-flex justify-content-between">
-                  <div class="iq-header-title">
-                    <h4 class="card-title">Set Access Attribute</h4>
-                    <p class="card-title">
-                      Define the attrbutes of who can access this health record.
-                      You can use operators (AND/OR) to combine attributes.
-                    </p>
-                  </div>
-                  <span class="table-add float-right mb-3 mr-2">
-                    <button id="aadd" class="btn btn-sm iq-bg-success">
-                      <i class="ri-add-fill"
-                        ><span class="pl-1">Add New</span></i
-                      >
+                    <button id="update" type="submit" class="btn btn-primary">
+                      Finalize Record Update
                     </button>
-                  </span>
-                </div>
-                <div id="attrib" class="iq-card-body">
-                  <form id="form">
-                    <div class="new-user-info">
-                      <div id="att">
-                        <div id="att-con" class="row">
-                          <div class="form-group col-md-3">
-                            <label>Position</label>
-                            <select
-                              name="role"
-                              class="form-control"
-                              id="position"
-                              required
-                            >
-                              <option value="none">Select</option>
-                              <option value="doctor">Doctor</option>
-                              <option value="nurse">Nurse</option>
-                              <option value="pharmacist">Pharmacist</option>
-                            </select>
-                          </div>
-                          <div class="form-group col-md-2">
-                            <label>Operator</label>
-                            <select
-                              name="gender"
-                              class="form-control"
-                              id="operator"
-                              required
-                            >
-                              <option value="+">AND</option>
-                              <option value="-">OR</option>
-                            </select>
-                          </div>
-                          <div class="form-group col-md-3">
-                            <label>Name & ID</label>
-                            <select name="name" class="form-control" id="name">
-                              <option value="none">Select</option>
-
-                              {% for worker in workers %}
-                              <option value="{{worker['public_id']}}">
-                                {{worker['role']}}... {{worker['fname']}}
-                                {{worker['lname']}}
-                              </option>
-
-                              {% endfor %}
-                              <!-- <option value="male">Male</option> -->
-                            </select>
-                          </div>
-                          <div class="form-group col-md-3">
-                            <label>Action</label>
-                            <select
-                              name="action"
-                              class="form-control"
-                              id="action"
-                              required
-                            >
-                              <option value="read">Read</option>
-                              <option value="write">Write</option>
-                              <option value="read+write">Read & Write</option>
-                            </select>
-                          </div>
-                          <div class="form-group col-md-1">
-                            <button
-                              type="button"
-                              id="remove"
-                              class="btn iq-bg-danger btn-rounded btn-sm my-0"
-                            >
-                              Remove
-                            </button>
-                          </div>
-                        </div>
-                      </div>
-
-                      <button id="update" type="submit" class="btn btn-primary">
-                        Finalize Record Update
-                      </button>
-                    </div>
-                  </form>
+                  </div>
                 </div>
               </div>
             </div>
@@ -262,10 +167,10 @@
       //getting the elements from the DOM
 
       const rAdd = document.querySelector('#radd');
-      const aAdd = document.querySelector('#aadd');
+      //const aAdd = document.querySelector('#aadd');
       const recCon = document.querySelector('#rec-con');
-      const attCon = document.querySelector('#attrib');
-      const attTemp = document.querySelector('#att-con').outerHTML;
+      //const attCon = document.querySelector('#attrib');
+      //const attTemp = document.querySelector('#att-con').outerHTML;
       const update = document.querySelector('#update');
       //const form = document.querySelector('#form');
 
@@ -301,16 +206,16 @@
       };
 
       // adding new attribute cells
-      aAdd.onclick = function () {
-        document.querySelector('#att').insertAdjacentHTML('beforeend', attTemp);
-      };
+      //aAdd.onclick = function () {
+      //document.querySelector('#att').innerHTML += attTemp;
+      //};
 
       //removing attribute cells
-      attCon.onclick = function (e) {
-        if (e.target.id === 'remove') {
-          e.target.parentElement.parentElement.remove();
-        }
-      };
+      //attCon.onclick = function (e) {
+      // if (e.target.id === 'remove') {
+      //  e.target.parentElement.parentElement.remove();
+      //}
+      //};
 
       //listening for click of update button
       update.onclick = async function (e) {
@@ -334,31 +239,8 @@
           break;
         }
 
-        //getting the encryption attributes
-        const position = document.querySelectorAll('#position');
-        const operator = document.querySelectorAll('#operator');
-        const name = document.querySelectorAll('#name');
-        const action = document.querySelectorAll('#action');
-
-        const iter = position.length;
-        const policy = [];
-
-        for (let i = 0; i < iter; i++) {
-          let att = `${position[i].value}${operator[i].value}${name[i].value}`;
-          let act = `${action[i].value}`;
-
-          // creating the object
-          const pol = {
-            att: `${position[i].value}${operator[i].value}${name[i].value}`,
-            act: `${action[i].value}`,
-          };
-          //adding to the policy array
-          policy.push(pol);
-        }
-
         const body = {
           record: record,
-          policy: policy,
         };
 
         update.innerHTML = '<i class="fa fa-spinner fa-spin"></i> Updating...';
@@ -368,7 +250,7 @@
 
         url =
           window.location.origin +
-          `/admin/patients/records/save/?record=${recType}&id=${id}`;
+          `/workers/patients/records/save/?record=${recType}&id=${id}`;
 
         const request = await fetch(url, {
           method: 'POST',
@@ -383,9 +265,13 @@
 
         console.log(response);
 
-        if (response.status === true) {
-          window.location.href =
-            window.location.origin + '/admin/patients/list/';
+        if (request.ok) {
+          if (response.status === true) {
+            window.location.href =
+              window.location.origin + '/workers/patients/list/';
+          } else {
+            update.innerHTML = 'Finalize Record Update';
+          }
         } else {
           update.innerHTML = 'Finalize Record Update';
         }

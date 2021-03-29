@@ -171,17 +171,14 @@ def getRecord(user):
         mp = mp['record']
         _mp = gc.decode(mp)['policy']
         mpp = gc.validate(_mp, att1, att2)
-        print(mp)
     if vi:
         vi = vi['record']
         _vi = gc.decode(vi)['policy']
         vip = gc.validate(_vi, att1, att2)
-        print(vi)
     if dt:
         dt = dt['record']
         _dt = gc.decode(dt)['policy']
         dtp = gc.validate(_dt, att1, att2)
-        print(dt)
 
     return render_template('patients2/select-record-w.html', user=user, patient=patient, mpp=mpp, vip=vip, dtp=dtp)
 
@@ -227,9 +224,8 @@ def viewRecord(user):
 
     return render_template('patients2/data-table-w.html', user=user, patient=patient, view=view, data=data, records=records, json=json, gc=gc)
 
+
 # the view records route
-
-
 @workers.get('/request/')
 @worker_login_required
 def requestAccess(user):
@@ -238,9 +234,99 @@ def requestAccess(user):
     data = request.args.get('data')
     # getting the patient
     patient = Patient.get_user(id)
-    print(id)
-    print(patient)
 
     Worker.requestAccess(patient, user, data)
 
     return redirect(url_for('workers.getRecord', id=id, data=data))
+
+
+# the edit records route
+@workers.get('/patients/edit/')
+@worker_login_required
+def editRecord(user):
+    # getting the query parameters
+    id = request.args.get('id')
+    data = request.args.get('data')
+    # getting the patient
+    patient = Patient.get_user(id)
+    # getting the workers
+    workers = Admin.get_workers()
+
+    # instantiating the encryption algorithm
+    key = current_app.config['SECRET_KEY'].encode()
+    gc = generateCipher(key)
+
+    """
+    Returning data based on health record type
+    mp ---- medicine prescriptions
+    vi ---- vitals
+    dt ---- diagnostic tests
+    
+    """
+
+    if data == 'mp':
+        view = 'Medicine Prescriptions'
+        records = Patient.get_mp(id)
+        if records:
+            records = Patient.get_mp(id)['record']
+            records = gc.decode(records)['record']
+    elif data == 'vi':
+        view = 'Vitals'
+        records = Patient.get_vi(id)
+        if records:
+            records = Patient.get_vi(id)['record']
+            records = gc.decode(records)['record']
+    elif data == 'dt':
+        view = 'Recommended Diagnostic Tests'
+        records = Patient.get_dt(id)
+        if records:
+            records = Patient.get_dt(id)['record']
+            records = gc.decode(records)['record']
+
+    return render_template('patients2/table-editable-w.html', user=user, workers=workers, patient=patient, view=view, data=data, records=records, json=json, len=len)
+
+
+# the edit records route
+@workers.post('/patients/records/save/')
+@worker_login_required
+def saveRecord(user):
+    # getting the request data
+    data = request.get_json()
+
+    # instantiating the encryption algorithm
+    key = current_app.config['SECRET_KEY'].encode()
+    gc = generateCipher(key)
+
+    # getting the type of record and patient to be updated
+    record = request.args.get('record')
+    pid = request.args.get('id')
+
+    if record == 'mp':
+        mp = Patient.get_mp(pid)
+        if mp:
+            mp = mp['record']
+            _mp = gc.decode(mp)['policy']
+            data['policy'] = _mp
+            # turning the EHR into ciphertext
+            ciphertext = gc.encode(data)
+        Patient().save_mp(pid, ciphertext)
+    elif record == 'vi':
+        vi = Patient.get_vi(pid)
+        if vi:
+            vi = vi['record']
+            _vi = gc.decode(vi)['policy']
+            data['policy'] = _vi
+            # turning the EHR into ciphertext
+            ciphertext = gc.encode(data)
+        Patient().save_vi(pid, ciphertext)
+    elif record == 'dt':
+        dt = Patient.get_dt(pid)
+        if dt:
+            dt = dt['record']
+            _dt = gc.decode(dt)['policy']
+            data['policy'] = _dt
+            # turning the EHR into ciphertext
+            ciphertext = gc.encode(data)
+        Patient().save_dt(pid, ciphertext)
+
+    return jsonify({"status": True, "message": "EHR Update Successfully"})
