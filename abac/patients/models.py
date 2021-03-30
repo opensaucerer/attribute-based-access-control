@@ -247,3 +247,59 @@ class Patient:
     @staticmethod
     def get_unread(id):
         return mongo.db.messages.find({'receiver': id, 'hasRead': False}).sort('dateSent', -1)
+
+    # helper function for requesting access to data
+    @staticmethod
+    def grantReadAccess(worker, user, record):
+
+        # computing the message to send
+        messages = {
+            "mp": f"This is to inform you that patient {user['name']} has granted you access to view their Medical Presciption data. You can verify this using the button below",
+            "vi": f"This is to inform you that patient {user['name']} has granted you access to view their Medical Health Vitals data. You can verify this using the button below",
+            "dt": f"This is to inform you that patient {user['name']} has granted you access to view their Medical Recommended Diagnostics data. You can verify this using the button below",
+        }
+        # creating the message object
+        new_message = {
+            "receiver": worker['public_id'],
+            "senderName": user['name'],
+            "senderId": user['public_id'],
+            "dateSent": datetime.utcnow(),
+            "hasRead": False,
+            "message": messages[record],
+            "senderEmail": user['email'],
+            "title": "Access Granted to View Requested Health Records",
+            "senderRole": 'Patient',
+            "messageType": "request",
+            "hasDeleted": False,
+            "recordType": record
+        }
+        # adding the message to the database
+        mongo.db.messages.insert(new_message)
+
+    # helper function for requesting access to data
+    @staticmethod
+    def grantWriteAccess(worker, user, record):
+
+        # computing the message to send
+        messages = {
+            "mp": f"This is to inform you that patient {user['name']} has granted you access to view and edit their Medical Presciption data. You can verify this using the button below",
+            "vi": f"This is to inform you that patient {user['name']} has granted you access to view and edit their Medical Health Vitals data. You can verify this using the button below",
+            "dt": f"This is to inform you that patient {user['name']} has granted you access to view and edit their Medical Recommended Diagnostics data. You can verify this using the button below",
+        }
+        # creating the message object
+        new_message = {
+            "receiver": worker['public_id'],
+            "senderName": user['name'],
+            "senderId": user['public_id'],
+            "dateSent": datetime.utcnow(),
+            "hasRead": False,
+            "message": messages[record],
+            "senderEmail": user['email'],
+            "title": "Access Granted to View and Edit Requested Health Records",
+            "senderRole": 'Patient',
+            "messageType": "request",
+            "hasDeleted": False,
+            "recordType": record
+        }
+        # adding the message to the database
+        mongo.db.messages.insert(new_message)

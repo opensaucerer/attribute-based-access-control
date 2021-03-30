@@ -71,7 +71,7 @@ class generateCipher():
                     return 'r'
                 else:
                     return 'rw'
-            elif att1 in att:
+            elif att2 in att:
                 # print("You can access that data")
                 # print(f'You have an access to {policy["act"]}')
                 if act == 'write':
@@ -80,9 +80,10 @@ class generateCipher():
                     return 'r'
                 else:
                     return 'rw'
-                continue
             else:
-                return None
+                continue
+
+            return None
 
 
 # policy = json.dumps([{

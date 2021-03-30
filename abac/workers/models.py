@@ -124,7 +124,26 @@ class Worker:
             "title": "Request to Access a Section of Your Health Records",
             "senderRole": user['role'],
             "messageType": "request",
-            "hasDeleted": False
+            "hasDeleted": False,
+            "recordType": data,
+            "messageId": uuid4().hex
         }
         # adding the message to the database
         mongo.db.messages.insert(new_message)
+
+    # helper function for updating messages
+    @staticmethod
+    def updateMessage(id, data):
+        # adding the update to the db
+        mongo.db.messages.update_one({'messageId': id}, {'$set': data})
+        return True
+
+    # helper function for getting all messages
+    @staticmethod
+    def get_messages(id):
+        return mongo.db.messages.find({'receiver': id}).sort('dateSent', -1)
+
+    @staticmethod
+    def get_unread(id):
+        return mongo.db.messages.find({'receiver': id, 'hasRead': False}).sort('dateSent', -1)
+    # helper function for getting all messages end

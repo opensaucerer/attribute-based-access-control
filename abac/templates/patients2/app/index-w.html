@@ -28,12 +28,12 @@
       <!-- Wrapper Start -->
       <div class="wrapper">
       <!-- Sidebar  -->
-      {% include 'patients2/patientnav.html' %}
+      {% include 'patients2/workernav.html' %}
 
       <!-- Page Content  -->
       <div id="content-page" class="content-page">
          <!-- TOP Nav Bar -->
-          {% include 'patients2/patienttopnav.html' %}
+          {% include 'patients2/workertopnav.html' %}
          <!-- TOP Nav Bar END -->
          <div class="container-fluid relative">
             <div class="row">
@@ -64,7 +64,7 @@
                                  <ul>
                                     <li>
                                     </li>
-                                    <li data-toggle="tooltip" data-placement="top" title="Reload"><a href="/patients/inbox/"><i class="ri-restart-line"></i></a></li>
+                                    <li data-toggle="tooltip" data-placement="top" title="Reload"><a href="/workers/inbox/"><i class="ri-restart-line"></i></a></li>
                                    
                                     <li class="iq-full-screen" data-toggle="tooltip" data-placement="top" title="Zoom"><a href="#"><i class="ri-drag-move-2-line"></i></a></li>
                                  </ul>
@@ -79,7 +79,7 @@
                                     <ul class="iq-email-sender-list">
 
                                        {% for message in messages %}
-                                       <li id="{{message['messageId']}}" {% if message['hasRead'] == False %} class="iq-unread" {% endif %}>
+                                       <li class="iq-unread">
                                           <div class="d-flex align-self-center">
                                              <div class="iq-email-sender-info">
                                                 
@@ -103,7 +103,7 @@
                                        <div class="email-app-details">
                                           <div class="iq-card">
                                              <div class="iq-card-body p-0">
-                                                <div id="{{message['messageId']}}" class="expand">
+                                                <div class="">
                                                    <div class="iq-email-to-list p-3">
                                                       <div class="d-flex justify-content-between">
                                                          <ul>
@@ -125,7 +125,7 @@
                                                       <h5 class="mt-0">{{message['title']}}</h5>
                                                       <div class="iq-inbox-subject-info">
                                                          <div class="iq-subject-info">
-                                                            <!-- <img src="../../../static/patients2/images/user/05.jpg" class="img-fluid rounded-circle" alt="#"> -->
+                                                            <!-- <img src="../../../static/patients2/images/user/09.png" class="img-fluid rounded-circle" alt="#"> -->
                                                             <div class="iq-subject-status align-self-center">
                                                                <h6 class="mb-0">{{message['sennderName']}}</h6>
                                                                <div class="dropdown">
@@ -138,19 +138,13 @@
                                                             <span class="float-right align-self-center">{{ message['dateSent'].strftime("%b %d, %Y - %I:%M %p") }}</span>
                                                          </div>
                                                          <div class="iq-inbox-body mt-5">
-                                                            <p>Hello {{user['name']}}, </p>
+                                                            <p>Hello {{user['fname']}}, </p>
                                                             <p>{{message['message']}}</p>
                                                             <!-- <p>Various versions have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like).</p>
                                                             <p class="mt-5 mb-0">Regards,<span class="d-inline-block w-100">John Deo</span></p> -->
                                                          {% if message['messageType'] == 'request' %} 
-                                                         <a href="/patients/grantread/?id={{message['senderId']}}&data={{message['recordType']}}" class="btn btn-primary mr-2">
-                                                            Grant View Access
-                                                         </a>
-                                                         <a href="/patients/grantwrite/?id={{message['senderId']}}&data={{message['recordType']}}" class="btn btn-primary mr-2">
-                                                            Grant View/Edit Access
-                                                         </a>
-                                                         <a href="/patients/inbox/" class="btn iq-bg-danger">
-                                                            Decline Access
+                                                         <a href="/workers/patients/records/?id={{message['senderId']}}" class="btn btn-primary mr-2">
+                                                            Access Records Now
                                                          </a>
                                                          {% endif %}
                                                          </div>
@@ -185,10 +179,9 @@
                               <label for="inputEmail3" class="col-sm-2 col-form-label">To:</label>
                               <div class="col-sm-10">
                                  <select  id="inputEmail3" class="form-control" >
-                                     {% for worker in workers %}
-                                       <option value="{{worker['public_id']}}">
-                                       {{worker['role']}}... {{worker['fname']}}
-                                       {{worker['lname']}}
+                                     {% for patient in patients %}
+                                       <option value="{{patient['public_id']}}">
+                                       patient... {{patient['name']}}
                                        </option>
                                     {% endfor %}
                                  </select>
