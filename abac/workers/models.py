@@ -108,18 +108,23 @@ class Worker:
 
         # computing the message to send
         messages = {
-            "mp": f"Hello {patient['name']}, This is to inform you that {user['role'].capitalize()} {user['fname']} {user['lname']} is requesting access to your Medical Prescription records. Please review or reach out to the {user['role']}. You can either proceed to accept or decline this request.",
-            "vi": f"Hello {patient['name']}, This is to inform you that {user['role'].capitalize()} {user['fname']} {user['lname']} is requesting to access records of your Medical Health Vitals. Please review or reach out to the {user['role']}. You can either proceed to accept or decline this request.",
-            "dt": f"Hello {patient['name']}, This is to inform you that {user['role'].capitalize()} {user['fname']} {user['lname']} is requesting access to your Recommended Diagnostic Tests. Please review or reach out to the {user['role']}. You can either proceed to accept or decline this request.",
+            "mp": f"This is to inform you that {user['role'].capitalize()} {user['fname']} {user['lname']} is requesting access to your Medical Prescription records. Please review or reach out to the {user['role']}. You can either proceed to accept or decline this request.",
+            "vi": f"This is to inform you that {user['role'].capitalize()} {user['fname']} {user['lname']} is requesting to access records of your Medical Health Vitals. Please review or reach out to the {user['role']}. You can either proceed to accept or decline this request.",
+            "dt": f"This is to inform you that {user['role'].capitalize()} {user['fname']} {user['lname']} is requesting access to your Recommended Diagnostic Tests. Please review or reach out to the {user['role']}. You can either proceed to accept or decline this request.",
         }
         # creating the message object
         new_message = {
             "receiver": patient['public_id'],
-            "senderName": f"{user['fname'], user['lname']}",
+            "senderName": user['fname'] + " " + user['lname'],
             "senderId": user['public_id'],
             "dateSent": datetime.utcnow(),
             "hasRead": False,
-            "message": messages[data]
+            "message": messages[data],
+            "senderEmail": user['email'],
+            "title": "Request to Access a Section of Your Health Records",
+            "senderRole": user['role'],
+            "messageType": "request",
+            "hasDeleted": False
         }
         # adding the message to the database
         mongo.db.messages.insert(new_message)

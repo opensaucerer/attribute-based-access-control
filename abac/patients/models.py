@@ -199,7 +199,7 @@ class Patient:
         }
 
         if self.get_vi(id):
-            print('GOT HERE')
+
             update = {"$set": obj2}
             filterData = {'patient': id}
             mongo.db.vitals.update_one(filterData, update)
@@ -238,3 +238,12 @@ class Patient:
 
         return response
     # helper function for saving patient records end
+
+    # helper function for getting all messages
+    @staticmethod
+    def get_messages(id):
+        return mongo.db.messages.find({'receiver': id}).sort('dateSent', -1)
+
+    @staticmethod
+    def get_unread(id):
+        return mongo.db.messages.find({'receiver': id, 'hasRead': False}).sort('dateSent', -1)

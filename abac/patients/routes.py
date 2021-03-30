@@ -1,5 +1,6 @@
 from flask import Blueprint, render_template, request, url_for, redirect, flash, session, current_app
 from abac.patients.models import Patient
+from abac.admin.models import Admin
 from abac.patients.utils import login_required, already_logged_in
 from rsb import generateCipher
 import json
@@ -170,3 +171,18 @@ def editPassword(user):
     except:
         flash('Invalid Password Provided', 'danger')
         return redirect(url_for('patients.editProfile'))
+
+
+# the patient inbox route
+@patients.get('/inbox/')
+@login_required
+def inbox(user):
+
+    pid = user['public_id']
+
+    messages = Patient.get_messages(pid)
+    unreads = Patient.get_unread(pid)
+    # getting the workers
+    workers = Admin.get_workers()
+
+    return render_template('patients2/app/index.html', user=user, messages=messages, unreads=unreads, workers=workers)
