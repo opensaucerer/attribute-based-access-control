@@ -271,7 +271,8 @@ class Patient:
             "senderRole": 'Patient',
             "messageType": "request",
             "hasDeleted": False,
-            "recordType": record
+            "recordType": record,
+            "messageId": uuid4().hex
         }
         # adding the message to the database
         mongo.db.messages.insert(new_message)
@@ -303,3 +304,10 @@ class Patient:
         }
         # adding the message to the database
         mongo.db.messages.insert(new_message)
+
+    # helper function for updating messages
+    @staticmethod
+    def updateMessage(id, data):
+        # adding the update to the db
+        mongo.db.messages.update_one({'messageId': id}, {'$set': data})
+        return True

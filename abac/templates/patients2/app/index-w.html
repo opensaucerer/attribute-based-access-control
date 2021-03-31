@@ -44,7 +44,7 @@
                            <div class="iq-email-list" >
                               <button class="btn btn-primary btn-lg btn-block mb-3 font-size-16 p-3" data-target="#compose-email-popup" data-toggle="modal"><i class="ri-send-plane-line mr-2"></i>New Message</button>
                               <div class="iq-email-ui nav flex-column nav-pills">
-                                 <li class="nav-link active" role="tab" data-toggle="pill" href="#mail-inbox"><a href="index.html"><i class="ri-mail-line"></i>Inbox<span class="badge badge-primary ml-2">{{unreads.count()}}</span></a></li>
+                                 <li class="nav-link active" role="tab" data-toggle="pill" href="#mail-inbox"><a href="index.html"><i class="ri-mail-line"></i>Inbox<span id="count" class="badge badge-primary ml-2">{{unreads.count()}}</span></a></li>
                                  <li class="nav-link" role="tab" data-toggle="pill" href="#mail-sent"><a href="#"><i class="ri-mail-send-line"></i>Sent Mail</a></li>
                                  <li class="nav-link" role="tab" data-toggle="pill" href="#mail-trash"><a href="#"><i class="ri-delete-bin-line"></i>Trash</a></li>
                                 
@@ -79,12 +79,12 @@
                                     <ul class="iq-email-sender-list">
 
                                        {% for message in messages %}
-                                       <li class="iq-unread">
+                                       <li data-id="{{message['messageId']}}" {% if message['hasRead'] == False %} class="iq-unread" {% endif %}>
                                           <div class="d-flex align-self-center">
                                              <div class="iq-email-sender-info">
                                                 
                                                 <span class="ri-question-answer-line iq-star-toggle"></span>
-                                                <a href="javascript: void(0);" class="iq-email-title"> {% if message['senderRole'] %}  {{message['senderRole'].capitalize()}}  {% endif %} {{message['senderName']}}</a>
+                                                <a href="javascript: void(0);" class="iq-email-title"> {{message['senderName']}}</a>
                                              </div>
                                              <div class="iq-email-content">
                                                 <a href="javascript: void(0);" class="iq-email-subject">{{message['message']}} &nbsp;–&nbsp;
@@ -103,7 +103,7 @@
                                        <div class="email-app-details">
                                           <div class="iq-card">
                                              <div class="iq-card-body p-0">
-                                                <div class="">
+                                                <div data-id="{{message['messageId']}}">
                                                    <div class="iq-email-to-list p-3">
                                                       <div class="d-flex justify-content-between">
                                                          <ul>
@@ -145,6 +145,184 @@
                                                          {% if message['messageType'] == 'request' %} 
                                                          <a href="/workers/patients/records/?id={{message['senderId']}}" class="btn btn-primary mr-2">
                                                             Access Records Now
+                                                         </a>
+                                                         {% endif %}
+                                                         </div>
+                                                         <hr>
+                                                        
+                                                      </div>
+                                                   </div>
+                                                </div>
+                                             </div>
+                                          </div>
+                                       </div>
+                                       {% endfor %}
+                                    </ul>
+                                 </div>
+                                 <div class="tab-pane fade" id="mail-sent" role="tabpanel">
+                                    <ul class="iq-email-sender-list">
+
+                                       {% for message in messages %}
+                                       <li data-id="{{message['messageId']}}" {% if message['hasRead'] == False %} class="iq-unread" {% endif %}>
+                                          <div class="d-flex align-self-center">
+                                             <div class="iq-email-sender-info">
+                                                
+                                                <span class="ri-question-answer-line iq-star-toggle"></span>
+                                                <a href="javascript: void(0);" class="iq-email-title"> {{message['senderName']}}</a>
+                                             </div>
+                                             <div class="iq-email-content">
+                                                <a href="javascript: void(0);" class="iq-email-subject">{{message['message']}} &nbsp;–&nbsp;
+                                                <span></span>
+                                                </a>
+                                                <!-- <div class="iq-email-date">08:00 am</div> -->
+                                             </div>
+                                             <ul class="iq-social-media">
+                                                <li><a href="#"><i class="ri-delete-bin-2-line"></i></a></li>
+                                                <!-- <li><a href="#"><i class="ri-mail-line"></i></a></li>
+                                                <li><a href="#"><i class="ri-file-list-2-line"></i></a></li>
+                                                <li><a href="#"><i class="ri-time-line"></i></a></li> -->
+                                             </ul>
+                                          </div>
+                                       </li>
+                                       <div class="email-app-details">
+                                          <div class="iq-card">
+                                             <div class="iq-card-body p-0">
+                                                <div data-id="{{message['messageId']}}" class="expand">
+                                                   <div class="iq-email-to-list p-3">
+                                                      <div class="d-flex justify-content-between">
+                                                         <ul>
+                                                            <li class="mr-3">
+                                                               <a href="javascript: void(0);">
+                                                                  <h4 class="m-0"><i class="ri-arrow-left-line"></i></h4>
+                                                               </a>
+                                                            </li>
+                                                           
+                                                            <li data-toggle="tooltip" data-placement="top" title="Delete"><a href="#"><i class="ri-delete-bin-line"></i></a></li>
+                                                            <li data-toggle="tooltip" data-placement="top" title="Unread"><a href="#"><i class="ri-mail-unread-line"></i></a></li>
+                                                         </ul>
+                                                         
+                                                      </div>
+                                                   </div>
+                                                   <hr class="mt-0">
+                                                   <div class="iq-inbox-subject p-3">
+                                                      <h5 class="mt-0">{{message['title']}}</h5>
+                                                      <div class="iq-inbox-subject-info">
+                                                         <div class="iq-subject-info">
+                                                            <!-- <img src="../../../static/patients2/images/user/05.jpg" class="img-fluid rounded-circle" alt="#"> -->
+                                                            <div class="iq-subject-status align-self-center">
+                                                               <h6 class="mb-0">{{message['sennderName']}}</h6>
+                                                               <div class="dropdown">
+                                                                  <a class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                                  to Me
+                                                                  </a>
+                                                                 
+                                                               </div>
+                                                            </div>
+                                                            <span class="float-right align-self-center">{{ message['dateSent'].strftime("%b %d, %Y - %I:%M %p") }}</span>
+                                                         </div>
+                                                         <div class="iq-inbox-body mt-5">
+                                                            <p>Hello {{user['name']}}, </p>
+                                                            <p>{{message['message']}}</p>
+                                                            <!-- <p>Various versions have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like).</p>
+                                                            <p class="mt-5 mb-0">Regards,<span class="d-inline-block w-100">John Deo</span></p> -->
+                                                         {% if message['messageType'] == 'request' %} 
+                                                         <a href="/patients/grantread/?id={{message['senderId']}}&data={{message['recordType']}}" class="btn btn-primary mr-2">
+                                                            Grant View Access
+                                                         </a>
+                                                         <a href="/patients/grantwrite/?id={{message['senderId']}}&data={{message['recordType']}}" class="btn btn-primary mr-2">
+                                                            Grant View/Edit Access
+                                                         </a>
+                                                         <a href="/patients/inbox/" class="btn iq-bg-danger">
+                                                            Decline Access
+                                                         </a>
+                                                         {% endif %}
+                                                         </div>
+                                                         <hr>
+                                                        
+                                                      </div>
+                                                   </div>
+                                                </div>
+                                             </div>
+                                          </div>
+                                       </div>
+                                       {% endfor %}
+                                    </ul>
+                                 </div>
+                                 <div class="tab-pane fade" id="mail-trash" role="tabpanel">
+                                    <ul class="iq-email-sender-list">
+
+                                       {% for message in messages %}
+                                       <li data-id="{{message['messageId']}}" {% if message['hasRead'] == False %} class="iq-unread" {% endif %}>
+                                          <div class="d-flex align-self-center">
+                                             <div class="iq-email-sender-info">
+                                                
+                                                <span class="ri-question-answer-line iq-star-toggle"></span>
+                                                <a href="javascript: void(0);" class="iq-email-title"> {{message['senderName']}}</a>
+                                             </div>
+                                             <div class="iq-email-content">
+                                                <a href="javascript: void(0);" class="iq-email-subject">{{message['message']}} &nbsp;–&nbsp;
+                                                <span></span>
+                                                </a>
+                                                <!-- <div class="iq-email-date">08:00 am</div> -->
+                                             </div>
+                                             <ul class="iq-social-media">
+                                                <li><a href="#"><i class="ri-delete-bin-2-line"></i></a></li>
+                                                <!-- <li><a href="#"><i class="ri-mail-line"></i></a></li>
+                                                <li><a href="#"><i class="ri-file-list-2-line"></i></a></li>
+                                                <li><a href="#"><i class="ri-time-line"></i></a></li> -->
+                                             </ul>
+                                          </div>
+                                       </li>
+                                       <div class="email-app-details">
+                                          <div class="iq-card">
+                                             <div class="iq-card-body p-0">
+                                                <div data-id="{{message['messageId']}}" class="expand">
+                                                   <div class="iq-email-to-list p-3">
+                                                      <div class="d-flex justify-content-between">
+                                                         <ul>
+                                                            <li class="mr-3">
+                                                               <a href="javascript: void(0);">
+                                                                  <h4 class="m-0"><i class="ri-arrow-left-line"></i></h4>
+                                                               </a>
+                                                            </li>
+                                                           
+                                                            <li data-toggle="tooltip" data-placement="top" title="Delete"><a href="#"><i class="ri-delete-bin-line"></i></a></li>
+                                                            <li data-toggle="tooltip" data-placement="top" title="Unread"><a href="#"><i class="ri-mail-unread-line"></i></a></li>
+                                                         </ul>
+                                                         
+                                                      </div>
+                                                   </div>
+                                                   <hr class="mt-0">
+                                                   <div class="iq-inbox-subject p-3">
+                                                      <h5 class="mt-0">{{message['title']}}</h5>
+                                                      <div class="iq-inbox-subject-info">
+                                                         <div class="iq-subject-info">
+                                                            <!-- <img src="../../../static/patients2/images/user/05.jpg" class="img-fluid rounded-circle" alt="#"> -->
+                                                            <div class="iq-subject-status align-self-center">
+                                                               <h6 class="mb-0">{{message['sennderName']}}</h6>
+                                                               <div class="dropdown">
+                                                                  <a class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                                  to Me
+                                                                  </a>
+                                                                 
+                                                               </div>
+                                                            </div>
+                                                            <span class="float-right align-self-center">{{ message['dateSent'].strftime("%b %d, %Y - %I:%M %p") }}</span>
+                                                         </div>
+                                                         <div class="iq-inbox-body mt-5">
+                                                            <p>Hello {{user['name']}}, </p>
+                                                            <p>{{message['message']}}</p>
+                                                            <!-- <p>Various versions have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like).</p>
+                                                            <p class="mt-5 mb-0">Regards,<span class="d-inline-block w-100">John Deo</span></p> -->
+                                                         {% if message['messageType'] == 'request' %} 
+                                                         <a href="/patients/grantread/?id={{message['senderId']}}&data={{message['recordType']}}" class="btn btn-primary mr-2">
+                                                            Grant View Access
+                                                         </a>
+                                                         <a href="/patients/grantwrite/?id={{message['senderId']}}&data={{message['recordType']}}" class="btn btn-primary mr-2">
+                                                            Grant View/Edit Access
+                                                         </a>
+                                                         <a href="/patients/inbox/" class="btn iq-bg-danger">
+                                                            Decline Access
                                                          </a>
                                                          {% endif %}
                                                          </div>
@@ -228,6 +406,51 @@
          <!-- Footer -->
          {% include 'patients2/patientfooter.html' %}
       </div>
+
+      <script>
+
+         const messages = document.querySelectorAll('.iq-unread')
+         const count = document.querySelector('#count')
+
+         messages.forEach(message =>{
+
+            message.onclick = async function (){
+            const id = message.dataset.id
+
+                     url =
+                  window.location.origin +
+                  `/workers/inbox/markAsRead/?id=${id}`;
+
+               const request = await fetch(url, {
+                  method: 'POST',
+                  headers: {
+                     'Content-Type': 'application/json',
+                  },
+                 // body: JSON.stringify(body),
+               });
+
+               const response = await request.json();
+
+               console.log(response)
+
+               if (request.ok) {
+                  if (response.status === true) {
+                     message.classList.remove('iq-unread')
+                     if(count.innerText != '0'){
+                         count.innerText = parseInt(count.innerText) - 1
+                     }
+                     return
+                  } else {
+                     return
+                  }
+               } else {
+                 return
+               }
+         }
+
+         })
+
+      </script>
       <!-- Wrapper END -->
       <!-- Footer END -->
       <!-- Optional JavaScript -->

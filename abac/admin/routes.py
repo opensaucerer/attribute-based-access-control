@@ -278,3 +278,19 @@ def saveRecord(user):
         Patient().save_dt(pid, ciphertext)
 
     return jsonify({"status": True, "message": "EHR Update Successfully"})
+
+
+# the admin inbox route
+@admin.get('/inbox/')
+@admin_login_required
+def inbox(user):
+
+    pid = user['public_id']
+
+    messages = Admin.get_messages(pid)
+    unreads = Admin.get_unread(pid)
+    # getting the workers
+    patients = Patient.get_patients()
+    workers = Admin.get_workers()
+
+    return render_template('patients2/app/index-a.html', user=user, messages=messages, unreads=unreads, patients=patients, workers=workers)

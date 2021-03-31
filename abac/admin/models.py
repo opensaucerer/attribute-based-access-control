@@ -132,3 +132,12 @@ class Admin:
         if role:
             return mongo.db.workers.find({"role": role})
         return mongo.db.workers.find()
+
+    # helper function for getting all messages
+    @staticmethod
+    def get_messages(id):
+        return mongo.db.messages.find({'receiver': id}).sort('dateSent', -1)
+
+    @staticmethod
+    def get_unread(id):
+        return mongo.db.messages.find({'receiver': id, 'hasRead': False}).sort('dateSent', -1)

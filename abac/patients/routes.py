@@ -1,4 +1,4 @@
-from flask import Blueprint, render_template, request, url_for, redirect, flash, session, current_app
+from flask import Blueprint, render_template, request, url_for, redirect, flash, session, current_app, jsonify
 from abac.patients.models import Patient
 from abac.admin.models import Admin
 from abac.workers.models import Worker
@@ -189,7 +189,7 @@ def inbox(user):
     return render_template('patients2/app/index.html', user=user, messages=messages, unreads=unreads, workers=workers)
 
 
-# the patient inbox route
+# the grant read access route
 @patients.get('/grantread/')
 @login_required
 def grantRead(user):
@@ -253,3 +253,104 @@ def grantRead(user):
         Patient.grantReadAccess(worker, user, record)
 
     return redirect(url_for('patients.inbox'))
+
+
+# the grant read and write access route
+@patients.get('/grantwrite/')
+@login_required
+def grantWrite(user):
+
+    # getting the query parameters
+    id = request.args.get('id')
+    # getting the type of record and patient to be updated
+    record = request.args.get('data')
+
+    # getting the worker
+    worker = Worker.get_worker(id)
+
+    # setting the new attribute
+    att = worker['role'] + '+' + worker['public_id']
+    act = 'read+write'
+
+    new_policy = {
+        "att": att,
+        "act": act
+    }
+
+    # instantiating the encryption algorithm
+    key = current_app.config['SECRET_KEY'].encode()
+    gc = generateCipher(key)
+
+    pid = user['public_id']
+
+    if record == 'mp':
+        mp = Patient.get_mp(pid)
+        if mp:
+            mp = mp['record']
+            _mp = gc.decode(mp)
+            if not (new_policy in _mp['policy']):
+                _mp['policy'].append(new_policy)
+            # turning the EHR into ciphertext
+            ciphertext = gc.encode(_mp)
+        Patient().save_mp(pid, ciphertext)
+        Patient.grantWriteAccess(worker, user, record)
+    elif record == 'vi':
+        vi = Patient.get_vi(pid)
+        if vi:
+            vi = vi['record']
+            _vi = gc.decode(vi)
+            if not (new_policy in _vi['policy']):
+                _vi['policy'].append(new_policy)
+            # turning the EHR into ciphertext
+            ciphertext = gc.encode(_vi)
+        Patient().save_vi(pid, ciphertext)
+        Patient.grantWriteAccess(worker, user, record)
+    elif record == 'dt':
+        dt = Patient.get_dt(pid)
+        if dt:
+            dt = dt['record']
+            _dt = gc.decode(dt)
+            if not (new_policy in _dt['policy']):
+                _dt['policy'].append(new_policy)
+            # turning the EHR into ciphertext
+            ciphertext = gc.encode(_dt)
+            return print(_dt)
+        Patient().save_dt(pid, ciphertext)
+        Patient.grantWriteAccess(worker, user, record)
+
+    return redirect(url_for('patients.inbox'))
+
+
+# mark as read route
+@patients.post('/inbox/markAsRead/')
+@login_required
+def markAsRead(user):
+
+    # getting the query parameters
+    id = request.args.get('id')
+
+    # building the changes
+    data = {
+        'hasRead': True
+    }
+
+    # marking the message as read
+    Patient.updateMessage(id, data)
+
+    return jsonify({'status': True, 'message': 'Message has been marked as read'})
+
+
+# view appointments routes
+@patients.get('/view_appointments/')
+@login_required
+def viewAppointment(user):
+
+    return render_template('patients2/app/index.html')
+
+
+# book appointments routes
+@patients.get('/appointments/')
+@login_required
+def bookAppointment(user):
+
+    return render_template('patients2/app/index.html')

@@ -383,9 +383,13 @@
 
         console.log(response);
 
-        if (response.status === true) {
-          window.location.href =
-            window.location.origin + '/admin/patients/list/';
+        if (request.ok) {
+          if (response.status === true) {
+            window.location.href =
+              window.location.origin + '/admin/patients/list/';
+          } else {
+            update.innerHTML = 'Finalize Record Update';
+          }
         } else {
           update.innerHTML = 'Finalize Record Update';
         }

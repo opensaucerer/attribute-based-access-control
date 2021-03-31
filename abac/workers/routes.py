@@ -345,3 +345,22 @@ def inbox(user):
     patients = Patient.get_patients()
 
     return render_template('patients2/app/index-w.html', user=user, messages=messages, unreads=unreads, patients=patients)
+
+
+# mark as read route
+@workers.post('/inbox/markAsRead/')
+@worker_login_required
+def markAsRead(user):
+
+    # getting the query parameters
+    id = request.args.get('id')
+
+    # building the changes
+    data = {
+        'hasRead': True
+    }
+
+    # marking the message as read
+    Worker.updateMessage(id, data)
+
+    return jsonify({'status': True, 'message': 'Message has been marked as read'})
