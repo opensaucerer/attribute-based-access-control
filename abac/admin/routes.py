@@ -287,10 +287,42 @@ def inbox(user):
 
     pid = user['public_id']
 
+    url = '/admin/inbox/send/'
+
+    # getting messages
     messages = Admin.get_messages(pid)
     unreads = Admin.get_unread(pid)
+    sents = Admin.sent_messages(pid)
+    trashed = Admin.trashed_messages(pid)
     # getting the workers
     patients = Patient.get_patients()
     workers = Admin.get_workers()
 
-    return render_template('patients2/app/index-a.html', user=user, messages=messages, unreads=unreads, patients=patients, workers=workers)
+    return render_template('patients2/app/index-a.html', sents=sents, trashed=trashed, url=url, user=user, messages=messages, unreads=unreads, patients=patients, workers=workers)
+
+
+# the admin send message route
+@admin.post('/inbox/send/')
+@admin_login_required
+def sendMessage(user):
+
+    return redirect(url_for('admin.inbox'))
+
+
+# mark as read route
+@admin.post('/inbox/markAsRead/')
+@admin_login_required
+def markAsRead(user):
+
+    # getting the query parameters
+    id = request.args.get('id')
+
+    # building the changes
+    data = {
+        'hasRead': True
+    }
+
+    # marking the message as read
+    Admin.updateMessage(id, data)
+
+    return jsonify({'status': True, 'message': 'Message has been marked as read'})

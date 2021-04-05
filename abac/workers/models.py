@@ -131,6 +131,28 @@ class Worker:
         # adding the message to the database
         mongo.db.messages.insert(new_message)
 
+    # helper function for sending message
+    @staticmethod
+    def sendMessage(form, user):
+
+        # creating the message object
+        new_message = {
+            "receiver": form['receiver'],
+            "senderName": f"{user['fname']} {user['lname']}",
+            "senderId": user['public_id'],
+            "dateSent": datetime.utcnow(),
+            "hasRead": False,
+            "message": form['message'],
+            "senderEmail": user['email'],
+            "title": form['title'],
+            "senderRole": user['role'],
+            "messageType": "message",
+            "hasDeleted": False,
+            "messageId": uuid4().hex
+        }
+        # adding the message to the database
+        mongo.db.messages.insert(new_message)
+
     # helper function for updating messages
     @staticmethod
     def updateMessage(id, data):
@@ -147,3 +169,13 @@ class Worker:
     def get_unread(id):
         return mongo.db.messages.find({'receiver': id, 'hasRead': False}).sort('dateSent', -1)
     # helper function for getting all messages end
+
+    # helper function for getting all sent messages
+    @staticmethod
+    def sent_messages(id):
+        return mongo.db.messages.find({'senderId': id}).sort('dateSent', -1)
+
+    # helper function for getting all trashed messages
+    @staticmethod
+    def trashed_messages(id):
+        return mongo.db.messages.find({'senderId': id, "hasDeleted": True}).sort('dateSent', -1)

@@ -339,12 +339,27 @@ def inbox(user):
 
     pid = user['public_id']
 
+    url = '/workers/inbox/send/'
+
+    # getting messages
     messages = Worker.get_messages(pid)
     unreads = Worker.get_unread(pid)
+    sents = Worker.sent_messages(pid)
+    trashed = Worker.trashed_messages(pid)
     # getting the workers
     patients = Patient.get_patients()
+    admins = Admin.get()
+    workers = Admin.get_workers()
 
-    return render_template('patients2/app/index-w.html', user=user, messages=messages, unreads=unreads, patients=patients)
+    return render_template('patients2/app/index-w.html', url=url, workers=workers, user=user, messages=messages, unreads=unreads, patients=patients, admins=admins, sents=sents, trashed=trashed)
+
+
+# the worker send message route
+@workers.post('/inbox/send/')
+@worker_login_required
+def sendMessage(user):
+
+    return redirect(url_for('workers.inbox'))
 
 
 # mark as read route

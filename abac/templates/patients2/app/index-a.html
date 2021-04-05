@@ -93,7 +93,7 @@
                                                 <!-- <div class="iq-email-date">08:00 am</div> -->
                                              </div>
                                              <ul class="iq-social-media">
-                                                <li><a href="#"><i class="ri-delete-bin-2-line"></i></a></li>
+                                                <!-- <li><a href="#"><i class="ri-delete-bin-2-line"></i></a></li> -->
                                                 <!-- <li><a href="#"><i class="ri-mail-line"></i></a></li>
                                                 <li><a href="#"><i class="ri-file-list-2-line"></i></a></li>
                                                 <li><a href="#"><i class="ri-time-line"></i></a></li> -->
@@ -113,8 +113,8 @@
                                                                </a>
                                                             </li>
                                                            
-                                                            <li data-toggle="tooltip" data-placement="top" title="Delete"><a href="#"><i class="ri-delete-bin-line"></i></a></li>
-                                                            <li data-toggle="tooltip" data-placement="top" title="Unread"><a href="#"><i class="ri-mail-unread-line"></i></a></li>
+                                                            <!-- <li data-toggle="tooltip" data-placement="top" title="Delete"><a href="#"><i class="ri-delete-bin-line"></i></a></li>
+                                                            <li data-toggle="tooltip" data-placement="top" title="Unread"><a href="#"><i class="ri-mail-unread-line"></i></a></li> -->
                                                            
                                                          </ul>
                                                          
@@ -162,22 +162,22 @@
                                  <div class="tab-pane fade" id="mail-sent" role="tabpanel">
                                     <ul class="iq-email-sender-list">
 
-                                       {% for message in messages %}
-                                       <li data-id="{{message['messageId']}}" {% if message['hasRead'] == False %} class="iq-unread" {% endif %}>
+                                       {% for sent in sents %}
+                                       <li data-id="{{sent['messageId']}}">
                                           <div class="d-flex align-self-center">
                                              <div class="iq-email-sender-info">
                                                 
                                                 <span class="ri-question-answer-line iq-star-toggle"></span>
-                                                <a href="javascript: void(0);" class="iq-email-title"> {{message['senderName']}}</a>
+                                                <a href="javascript: void(0);" class="iq-email-title"> {{sent['senderName']}}</a>
                                              </div>
                                              <div class="iq-email-content">
-                                                <a href="javascript: void(0);" class="iq-email-subject">{{message['message']}} &nbsp;–&nbsp;
+                                                <a href="javascript: void(0);" class="iq-email-subject">{{sent['message']}} &nbsp;–&nbsp;
                                                 <span></span>
                                                 </a>
                                                 <!-- <div class="iq-email-date">08:00 am</div> -->
                                              </div>
                                              <ul class="iq-social-media">
-                                                <li><a href="#"><i class="ri-delete-bin-2-line"></i></a></li>
+                                                <!-- <li><a href="#"><i class="ri-delete-bin-2-line"></i></a></li> -->
                                                 <!-- <li><a href="#"><i class="ri-mail-line"></i></a></li>
                                                 <li><a href="#"><i class="ri-file-list-2-line"></i></a></li>
                                                 <li><a href="#"><i class="ri-time-line"></i></a></li> -->
@@ -187,7 +187,7 @@
                                        <div class="email-app-details">
                                           <div class="iq-card">
                                              <div class="iq-card-body p-0">
-                                                <div data-id="{{message['messageId']}}" class="expand">
+                                                <div data-id="{{sent['messageId']}}" class="expand">
                                                    <div class="iq-email-to-list p-3">
                                                       <div class="d-flex justify-content-between">
                                                          <ul>
@@ -198,44 +198,33 @@
                                                             </li>
                                                            
                                                             <li data-toggle="tooltip" data-placement="top" title="Delete"><a href="#"><i class="ri-delete-bin-line"></i></a></li>
-                                                            <li data-toggle="tooltip" data-placement="top" title="Unread"><a href="#"><i class="ri-mail-unread-line"></i></a></li>
+                                                            <!-- <li data-toggle="tooltip" data-placement="top" title="Unread"><a href="#"><i class="ri-mail-unread-line"></i></a></li> -->
                                                          </ul>
                                                          
                                                       </div>
                                                    </div>
                                                    <hr class="mt-0">
                                                    <div class="iq-inbox-subject p-3">
-                                                      <h5 class="mt-0">{{message['title']}}</h5>
+                                                      <h5 class="mt-0">{{sent['title']}}</h5>
                                                       <div class="iq-inbox-subject-info">
                                                          <div class="iq-subject-info">
                                                             <!-- <img src="../../../static/patients2/images/user/05.jpg" class="img-fluid rounded-circle" alt="#"> -->
                                                             <div class="iq-subject-status align-self-center">
-                                                               <h6 class="mb-0">{{message['sennderName']}}</h6>
+                                                               <h6 class="mb-0">{{sent['sennderName']}}</h6>
                                                                <div class="dropdown">
-                                                                  <a class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                                  <!-- <a class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                                                   to Me
-                                                                  </a>
+                                                                  </a> -->
                                                                  
                                                                </div>
                                                             </div>
-                                                            <span class="float-right align-self-center">{{ message['dateSent'].strftime("%b %d, %Y - %I:%M %p") }}</span>
+                                                            <span class="float-right align-self-center">{{ sent['dateSent'].strftime("%b %d, %Y - %I:%M %p") }}</span>
                                                          </div>
                                                          <div class="iq-inbox-body mt-5">
-                                                            <p>Hello {{user['name']}}, </p>
-                                                            <p>{{message['message']}}</p>
+                                                            <p>Hello, </p>
+                                                            <p>{{sent['message']}}</p>
                                                             <!-- <p>Various versions have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like).</p>
                                                             <p class="mt-5 mb-0">Regards,<span class="d-inline-block w-100">John Deo</span></p> -->
-                                                         {% if message['messageType'] == 'request' %} 
-                                                         <a href="/patients/grantread/?id={{message['senderId']}}&data={{message['recordType']}}" class="btn btn-primary mr-2">
-                                                            Grant View Access
-                                                         </a>
-                                                         <a href="/patients/grantwrite/?id={{message['senderId']}}&data={{message['recordType']}}" class="btn btn-primary mr-2">
-                                                            Grant View/Edit Access
-                                                         </a>
-                                                         <a href="/patients/inbox/" class="btn iq-bg-danger">
-                                                            Decline Access
-                                                         </a>
-                                                         {% endif %}
                                                          </div>
                                                          <hr>
                                                         
@@ -251,22 +240,22 @@
                                  <div class="tab-pane fade" id="mail-trash" role="tabpanel">
                                     <ul class="iq-email-sender-list">
 
-                                       {% for message in messages %}
-                                       <li data-id="{{message['messageId']}}" {% if message['hasRead'] == False %} class="iq-unread" {% endif %}>
+                                       {% for trash in trashed %}
+                                       <li data-id="{{trash['messageId']}}" >
                                           <div class="d-flex align-self-center">
                                              <div class="iq-email-sender-info">
                                                 
                                                 <span class="ri-question-answer-line iq-star-toggle"></span>
-                                                <a href="javascript: void(0);" class="iq-email-title"> {{message['senderName']}}</a>
+                                                <a href="javascript: void(0);" class="iq-email-title"> {{trash['senderName']}}</a>
                                              </div>
                                              <div class="iq-email-content">
-                                                <a href="javascript: void(0);" class="iq-email-subject">{{message['message']}} &nbsp;–&nbsp;
+                                                <a href="javascript: void(0);" class="iq-email-subject">{{trash['message']}} &nbsp;–&nbsp;
                                                 <span></span>
                                                 </a>
                                                 <!-- <div class="iq-email-date">08:00 am</div> -->
                                              </div>
                                              <ul class="iq-social-media">
-                                                <li><a href="#"><i class="ri-delete-bin-2-line"></i></a></li>
+                                                <!-- <li><a href="#"><i class="ri-delete-bin-2-line"></i></a></li> -->
                                                 <!-- <li><a href="#"><i class="ri-mail-line"></i></a></li>
                                                 <li><a href="#"><i class="ri-file-list-2-line"></i></a></li>
                                                 <li><a href="#"><i class="ri-time-line"></i></a></li> -->
@@ -276,7 +265,7 @@
                                        <div class="email-app-details">
                                           <div class="iq-card">
                                              <div class="iq-card-body p-0">
-                                                <div data-id="{{message['messageId']}}" class="expand">
+                                                <div data-id="{{trash['messageId']}}" class="expand">
                                                    <div class="iq-email-to-list p-3">
                                                       <div class="d-flex justify-content-between">
                                                          <ul>
@@ -286,45 +275,34 @@
                                                                </a>
                                                             </li>
                                                            
-                                                            <li data-toggle="tooltip" data-placement="top" title="Delete"><a href="#"><i class="ri-delete-bin-line"></i></a></li>
-                                                            <li data-toggle="tooltip" data-placement="top" title="Unread"><a href="#"><i class="ri-mail-unread-line"></i></a></li>
+                                                            <!-- <li data-toggle="tooltip" data-placement="top" title="Delete"><a href="#"><i class="ri-delete-bin-line"></i></a></li>
+                                                            <li data-toggle="tooltip" data-placement="top" title="Unread"><a href="#"><i class="ri-mail-unread-line"></i></a></li> -->
                                                          </ul>
                                                          
                                                       </div>
                                                    </div>
                                                    <hr class="mt-0">
                                                    <div class="iq-inbox-subject p-3">
-                                                      <h5 class="mt-0">{{message['title']}}</h5>
+                                                      <h5 class="mt-0">{{trash['title']}}</h5>
                                                       <div class="iq-inbox-subject-info">
                                                          <div class="iq-subject-info">
                                                             <!-- <img src="../../../static/patients2/images/user/05.jpg" class="img-fluid rounded-circle" alt="#"> -->
                                                             <div class="iq-subject-status align-self-center">
-                                                               <h6 class="mb-0">{{message['sennderName']}}</h6>
+                                                               <h6 class="mb-0">{{trash['sennderName']}}</h6>
                                                                <div class="dropdown">
-                                                                  <a class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                                  <!-- <a class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                                                   to Me
-                                                                  </a>
+                                                                  </a> -->
                                                                  
                                                                </div>
                                                             </div>
-                                                            <span class="float-right align-self-center">{{ message['dateSent'].strftime("%b %d, %Y - %I:%M %p") }}</span>
+                                                            <span class="float-right align-self-center">{{ trash['dateSent'].strftime("%b %d, %Y - %I:%M %p") }}</span>
                                                          </div>
                                                          <div class="iq-inbox-body mt-5">
-                                                            <p>Hello {{user['name']}}, </p>
-                                                            <p>{{message['message']}}</p>
+                                                            <p>Hello, </p>
+                                                            <p>{{trash['message']}}</p>
                                                             <!-- <p>Various versions have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like).</p>
                                                             <p class="mt-5 mb-0">Regards,<span class="d-inline-block w-100">John Deo</span></p> -->
-                                                         {% if message['messageType'] == 'request' %} 
-                                                         <a href="/patients/grantread/?id={{message['senderId']}}&data={{message['recordType']}}" class="btn btn-primary mr-2">
-                                                            Grant View Access
-                                                         </a>
-                                                         <a href="/patients/grantwrite/?id={{message['senderId']}}&data={{message['recordType']}}" class="btn btn-primary mr-2">
-                                                            Grant View/Edit Access
-                                                         </a>
-                                                         <a href="/patients/inbox/" class="btn iq-bg-danger">
-                                                            Decline Access
-                                                         </a>
-                                                         {% endif %}
                                                          </div>
                                                          <hr>
                                                         
@@ -352,7 +330,7 @@
                               <button type="submit" class="float-right close-popup" data-dismiss="modal"><i class="ri-close-fill"></i></button>
                            </div>
                         </div>
-                        <form class="email-form">
+                        <form action="{{url}}" class="email-form" method="POST">
                            <div class="form-group row">
                               <label for="inputEmail3" class="col-sm-2 col-form-label">To:</label>
                               <div class="col-sm-10">
@@ -437,7 +415,7 @@
 
                const response = await request.json();
 
-               console.log(response)
+     
 
                if (request.ok) {
                   if (response.status === true) {

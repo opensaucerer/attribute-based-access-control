@@ -72,6 +72,11 @@ class Admin:
 
         return False
 
+    # get admin helper function
+    @staticmethod
+    def get():
+        return mongo.db.admin.find()
+
     # signout helper function
     @staticmethod
     def signout():
@@ -141,3 +146,44 @@ class Admin:
     @staticmethod
     def get_unread(id):
         return mongo.db.messages.find({'receiver': id, 'hasRead': False}).sort('dateSent', -1)
+
+    # helper function for getting all sent messages
+    @staticmethod
+    def sent_messages(id):
+        return mongo.db.messages.find({'senderId': id}).sort('dateSent', -1)
+
+    # helper function for getting all trashed messages
+    @staticmethod
+    def trashed_messages(id):
+        return mongo.db.messages.find({'senderId': id, "hasDeleted": True}).sort('dateSent', -1)
+
+    # helper function for sending message
+    @staticmethod
+    def sendMessage(form, user):
+
+        # creating the message object
+        new_message = {
+            "receiver": form['receiver'],
+            "senderName": "Admin",
+            "senderId": user['public_id'],
+            "dateSent": datetime.utcnow(),
+            "hasRead": False,
+            "message": form['message'],
+            "senderEmail": user['email'],
+            "title": form['title'],
+            "senderRole": 'Hospital',
+            "messageType": "message",
+            "hasDeleted": False,
+            "messageId": uuid4().hex
+        }
+        # adding the message to the database
+        mongo.db.messages.insert(new_message)
+
+     # helper function for updating messages
+
+    # update message helper function
+    @staticmethod
+    def updateMessage(id, data):
+        # adding the update to the db
+        mongo.db.messages.update_one({'messageId': id}, {'$set': data})
+        return True

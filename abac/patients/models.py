@@ -244,6 +244,16 @@ class Patient:
     def get_messages(id):
         return mongo.db.messages.find({'receiver': id}).sort('dateSent', -1)
 
+    # helper function for getting all sent messages
+    @staticmethod
+    def sent_messages(id):
+        return mongo.db.messages.find({'senderId': id}).sort('dateSent', -1)
+
+    # helper function for getting all trashed messages
+    @staticmethod
+    def trashed_messages(id):
+        return mongo.db.messages.find({'senderId': id, "hasDeleted": True}).sort('dateSent', -1)
+
     @staticmethod
     def get_unread(id):
         return mongo.db.messages.find({'receiver': id, 'hasRead': False}).sort('dateSent', -1)
@@ -254,7 +264,7 @@ class Patient:
 
         # computing the message to send
         messages = {
-            "mp": f"This is to inform you that patient {user['name']} has granted you access to view their Medical Presciption data. You can verify this using the button below",
+            "mp": f"This is to inform you that patient {user['name']} has granted you access to view their Medical Prescription data. You can verify this using the button below",
             "vi": f"This is to inform you that patient {user['name']} has granted you access to view their Medical Health Vitals data. You can verify this using the button below",
             "dt": f"This is to inform you that patient {user['name']} has granted you access to view their Medical Recommended Diagnostics data. You can verify this using the button below",
         }
@@ -272,6 +282,28 @@ class Patient:
             "messageType": "request",
             "hasDeleted": False,
             "recordType": record,
+            "messageId": uuid4().hex
+        }
+        # adding the message to the database
+        mongo.db.messages.insert(new_message)
+
+    # helper function for sending message
+    @staticmethod
+    def sendMessage(form, user):
+
+        # creating the message object
+        new_message = {
+            "receiver": form['receiver'],
+            "senderName": user['name'],
+            "senderId": user['public_id'],
+            "dateSent": datetime.utcnow(),
+            "hasRead": False,
+            "message": form['message'],
+            "senderEmail": user['email'],
+            "title": form['title'],
+            "senderRole": 'Patient',
+            "messageType": "message",
+            "hasDeleted": False,
             "messageId": uuid4().hex
         }
         # adding the message to the database

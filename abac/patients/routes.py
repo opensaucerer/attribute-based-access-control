@@ -181,12 +181,31 @@ def inbox(user):
 
     pid = user['public_id']
 
+    url = '/patients/inbox/send/'
+
+    # getting messages
     messages = Patient.get_messages(pid)
     unreads = Patient.get_unread(pid)
+    sents = Patient.sent_messages(pid)
+    trashed = Patient.trashed_messages(pid)
     # getting the workers
     workers = Admin.get_workers()
+    admins = Admin.get()
 
-    return render_template('patients2/app/index.html', user=user, messages=messages, unreads=unreads, workers=workers)
+    return render_template('patients2/app/index.html', sents=sents, trashed=trashed, url=url, user=user, messages=messages, unreads=unreads, workers=workers, admins=admins)
+
+
+# the patient send message route
+@patients.post('/inbox/send/')
+@login_required
+def sendMessage(user):
+
+    # collecting form data
+    form = request.form
+    # sending the message
+    Patient.sendMessage(form, user)
+
+    return redirect(url_for('patients.inbox'))
 
 
 # the grant read access route
