@@ -2,6 +2,7 @@ from uuid import uuid4
 from abac import bcrypt, mongo
 from datetime import datetime
 from flask import session
+from abac.workers.models import Worker
 
 
 # the User class
@@ -343,3 +344,35 @@ class Patient:
         # adding the update to the db
         mongo.db.messages.update_one({'messageId': id}, {'$set': data})
         return True
+
+    # helper function for booking appointments
+    @staticmethod
+    def book(form, user):
+        worker = Worker.get_worker(form['worker'])
+        # creating the appointment object
+        booking = {
+            "workerId": worker['public_id'],
+            "workerName": f"{worker['fname']} {worker['lname']}",
+            "workerEmail": worker['email'],
+            "patientName": user['name'],
+            "patientId": user['public_id'],
+            "patientEmail": user['email'],
+            "message": form['message'],
+            "title": form['title'],
+            "eventDate": form['date'],
+            "isDone": False,
+            "dateCreated": datetime.utcnow(),
+            "eventId": uuid4().hex
+        }
+        # adding the message to the database
+        mongo.db.appointments.insert(booking)
+
+    # helper function for getting appointments
+    @staticmethod
+    def bookings(pid):
+        return mongo.db.appointments.find({'patientId': pid, 'isDone': False})
+
+    # helper function for getting appointments
+    @staticmethod
+    def pastBookings(pid):
+        return mongo.db.appointments.find({'patientId': pid, 'isDone': True})

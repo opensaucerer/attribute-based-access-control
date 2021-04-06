@@ -1,0 +1,299 @@
+<!doctype html>
+<html lang="en">
+   
+<!-- Mirrored from iqonic.design/themes/xray/html/app/index.html by HTTrack Website Copier/3.x [XR&CO'2014], Thu, 01 Jul 2021 07:41:25 GMT -->
+<head>
+      <!-- Required meta tags -->
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+      <title>Medicio | My Appointments</title>
+      <!-- Favicon -->
+      <link rel="shortcut icon" href="../../../static/patients/static/favicons/favicon.png" />
+      <!-- Bootstrap CSS -->
+      <link rel="stylesheet" href="../../../static/patients2/css/bootstrap.min.css">
+      <!-- Typography CSS -->
+      <link rel="stylesheet" href="../../../static/patients2/css/typography.css">
+      <!-- Style CSS -->
+      <link rel="stylesheet" href="../../../static/patients2/css/style.css">
+      <!-- Responsive CSS -->
+      <link rel="stylesheet" href="../../../static/patients2/css/responsive.css">
+   </head>
+   <body>
+      <!-- loader Start -->
+      <div id="loading">
+         <div id="loading-center">
+         </div>
+      </div>
+      <!-- loader END -->
+      <!-- Wrapper Start -->
+      <div class="wrapper">
+      <!-- Sidebar  -->
+      {% include 'patients2/workernav.html' %}
+
+      <!-- Page Content  -->
+      <div id="content-page" class="content-page">
+         <!-- TOP Nav Bar -->
+          {% include 'patients2/workertopnav.html' %}
+         <!-- TOP Nav Bar END -->
+         <div class="container-fluid relative">
+            <div class="row">
+               <div class="col-lg-4" style="position: sticky !important; top: 2rem;">
+                  <div class="iq-card">
+                     <div class="iq-card-body">
+                        <div class="">
+                           <div class="iq-email-list" >
+                             
+                              <div class="iq-email-ui nav flex-column nav-pills">
+                                 <li class="nav-link active" role="tab" data-toggle="pill" href="#mail-inbox"><a href="index.html"><i class="ri-mail-line"></i>Active Appointments<span id="count" class="badge badge-primary ml-2">{{events.count()}}</span></a></li>
+                                 <li class="nav-link" role="tab" data-toggle="pill" href="#mail-sent"><a href="#"><i class="ri-mail-send-line"></i>Completed Appointments</a></li>
+                                 
+                                
+                              </div>
+                           
+                           </div>
+                        </div>
+                     </div>
+                  </div>
+               </div>
+               <div class="col-lg-8 mail-box-detail">
+                  <div class="iq-card">
+                     <div class="iq-card-body p-0">
+                        <div class="">
+                           <div class="iq-email-to-list p-3">
+                              <div class="d-flex justify-content-between">
+                                 <ul>
+                                    <li>
+                                    </li>
+                                    <li data-toggle="tooltip" data-placement="top" title="Reload"><a href=""><i class="ri-restart-line"></i></a></li>
+                                   
+                                    <li class="iq-full-screen" data-toggle="tooltip" data-placement="top" title="Zoom"><a href="#"><i class="ri-drag-move-2-line"></i></a></li>
+                                 </ul>
+                                 
+                              </div>
+                           </div>
+                           
+                           
+                           <div class="iq-email-listbox">
+                              <div class="tab-content">
+                                 <div class="tab-pane fade show active" id="mail-inbox" role="tabpanel">
+                                    <ul class="iq-email-sender-list">
+
+                                       {% for event in events %}
+                                       <li data-id="{{event['eventId']}}" class="iq-unread">
+                                          <div class="d-flex align-self-center">
+                                             <div class="iq-email-sender-info">
+                                                
+                                                <span class="ri-question-answer-line iq-star-toggle"></span>
+                                                <a href="javascript: void(0);" class="iq-email-title"> {{event['patientName']}}</a>
+                                             </div>
+                                             <div class="iq-email-content">
+                                                <a href="javascript: void(0);" class="iq-email-subject">{{event['title']}} &nbsp;–&nbsp;
+                                                <span></span>
+                                                </a>
+                                                <!-- <div class="iq-email-date">08:00 am</div> -->
+                                             </div>
+                                             <ul class="iq-social-media">
+                                                <!-- <li><a href="#"><i class="ri-delete-bin-2-line"></i></a></li> -->
+                                                <!-- <li><a href="#"><i class="ri-mail-line"></i></a></li>
+                                                <li><a href="#"><i class="ri-file-list-2-line"></i></a></li>
+                                                <li><a href="#"><i class="ri-time-line"></i></a></li> -->
+                                             </ul>
+                                          </div>
+                                       </li>
+                                       <div class="email-app-details">
+                                          <div class="iq-card">
+                                             <div class="iq-card-body p-0">
+                                                <div data-id="{{event['eventId']}}" class="expand">
+                                                   <div class="iq-email-to-list p-3">
+                                                      <div class="d-flex justify-content-between">
+                                                         <ul>
+                                                            <li class="mr-3">
+                                                               <a href="javascript: void(0);">
+                                                                  <h4 class="m-0"><i class="ri-arrow-left-line"></i></h4>
+                                                               </a>
+                                                            </li>
+                                                           
+                                                            <!-- <li data-toggle="tooltip" data-placement="top" title="Delete"><a href="#"><i class="ri-delete-bin-line"></i></a></li>
+                                                            <li data-toggle="tooltip" data-placement="top" title="Unread"><a href="#"><i class="ri-mail-unread-line"></i></a></li> -->
+                                                         </ul>
+                                                         
+                                                      </div>
+                                                   </div>
+                                                   <hr class="mt-0">
+                                                   <div class="iq-inbox-subject p-3">
+                                                      <h5 class="mt-0">{{event['title']}}</h5>
+                                                      <div class="iq-inbox-subject-info">
+                                                         <div class="iq-subject-info">
+                                                            <!-- <img src="../../../static/patients2/images/user/05.jpg" class="img-fluid rounded-circle" alt="#"> -->
+                                                            <div class="iq-subject-status align-self-center">
+                                                               <h6 class="mb-0">{{event['patientName']}}</h6>
+                                                               <div class="dropdown">
+                                                                  <a class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                                  to {{event['workerName']}}
+                                                                  </a>
+                                                                 
+                                                               </div>
+                                                            </div>
+                                                            <span class="float-right align-self-center">{{ event['dateCreated'].strftime("%b %d, %Y - %I:%M %p") }}</span>
+                                                         </div>
+                                                         <div class="iq-inbox-body mt-5">
+                                                            <p>Hello {{event['workerName']}}, </p>
+                                                            <p>{{event['message']}}</p>
+                                                            <!-- <p>Various versions have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like).</p>
+                                                            <p class="mt-5 mb-0">Regards,<span class="d-inline-block w-100">John Deo</span></p> -->
+
+                                                            
+                                                         <a href="/workers/patients/records/?id={{event['patientId']}}" class="btn btn-primary mr-2">
+                                                           View Patient Records
+                                                         </a>
+                                                        
+                                                         <a href="/workers/appointments/done/?id={{event['eventId']}}" class="btn iq-bg-danger">
+                                                            Mark As Complete
+                                                         </a>
+                                                        
+                                                       
+                                                         </div>
+                                                         <hr>
+                                                        
+                                                      </div>
+                                                   </div>
+                                                </div>
+                                             </div>
+                                          </div>
+                                       </div>
+                                       {% endfor %}
+                                    </ul>
+                                 </div>
+                                 <div class="tab-pane fade" id="mail-sent" role="tabpanel">
+                                    <ul class="iq-email-sender-list">
+
+                                       {% for past in pasts %}
+                                       <li data-id="{{past['eventId']}}" class="iq-unread">
+                                          <div class="d-flex align-self-center">
+                                             <div class="iq-email-sender-info">
+                                                
+                                                <span class="ri-question-answer-line iq-star-toggle"></span>
+                                                <a href="javascript: void(0);" class="iq-email-title"> {{past['patientName']}}</a>
+                                             </div>
+                                             <div class="iq-email-content">
+                                                <a href="javascript: void(0);" class="iq-email-subject">{{past['title']}} &nbsp;–&nbsp;
+                                                <span></span>
+                                                </a>
+                                                <!-- <div class="iq-email-date">08:00 am</div> -->
+                                             </div>
+                                             <ul class="iq-social-media">
+                                                <!-- <li><a href="#"><i class="ri-delete-bin-2-line"></i></a></li> -->
+                                                <!-- <li><a href="#"><i class="ri-mail-line"></i></a></li>
+                                                <li><a href="#"><i class="ri-file-list-2-line"></i></a></li>
+                                                <li><a href="#"><i class="ri-time-line"></i></a></li> -->
+                                             </ul>
+                                          </div>
+                                       </li>
+                                       <div class="email-app-details">
+                                          <div class="iq-card">
+                                             <div class="iq-card-body p-0">
+                                                <div data-id="{{past['eventId']}}" class="expand">
+                                                   <div class="iq-email-to-list p-3">
+                                                      <div class="d-flex justify-content-between">
+                                                         <ul>
+                                                            <li class="mr-3">
+                                                               <a href="javascript: void(0);">
+                                                                  <h4 class="m-0"><i class="ri-arrow-left-line"></i></h4>
+                                                               </a>
+                                                            </li>
+                                                           
+                                                            <!-- <li data-toggle="tooltip" data-placement="top" title="Delete"><a href="#"><i class="ri-delete-bin-line"></i></a></li>
+                                                            <li data-toggle="tooltip" data-placement="top" title="Unread"><a href="#"><i class="ri-mail-unread-line"></i></a></li> -->
+                                                         </ul>
+                                                         
+                                                      </div>
+                                                   </div>
+                                                   <hr class="mt-0">
+                                                   <div class="iq-inbox-subject p-3">
+                                                      <h5 class="mt-0">{{past['title']}}</h5>
+                                                      <div class="iq-inbox-subject-info">
+                                                         <div class="iq-subject-info">
+                                                            <!-- <img src="../../../static/patients2/images/user/05.jpg" class="img-fluid rounded-circle" alt="#"> -->
+                                                            <div class="iq-subject-status align-self-center">
+                                                               <h6 class="mb-0">{{past['patientName']}}</h6>
+                                                               <div class="dropdown">
+                                                                  <a class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                                  to {{past['workerName']}}
+                                                                  </a>
+                                                                 
+                                                               </div>
+                                                            </div>
+                                                            <span class="float-right align-self-center">{{ past['dateCreated'].strftime("%b %d, %Y - %I:%M %p") }}</span>
+                                                         </div>
+                                                         <div class="iq-inbox-body mt-5">
+                                                            <p>Hello {{past['workerName']}}, </p>
+                                                            <p>{{past['message']}}</p>
+                                                            <!-- <p>Various versions have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like).</p>
+                                                            <p class="mt-5 mb-0">Regards,<span class="d-inline-block w-100">John Deo</span></p> -->
+                                                        
+                                                         </div>
+                                                         <hr>
+                                                        
+                                                      </div>
+                                                   </div>
+                                                </div>
+                                             </div>
+                                          </div>
+                                       </div>
+                                       {% endfor %}
+                                    </ul>
+                                 </div>
+                                
+                              </div>
+                           </div>
+                        </div>
+                     </div>
+                  </div>
+               </div>
+              
+            </div>
+         </div>
+         <!-- Footer -->
+         {% include 'patients2/patientfooter.html' %}
+      </div>
+
+   
+
+      <!-- Wrapper END -->
+      <!-- Footer END -->
+      <!-- Optional JavaScript -->
+      <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+      <script data-cfasync="false" src="../../../static/patients2/../../../cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script src="../../../static/patients2/js/jquery.min.js"></script>
+      <script src="../../../static/patients2/js/popper.min.js"></script>
+      <script src="../../../static/patients2/js/bootstrap.min.js"></script>
+      <!-- Appear JavaScript -->
+      <script src="../../../static/patients2/js/jquery.appear.js"></script>
+      <!-- Countdown JavaScript -->
+      <script src="../../../static/patients2/js/countdown.min.js"></script>
+      <!-- Counterup JavaScript -->
+      <script src="../../../static/patients2/js/waypoints.min.js"></script>
+      <script src="../../../static/patients2/js/jquery.counterup.min.js"></script>
+      <!-- Wow JavaScript -->
+      <script src="../../../static/patients2/js/wow.min.js"></script>
+      <!-- Apexcharts JavaScript -->
+      <script src="../../../static/patients2/js/apexcharts.js"></script>
+      <!-- Slick JavaScript -->
+      <script src="../../../static/patients2/js/slick.min.js"></script>
+      <!-- Select2 JavaScript -->
+      <script src="../../../static/patients2/js/select2.min.js"></script>
+      <!-- Owl Carousel JavaScript -->
+      <script src="../../../static/patients2/js/owl.carousel.min.js"></script>
+      <!-- Magnific Popup JavaScript -->
+      <script src="../../../static/patients2/js/jquery.magnific-popup.min.js"></script>
+      <!-- Smooth S../crollbar JavaScript -->
+      <script src="../../../static/patients2/js/smooth-scrollbar.js"></script>
+      <!-- lottie JavaScript -->
+      <script src="../../../static/patients2/js/lottie.js"></script>
+      <!-- Chart Custom JavaScript -->
+      <script src="../../../static/patients2/js/chart-custom.js"></script>
+      <!-- Custom JavaScript -->
+      <script src="../../../static/patients2/js/custom.js"></script>
+   </body>
+
+<!-- Mirrored from iqonic.design/themes/xray/html/app/index.html by HTTrack Website Copier/3.x [XR&CO'2014], Thu, 01 Jul 2021 07:41:35 GMT -->
+</html>

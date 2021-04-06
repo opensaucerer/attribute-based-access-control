@@ -364,7 +364,11 @@ def markAsRead(user):
 @login_required
 def viewAppointment(user):
 
-    return render_template('patients2/app/index.html')
+    # getting appointments from DB
+    events = Patient.bookings(user['public_id'])
+    pasts = Patient.pastBookings(user['public_id'])
+
+    return render_template('patients2/app/event.html', events=events, pasts=pasts, user=user)
 
 
 # book appointments routes
@@ -372,4 +376,19 @@ def viewAppointment(user):
 @login_required
 def bookAppointment(user):
 
-    return render_template('patients2/app/index.html')
+    url = '/patients/appointments/'
+    return render_template('patients2/app/event.html', url=url, user=user)
+
+
+# book appointments post routes
+@patients.post('/appointments/')
+@login_required
+def bookAppointments(user):
+
+    # collecting apointment data
+    form = request.form
+
+    # booking the appointment
+    Patient.book(form, user)
+
+    return redirect(url_for("patients.viewAppointment"))

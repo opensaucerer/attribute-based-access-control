@@ -379,3 +379,29 @@ def markAsRead(user):
     Worker.updateMessage(id, data)
 
     return jsonify({'status': True, 'message': 'Message has been marked as read'})
+
+
+# view appointments routes
+@workers.get('/view_appointments/')
+@worker_login_required
+def viewAppointment(user):
+
+    # getting appointments from DB
+    events = Worker.bookings(user['public_id'])
+    pasts = Worker.pastBookings(user['public_id'])
+
+    return render_template('patients2/app/event-w.html', events=events, pasts=pasts, user=user)
+
+
+# mark as done appointments routes
+@workers.get('/appointments/done/')
+@worker_login_required
+def completeAppointment(user):
+
+    # getting the event ID
+    id = request.args.get('id')
+
+    # marking the appoinment as done
+    Worker.bookComplete(id)
+
+    return redirect(url_for('workers.viewAppointment'))

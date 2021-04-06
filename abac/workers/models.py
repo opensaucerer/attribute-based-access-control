@@ -179,3 +179,20 @@ class Worker:
     @staticmethod
     def trashed_messages(id):
         return mongo.db.messages.find({'senderId': id, "hasDeleted": True}).sort('dateSent', -1)
+
+    # helper function for getting appointments
+    @staticmethod
+    def bookings(wid):
+        return mongo.db.appointments.find({'workerId': wid, 'isDone': False})
+
+    # helper function for getting appointments
+    @staticmethod
+    def pastBookings(wid):
+        return mongo.db.appointments.find({'workerId': wid, 'isDone': True})
+
+    # mark appoinment as complete helper function
+    @staticmethod
+    def bookComplete(id):
+        mongo.db.appointments.update_one(
+            {'eventId': id}, {'$set': {'isDone': True}})
+        return True
