@@ -333,7 +333,37 @@ class Patient:
             "senderRole": 'Patient',
             "messageType": "request",
             "hasDeleted": False,
-            "recordType": record
+            "recordType": record,
+            "messageId": uuid4().hex
+        }
+        # adding the message to the database
+        mongo.db.messages.insert(new_message)
+
+    # helper function for requesting access to data
+    @staticmethod
+    def declineAccess(worker, user, record):
+
+        # computing the message to send
+        messages = {
+            "mp": f"This is to inform you that patient {user['name']} has declined your request access their Medical Presciption data. You can trying sending the patient a message",
+            "vi": f"This is to inform you that patient {user['name']} has declined your request access their Medical Health Vitals data. You can trying sending the patient a message",
+            "dt": f"This is to inform you that patient {user['name']} has declined your request access their Medical Recommended Diagnostics data. You can trying sending the patient a message",
+        }
+        # creating the message object
+        new_message = {
+            "receiver": worker['public_id'],
+            "senderName": user['name'],
+            "senderId": user['public_id'],
+            "dateSent": datetime.utcnow(),
+            "hasRead": False,
+            "message": messages[record],
+            "senderEmail": user['email'],
+            "title": "Access Denied to View/Edit Requested Health Records",
+            "senderRole": 'Patient',
+            "messageType": "decline",
+            "hasDeleted": False,
+            "recordType": record,
+            "messageId": uuid4().hex
         }
         # adding the message to the database
         mongo.db.messages.insert(new_message)
@@ -359,7 +389,8 @@ class Patient:
             "patientEmail": user['email'],
             "message": form['message'],
             "title": form['title'],
-            "eventDate": form['date'],
+            "eventDate": datetime.strptime(
+                form['date'], "%Y-%m-%dT%H:%M"),
             "isDone": False,
             "dateCreated": datetime.utcnow(),
             "eventId": uuid4().hex

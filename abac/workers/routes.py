@@ -375,8 +375,13 @@ def markAsRead(user):
         'hasRead': True
     }
 
+    print('GOT HERE')
+
     # marking the message as read
     Worker.updateMessage(id, data)
+
+    print('GOT HERE')
+
 
     return jsonify({'status': True, 'message': 'Message has been marked as read'})
 

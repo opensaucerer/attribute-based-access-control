@@ -340,6 +340,24 @@ def grantWrite(user):
     return redirect(url_for('patients.inbox'))
 
 
+# decline access route
+@patients.get('/declineAccess/')
+@login_required
+def declineAccess(user):
+
+    # getting the query parameters
+    id = request.args.get('id')
+    # getting the type of record and patient to be updated
+    record = request.args.get('data')
+
+    # getting the worker
+    worker = Worker.get_worker(id)
+
+    Patient.declineAccess(worker, user, record)
+
+    return redirect(url_for('patients.inbox'))
+
+
 # mark as read route
 @patients.post('/inbox/markAsRead/')
 @login_required
@@ -377,7 +395,9 @@ def viewAppointment(user):
 def bookAppointment(user):
 
     url = '/patients/appointments/'
-    return render_template('patients2/app/event.html', url=url, user=user)
+    # getting the workers
+    workers = Admin.get_workers()
+    return render_template('patients2/app/book.html', url=url, user=user, workers=workers)
 
 
 # book appointments post routes

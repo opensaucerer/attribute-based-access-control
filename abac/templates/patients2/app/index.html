@@ -64,7 +64,7 @@
                                  <ul>
                                     <li>
                                     </li>
-                                    <li data-toggle="tooltip" data-placement="top" title="Reload"><a href="/patients/inbox/"><i class="ri-restart-line"></i></a></li>
+                                    <li data-toggle="tooltip" data-placement="top" title="Reload"><a href=""><i class="ri-restart-line"></i></a></li>
                                    
                                     <li class="iq-full-screen" data-toggle="tooltip" data-placement="top" title="Zoom"><a href="#"><i class="ri-drag-move-2-line"></i></a></li>
                                  </ul>
@@ -148,7 +148,7 @@
                                                          <a href="/patients/grantwrite/?id={{message['senderId']}}&data={{message['recordType']}}" class="btn btn-primary mr-2">
                                                             Grant View/Edit Access
                                                          </a>
-                                                         <a href="/patients/inbox/" class="btn iq-bg-danger">
+                                                         <a href="/patients/declineAccess/?id={{message['senderId']}}&data={{message['recordType']}}" class="btn iq-bg-danger">
                                                             Decline Access
                                                          </a>
                                                          {% endif %}

@@ -126,23 +126,25 @@
                                                          <div class="iq-subject-info">
                                                             <!-- <img src="../../../static/patients2/images/user/05.jpg" class="img-fluid rounded-circle" alt="#"> -->
                                                             <div class="iq-subject-status align-self-center">
-                                                               <h6 class="mb-0">{{event['patientName']}}</h6>
+                                                               <p style="font-size: .8rem" class="mb-0">from {{event['patientName']}}</p>
                                                                <div class="dropdown">
-                                                                  <a class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                                  <a class="dropdown-toggle text-primary" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                                                   to {{event['workerName']}}
                                                                   </a>
-                                                                 
-                                                               </div>
+                                                                    
+                                                                </div>
                                                             </div>
                                                             <span class="float-right align-self-center">{{ event['dateCreated'].strftime("%b %d, %Y - %I:%M %p") }}</span>
-                                                         </div>
-                                                         <div class="iq-inbox-body mt-5">
+                                                        </div>
+                                                        <div class="iq-inbox-body mt-5">
                                                             <p>Hello {{event['workerName']}}, </p>
                                                             <p>{{event['message']}}</p>
                                                             <!-- <p>Various versions have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like).</p>
-                                                            <p class="mt-5 mb-0">Regards,<span class="d-inline-block w-100">John Deo</span></p> -->
-
-                                                            
+                                                                <p class="mt-5 mb-0">Regards,<span class="d-inline-block w-100">John Deo</span></p> -->
+                                                                
+                                                         <h6 class="mb-0">Appointment Scheduled For:</h6>
+                                                         <p><b>{{ event['eventDate'].strftime("%b %d, %Y - %I:%M %p") }}</b></p>
+                                                                
                                                          <a href="/workers/patients/records/?id={{event['patientId']}}" class="btn btn-primary mr-2">
                                                            View Patient Records
                                                          </a>
@@ -168,7 +170,7 @@
                                     <ul class="iq-email-sender-list">
 
                                        {% for past in pasts %}
-                                       <li data-id="{{past['eventId']}}" class="iq-unread">
+                                       <li data-id="{{past['eventId']}}">
                                           <div class="d-flex align-self-center">
                                              <div class="iq-email-sender-info">
                                                 
