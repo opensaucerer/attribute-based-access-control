@@ -306,6 +306,11 @@ def inbox(user):
 @admin_login_required
 def sendMessage(user):
 
+    # collecting form data
+    form = request.form
+    # sending the message
+    Admin.sendMessage(form, user)
+
     return redirect(url_for('admin.inbox'))
 
 

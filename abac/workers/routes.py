@@ -359,6 +359,11 @@ def inbox(user):
 @worker_login_required
 def sendMessage(user):
 
+    # collecting form data
+    form = request.form
+    # sending the message
+    Worker.sendMessage(form, user)
+
     return redirect(url_for('workers.inbox'))
 
 
@@ -381,7 +386,6 @@ def markAsRead(user):
     Worker.updateMessage(id, data)
 
     print('GOT HERE')
-
 
     return jsonify({'status': True, 'message': 'Message has been marked as read'})
 

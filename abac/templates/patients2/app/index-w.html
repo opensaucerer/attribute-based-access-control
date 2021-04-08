@@ -334,7 +334,7 @@
                            <div class="form-group row">
                               <label for="inputEmail3" class="col-sm-2 col-form-label">To:</label>
                               <div class="col-sm-10">
-                                 <select  id="inputEmail3" class="form-control" >
+                                 <select name="receiver" required  id="inputEmail3" class="form-control" >
                                      {% for admin in admins %}
                                        <option value="{{admin['public_id']}}">
                                        Hospital Admin
@@ -368,13 +368,13 @@
                            <div class="form-group row">
                               <label for="subject" class="col-sm-2 col-form-label">Subject:</label>
                               <div class="col-sm-10">
-                                 <input type="text"  id="subject" class="form-control">
+                                 <input  name="title" required placeholder="Why are you messaging...?" type="text"  id="subject" class="form-control">
                               </div>
                            </div>
                            <div class="form-group row">
                               <label for="subject" class="col-sm-2 col-form-label">Your Message:</label>
                               <div class="col-md-10">
-                                 <textarea class="textarea form-control" rows="5">Next, use our Get Started docs to setup Tiny!</textarea>
+                                 <textarea required name="message" placeholder="Your message goes here..." class="textarea form-control" rows="5"></textarea>
                               </div>
                            </div>
                            <div class="form-group row align-items-center compose-bottom pt-3 m-0">
