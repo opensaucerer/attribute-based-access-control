@@ -66,8 +66,10 @@ def dashboard(user):
     }
     # getting the hospital staff
     patients = Patient.get_patients()
+    # getting notifications
+    unreads = Worker.get_unread(user['public_id'])
 
-    return render_template('patients2/dashboard-w.html', user=user, data=data, patients=patients)
+    return render_template('patients2/dashboard-w.html', unreads=unreads, user=user, data=data, patients=patients)
 
 
 # the patient profile edit route
@@ -75,7 +77,9 @@ def dashboard(user):
 @worker_login_required
 def editProfile(user):
     url = '/workers/edit_profile/'
-    return render_template('patients2/worker_edit.html', user=user, worker=user)
+    # getting notifications
+    unreads = Worker.get_unread(user['public_id'])
+    return render_template('patients2/worker_edit.html', unreads=unreads, user=user, worker=user)
 
 
 # the patient profile edit POST route
@@ -130,7 +134,9 @@ def patientProfile(user):
     # getting the patient id
     id = request.args.get('id')
     patient = Patient.get_user(id)
-    return render_template('patients2/profile_new_2.html', patient=patient, user=user)
+    # getting notifications
+    unreads = Worker.get_unread(user['public_id'])
+    return render_template('patients2/profile_new_2.html', unreads=unreads, patient=patient, user=user)
 
 
 # the list patients route
@@ -139,7 +145,10 @@ def patientProfile(user):
 def listPatients(user):
     patients = Patient.get_patients()
 
-    return render_template('patients2/patient-list-w.html', user=user, patients=patients)
+    # getting notifications
+    unreads = Worker.get_unread(user['public_id'])
+
+    return render_template('patients2/patient-list-w.html', unreads=unreads, user=user, patients=patients)
 
 
 # the retrieve record categories route
@@ -180,7 +189,10 @@ def getRecord(user):
         _dt = gc.decode(dt)['policy']
         dtp = gc.validate(_dt, att1, att2)
 
-    return render_template('patients2/select-record-w.html', user=user, patient=patient, mpp=mpp, vip=vip, dtp=dtp)
+    # getting notifications
+    unreads = Worker.get_unread(user['public_id'])
+
+    return render_template('patients2/select-record-w.html', unreads=unreads, user=user, patient=patient, mpp=mpp, vip=vip, dtp=dtp)
 
 
 # the view records route
@@ -222,7 +234,10 @@ def viewRecord(user):
             records = Patient.get_dt(id)['record']
             records = gc.decode(records)['record']
 
-    return render_template('patients2/data-table-w.html', user=user, patient=patient, view=view, data=data, records=records, json=json, gc=gc)
+    # getting notifications
+    unreads = Worker.get_unread(user['public_id'])
+
+    return render_template('patients2/data-table-w.html', unreads=unreads, user=user, patient=patient, view=view, data=data, records=records, json=json, gc=gc)
 
 
 # the view records route
@@ -283,7 +298,10 @@ def editRecord(user):
             records = Patient.get_dt(id)['record']
             records = gc.decode(records)['record']
 
-    return render_template('patients2/table-editable-w.html', user=user, workers=workers, patient=patient, view=view, data=data, records=records, json=json, len=len)
+    # getting notifications
+    unreads = Worker.get_unread(user['public_id'])
+
+    return render_template('patients2/table-editable-w.html', unreads=unreads, user=user, workers=workers, patient=patient, view=view, data=data, records=records, json=json, len=len)
 
 
 # the edit records route
@@ -399,7 +417,10 @@ def viewAppointment(user):
     events = Worker.bookings(user['public_id'])
     pasts = Worker.pastBookings(user['public_id'])
 
-    return render_template('patients2/app/event-w.html', events=events, pasts=pasts, user=user)
+    # getting notifications
+    unreads = Worker.get_unread(user['public_id'])
+
+    return render_template('patients2/app/event-w.html', events=events, unreads=unreads, pasts=pasts, user=user)
 
 
 # mark as done appointments routes

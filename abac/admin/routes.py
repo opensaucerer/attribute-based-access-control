@@ -67,14 +67,19 @@ def dashboard(user):
     # getting the hospital staff
     workers = Admin.get_workers()
 
-    return render_template('patients2/dashboard-1.html', user=user, data=data, workers=workers)
+    # getting notifications
+    unreads = Admin.get_unread(user['public_id'])
+
+    return render_template('patients2/dashboard-1.html', unreads=unreads, user=user, data=data, workers=workers)
 
 
 # the hospital stats route
 @admin.get('/sharing/')
 @admin_login_required
 def stats(user):
-    return render_template('patients2/dashboard-2.html', user=user)
+    # getting notifications
+    unreads = Admin.get_unread(user['public_id'])
+    return render_template('patients2/dashboard-2.html', unreads=unreads, user=user)
 
 
 # the add worker route
@@ -82,7 +87,9 @@ def stats(user):
 @admin_login_required
 def getAddWorker(user):
     url = '/admin/workers/add/'
-    return render_template('patients2/add-doctor.html', user=user, url=url)
+    # getting notifications
+    unreads = Admin.get_unread(user['public_id'])
+    return render_template('patients2/add-doctor.html', unreads=unreads, user=user, url=url)
 
 
 # the add worker post route
@@ -114,7 +121,9 @@ def addWorker(user):
         errors['number'] = 'That phone number is already in use'
 
     if len(errors) > 0:
-        return render_template('patients2/add-doctor.html', user=user, url=url, errors=errors)
+        # getting notifications
+        unreads = Admin.get_unread(user['public_id'])
+        return render_template('patients2/add-doctor.html', unreads=unreads, user=user, url=url, errors=errors)
 
     worker = Admin(fname, lname, email, password,
                    address, number, gender, role)
@@ -129,7 +138,10 @@ def addWorker(user):
 def listWorkers(user):
     workers = Admin.get_workers()
 
-    return render_template('patients2/doctor-list.html', user=user, workers=workers)
+    # getting notifications
+    unreads = Admin.get_unread(user['public_id'])
+
+    return render_template('patients2/doctor-list.html', unreads=unreads, user=user, workers=workers)
 
 
 # the view workers profile route
@@ -140,7 +152,10 @@ def viewWorkers(user):
     id = request.args.get('id')
     worker = Worker.get_worker(id)
 
-    return render_template('patients2/worker_profile.html', user=user, worker=worker)
+    # getting notifications
+    unreads = Admin.get_unread(user['public_id'])
+
+    return render_template('patients2/worker_profile.html', unreads=unreads, user=user, worker=worker)
 
 
 # the list patients route
@@ -149,7 +164,10 @@ def viewWorkers(user):
 def listPatients(user):
     patients = Patient.get_patients()
 
-    return render_template('patients2/patient-list.html', user=user, patients=patients)
+    # getting notifications
+    unreads = Admin.get_unread(user['public_id'])
+
+    return render_template('patients2/patient-list.html', unreads=unreads, user=user, patients=patients)
 
 
 # the retrieve record categories route
@@ -161,7 +179,10 @@ def getRecord(user):
     # getting the patient
     patient = Patient.get_user(id)
 
-    return render_template('patients2/select-record.html', user=user, patient=patient)
+    # getting notifications
+    unreads = Admin.get_unread(user['public_id'])
+
+    return render_template('patients2/select-record.html', unreads=unreads, user=user, patient=patient)
 
 
 # the view records route
@@ -203,7 +224,10 @@ def viewRecord(user):
             records = Patient.get_dt(id)['record']
             records = gc.decode(records)['record']
 
-    return render_template('patients2/data-table.html', user=user, patient=patient, view=view, data=data, records=records, json=json)
+    # getting notifications
+    unreads = Admin.get_unread(user['public_id'])
+
+    return render_template('patients2/data-table.html', unreads=unreads, user=user, patient=patient, view=view, data=data, records=records, json=json)
 
 
 # the edit records route
@@ -249,7 +273,10 @@ def editRecord(user):
             records = Patient.get_dt(id)['record']
             records = gc.decode(records)['record']
 
-    return render_template('patients2/table-editable.html', user=user, workers=workers, patient=patient, view=view, data=data, records=records, json=json, len=len)
+    # getting notifications
+    unreads = Admin.get_unread(user['public_id'])
+
+    return render_template('patients2/table-editable.html', unreads=unreads, user=user, workers=workers, patient=patient, view=view, data=data, records=records, json=json, len=len)
 
 
 # the edit records route

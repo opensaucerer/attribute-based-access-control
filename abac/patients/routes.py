@@ -110,21 +110,28 @@ def dashboard(user):
         dt = dt['record']
         dt = gc.decode(dt)['record']
 
-    return render_template('patients2/dashboard-3.html', user=user, mp=mp, vi=vi, dt=dt, list=list, dict=dict, json=json, textwrap=textwrap)
+    # getting notifications
+    unreads = Patient.get_unread(user['public_id'])
+
+    return render_template('patients2/dashboard-3.html', unreads=unreads, user=user, mp=mp, vi=vi, dt=dt, list=list, dict=dict, json=json, textwrap=textwrap)
 
 
 # the patient profile route
 @patients.get('/profile/')
 @login_required
 def profile(user):
-    return render_template('patients2/profile_new.html', user=user)
+    # getting notifications
+    unreads = Patient.get_unread(user['public_id'])
+    return render_template('patients2/profile_new.html', user=user, unreads=unreads)
 
 
 # the patient profile edit route
 @patients.get('/edit_profile/')
 @login_required
 def editProfile(user):
-    return render_template('patients2/profile_edit.html', user=user)
+    # getting notifications
+    unreads = Patient.get_unread(user['public_id'])
+    return render_template('patients2/profile_edit.html', user=user, unreads=unreads)
 
 
 # the patient profile edit POST route
@@ -386,7 +393,10 @@ def viewAppointment(user):
     events = Patient.bookings(user['public_id'])
     pasts = Patient.pastBookings(user['public_id'])
 
-    return render_template('patients2/app/event.html', events=events, pasts=pasts, user=user)
+    # getting notifications
+    unreads = Patient.get_unread(user['public_id'])
+
+    return render_template('patients2/app/event.html', unreads=unreads, events=events, pasts=pasts, user=user)
 
 
 # book appointments routes
@@ -397,7 +407,9 @@ def bookAppointment(user):
     url = '/patients/appointments/'
     # getting the workers
     workers = Admin.get_workers()
-    return render_template('patients2/app/book.html', url=url, user=user, workers=workers)
+    # getting notifications
+    unreads = Patient.get_unread(user['public_id'])
+    return render_template('patients2/app/book.html', url=url, user=user, workers=workers, unreads=unreads)
 
 
 # book appointments post routes
