@@ -358,3 +358,22 @@ def markAsRead(user):
     Admin.updateMessage(id, data)
 
     return jsonify({'status': True, 'message': 'Message has been marked as read'})
+
+
+# delete message route
+@admin.get('/inbox/delete/')
+@admin_login_required
+def delete(user):
+
+    # getting the query parameters
+    id = request.args.get('id')
+
+    # building the changes
+    data = {
+        'hasDeleted': True
+    }
+
+    # marking the message as read
+    Admin.updateMessage(id, data)
+
+    return redirect(url_for('admin.inbox'))

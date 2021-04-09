@@ -384,6 +384,25 @@ def markAsRead(user):
     return jsonify({'status': True, 'message': 'Message has been marked as read'})
 
 
+# delete message route
+@patients.get('/inbox/delete/')
+@login_required
+def delete(user):
+
+    # getting the query parameters
+    id = request.args.get('id')
+
+    # building the changes
+    data = {
+        'hasDeleted': True
+    }
+
+    # marking the message as read
+    Patient.updateMessage(id, data)
+
+    return redirect(url_for('patients.inbox'))
+
+
 # view appointments routes
 @patients.get('/view_appointments/')
 @login_required
