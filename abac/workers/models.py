@@ -131,6 +131,37 @@ class Worker:
         # adding the message to the database
         mongo.db.messages.insert(new_message)
 
+    # helper function to validate if data request has been sent already
+    @staticmethod
+    def checkRequest(pid, wid):
+        return mongo.db.requests.find_one({'workerId': wid, 'patientId': pid})
+
+    # saving the request access sent
+    @staticmethod
+    def saveRequest(patient, user, data):
+
+        d1 = {
+            'workerId': user['public_id'],
+            'patientId': patient['public_id'],
+            'recordType': [data],
+            'public_id': uuid4().hex
+        }
+
+        present = Worker.checkRequest(patient['public_id'], user['public_id'])
+
+        if not present:
+            mongo.db.requests.insert(d1)
+        else:
+            if data in present['recordType']:
+                pass
+            else:
+                present['recordType'].append(data)
+                mongo.db.requests.update_one({'_id': present['_id']}, {
+                                             '$set': {'recordType': present['recordType']}})
+
+                return True
+        return True
+
     # helper function for sending message
     @staticmethod
     def sendMessage(form, user):

@@ -86,7 +86,17 @@
                           <a href="#" class="btn btn-primary">No Records Yet</a>
                         </td>
 
-                        {% else %} {% if not mpp %}
+                        {% else %} {% if not mpp %} {% if sent %} {% if 'mp' in
+                        sent['recordType'] %}
+
+                        <td colspan="2">
+                          <button class="btn btn-primary">
+                            Request Pending
+                          </button>
+                        </td>
+
+                        {% else %}
+
                         <td colspan="2">
                           <a
                             href="/workers/request/?id={{patient['public_id']}}&data=mp"
@@ -95,7 +105,7 @@
                           >
                         </td>
 
-                        {% else %} {% if 'r' in mpp %}
+                        {% endif %} {% endif %} {% else %} {% if 'r' in mpp %}
 
                         <td>
                           <a
@@ -127,7 +137,17 @@
                           <a href="#" class="btn btn-primary">No Records Yet</a>
                         </td>
 
-                        {% else %} {% if not vip %}
+                        {% else %} {% if not vip %} {% if sent %} {% if 'vi' in
+                        sent['recordType'] %}
+
+                        <td colspan="2">
+                          <button class="btn btn-primary">
+                            Request Pending
+                          </button>
+                        </td>
+
+                        {% else %}
+
                         <td colspan="2">
                           <a
                             href="/workers/request/?id={{patient['public_id']}}&data=vi"
@@ -136,7 +156,7 @@
                           >
                         </td>
 
-                        {% else %} {% if 'r' in vip %}
+                        {% endif %} {% endif %} {% else %} {% if 'r' in vip %}
 
                         <td>
                           <a
@@ -167,7 +187,17 @@
                           <a href="#" class="btn btn-primary">No Records Yet</a>
                         </td>
 
-                        {% else %} {% if not dtp %}
+                        {% else %} {% if not dtp %} {% if sent %} {% if 'dt' in
+                        sent['recordType'] %}
+
+                        <td colspan="2">
+                          <button class="btn btn-primary">
+                            Request Pending
+                          </button>
+                        </td>
+
+                        {% else %}
+
                         <td colspan="2">
                           <a
                             href="/workers/request/?id={{patient['public_id']}}&data=dt"
@@ -176,7 +206,7 @@
                           >
                         </td>
 
-                        {% else %} {% if 'r' in dtp %}
+                        {% endif %} {% endif %} {% else %} {% if 'r' in dtp %}
 
                         <td>
                           <a

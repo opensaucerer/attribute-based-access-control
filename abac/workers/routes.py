@@ -160,6 +160,9 @@ def getRecord(user):
     # getting the patient
     patient = Patient.get_user(id)
 
+    # checking if request has already been sent
+    sent = Worker.checkRequest(id, user['public_id'])
+
     # instantiating the encryption algorithm
     key = current_app.config['SECRET_KEY'].encode()
     gc = generateCipher(key)
@@ -192,7 +195,7 @@ def getRecord(user):
     # getting notifications
     unreads = Worker.get_unread(user['public_id'])
 
-    return render_template('patients2/select-record-w.html', unreads=unreads, user=user, patient=patient, mpp=mpp, vip=vip, dtp=dtp)
+    return render_template('patients2/select-record-w.html', unreads=unreads, user=user, patient=patient, mpp=mpp, vip=vip, dtp=dtp, sent=sent)
 
 
 # the view records route
@@ -251,6 +254,7 @@ def requestAccess(user):
     patient = Patient.get_user(id)
 
     Worker.requestAccess(patient, user, data)
+    Worker.saveRequest(patient, user, data)
 
     return redirect(url_for('workers.getRecord', id=id, data=data))
 

@@ -361,6 +361,7 @@ def declineAccess(user):
     worker = Worker.get_worker(id)
 
     Patient.declineAccess(worker, user, record)
+    Patient.deleteRequest(user, worker, record)
 
     return redirect(url_for('patients.inbox'))
 

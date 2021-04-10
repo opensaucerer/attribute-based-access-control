@@ -368,6 +368,25 @@ class Patient:
         # adding the message to the database
         mongo.db.messages.insert(new_message)
 
+    # helper function to validate if data request has been sent already
+    @staticmethod
+    def checkRequest(pid, wid):
+        return mongo.db.requests.find_one({'workerId': wid, 'patientId': pid})
+
+    # deleting the request access sent
+    @staticmethod
+    def deleteRequest(patient, user, data):
+
+        present = Patient.checkRequest(patient['public_id'], user['public_id'])
+
+        if data in present['recordType']:
+            present['recordType'].remove(data)
+            mongo.db.requests.update_one({'_id': present['_id']}, {
+                '$set': {'recordType': present['recordType']}})
+        else:
+            pass
+        return True
+
     # helper function for updating messages
     @staticmethod
     def updateMessage(id, data):
