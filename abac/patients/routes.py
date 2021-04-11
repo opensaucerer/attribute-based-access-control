@@ -274,8 +274,18 @@ def grantRead(user):
                 _dt['policy'].append(new_policy)
             # turning the EHR into ciphertext
             ciphertext = gc.encode(_dt)
-            return print(_dt)
         Patient().save_dt(pid, ciphertext)
+        Patient.grantReadAccess(worker, user, record)
+    elif record == 'ph':
+        ph = Patient.get_ph(pid)
+        if ph:
+            ph = ph['record']
+            _ph = gc.decode(ph)
+            if not (new_policy in _ph['policy']):
+                _ph['policy'].append(new_policy)
+            # turning the EHR into ciphertext
+            ciphertext = gc.encode(_ph)
+        Patient().save_ph(pid, ciphertext)
         Patient.grantReadAccess(worker, user, record)
 
     return redirect(url_for('patients.inbox'))
@@ -340,8 +350,18 @@ def grantWrite(user):
                 _dt['policy'].append(new_policy)
             # turning the EHR into ciphertext
             ciphertext = gc.encode(_dt)
-            return print(_dt)
         Patient().save_dt(pid, ciphertext)
+        Patient.grantWriteAccess(worker, user, record)
+    elif record == 'ph':
+        ph = Patient.get_ph(pid)
+        if ph:
+            ph = ph['record']
+            _ph = gc.decode(ph)
+            if not (new_policy in _ph['policy']):
+                _ph['policy'].append(new_policy)
+            # turning the EHR into ciphertext
+            ciphertext = gc.encode(_ph)
+        Patient().save_ph(pid, ciphertext)
         Patient.grantWriteAccess(worker, user, record)
 
     return redirect(url_for('patients.inbox'))
