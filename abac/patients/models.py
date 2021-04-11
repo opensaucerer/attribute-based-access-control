@@ -161,6 +161,11 @@ class Patient:
     def get_dt(id):
         # diagnostics tests
         return mongo.db.tests.find_one({'patient': id})
+
+    @staticmethod
+    def get_ph(id):
+        # diagnostics tests
+        return mongo.db.history.find_one({'patient': id})
     # helper functions for getting patient records end
 
     # helper function for saving patient records
@@ -231,6 +236,31 @@ class Patient:
             mongo.db.tests.update_one(filterData, update)
         else:
             mongo.db.tests.insert_one(obj)
+
+        response = {
+            "status": True,
+            "message": "Record saved successfully",
+        }
+
+        return response
+
+    def save_ph(self, id, data):
+
+        obj = {
+            'patient': id,
+            'record': data
+        }
+        obj2 = {
+            'record': data
+        }
+
+        if self.get_ph(id):
+
+            update = {"$set": obj2}
+            filterData = {'patient': id}
+            mongo.db.history.update_one(filterData, update)
+        else:
+            mongo.db.history.insert_one(obj)
 
         response = {
             "status": True,

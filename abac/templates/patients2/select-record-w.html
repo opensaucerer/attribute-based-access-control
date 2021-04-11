@@ -76,7 +76,7 @@
                     </thead>
                     <tbody>
                       <tr>
-                        <td><b>Medicine Prescriptions</b></td>
+                        <td><b>Medical Prescriptions</b></td>
                         <td>
                           View and edit {{patient['name'].split(' ')[0]}}'s
                           medicinal prescriptions
@@ -126,7 +126,7 @@
                         {% endif %} {% endif %} {% endif %}
                       </tr>
                       <tr>
-                        <td><b>Patient Vitals</b></td>
+                        <td><b>Health Vitals</b></td>
                         <td>
                           Read and write {{patient['name'].split(' ')[0]}}'s
                           vital statistics
@@ -226,6 +226,29 @@
 
                         {% endif %} {% endif %} {% endif %}
                       </tr>
+                      {% if user['role'] == 'nurse' %}
+                      <tr>
+                        <td><b>Patient History</b></td>
+                        <td>
+                          View and edit {{patient['name'].split(' ')[0]}}'s
+                          personal and health history
+                        </td>
+                        <td>
+                          <a
+                            href="/workers/patients/view/?id={{patient['public_id']}}&data=ph"
+                            class="btn btn-primary"
+                            >View</a
+                          >
+                        </td>
+                        <td>
+                          <a
+                            href="/workers/patients/edit/?id={{patient['public_id']}}&data=ph"
+                            class="btn btn-primary"
+                            >Edit</a
+                          >
+                        </td>
+                      </tr>
+                      {% endif %}
                     </tbody>
                   </table>
                 </div>

@@ -206,13 +206,13 @@ def viewRecord(user):
     dt ---- diagnostic tests
     """
     if data == 'mp':
-        view = 'Medicine Prescriptions'
+        view = 'Medical Prescriptions'
         records = Patient.get_mp(id)
         if records:
             records = Patient.get_mp(id)['record']
             records = gc.decode(records)['record']
     elif data == 'vi':
-        view = 'Vitals'
+        view = 'Health Vitals'
         records = Patient.get_vi(id)
         if records:
             records = Patient.get_vi(id)['record']
@@ -222,6 +222,12 @@ def viewRecord(user):
         records = Patient.get_dt(id)
         if records:
             records = Patient.get_dt(id)['record']
+            records = gc.decode(records)['record']
+    elif data == 'ph':
+        view = 'Personal and Health History'
+        records = Patient.get_ph(id)
+        if records:
+            records = Patient.get_ph(id)['record']
             records = gc.decode(records)['record']
 
     # getting notifications
@@ -272,6 +278,12 @@ def editRecord(user):
         if records:
             records = Patient.get_dt(id)['record']
             records = gc.decode(records)['record']
+    elif data == 'ph':
+        view = 'Personal and Health History'
+        records = Patient.get_ph(id)
+        if records:
+            records = Patient.get_ph(id)['record']
+            records = gc.decode(records)['record']
 
     # getting notifications
     unreads = Admin.get_unread(user['public_id'])
@@ -303,6 +315,8 @@ def saveRecord(user):
         Patient().save_vi(pid, ciphertext)
     elif record == 'dt':
         Patient().save_dt(pid, ciphertext)
+    elif record == 'ph':
+        Patient().save_ph(pid, ciphertext)
 
     return jsonify({"status": True, "message": "EHR Update Successfully"})
 

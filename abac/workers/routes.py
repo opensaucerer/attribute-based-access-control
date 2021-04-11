@@ -236,6 +236,12 @@ def viewRecord(user):
         if records:
             records = Patient.get_dt(id)['record']
             records = gc.decode(records)['record']
+    elif data == 'ph':
+        view = 'Personal and Health History'
+        records = Patient.get_ph(id)
+        if records:
+            records = Patient.get_ph(id)['record']
+            records = gc.decode(records)['record']
 
     # getting notifications
     unreads = Worker.get_unread(user['public_id'])
@@ -301,6 +307,12 @@ def editRecord(user):
         if records:
             records = Patient.get_dt(id)['record']
             records = gc.decode(records)['record']
+    elif data == 'ph':
+        view = 'Personal and Health History'
+        records = Patient.get_ph(id)
+        if records:
+            records = Patient.get_ph(id)['record']
+            records = gc.decode(records)['record']
 
     # getting notifications
     unreads = Worker.get_unread(user['public_id'])
@@ -350,6 +362,15 @@ def saveRecord(user):
             # turning the EHR into ciphertext
             ciphertext = gc.encode(data)
         Patient().save_dt(pid, ciphertext)
+    elif record == 'ph':
+        ph = Patient.get_ph(pid)
+        if ph:
+            ph = ph['record']
+            _ph = gc.decode(ph)['policy']
+            data['policy'] = _ph
+            # turning the EHR into ciphertext
+            ciphertext = gc.encode(data)
+        Patient().save_ph(pid, ciphertext)
 
     return jsonify({"status": True, "message": "EHR Update Successfully"})
 
