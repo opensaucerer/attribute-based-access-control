@@ -111,6 +111,7 @@ class Worker:
             "mp": f"This is to inform you that {user['role'].capitalize()} {user['fname']} {user['lname']} is requesting access to your Medical Prescription records. Please review or reach out to the {user['role']}. You can either proceed to accept or decline this request.",
             "vi": f"This is to inform you that {user['role'].capitalize()} {user['fname']} {user['lname']} is requesting to access records of your Medical Health Vitals. Please review or reach out to the {user['role']}. You can either proceed to accept or decline this request.",
             "dt": f"This is to inform you that {user['role'].capitalize()} {user['fname']} {user['lname']} is requesting access to your Recommended Diagnostic Tests. Please review or reach out to the {user['role']}. You can either proceed to accept or decline this request.",
+            "ph": f"This is to inform you that {user['role'].capitalize()} {user['fname']} {user['lname']} is requesting access to your Personal and Health History. Please review or reach out to the {user['role']}. You can either proceed to accept or decline this request.",
         }
         # creating the message object
         new_message = {

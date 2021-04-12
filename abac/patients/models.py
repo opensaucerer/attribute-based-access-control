@@ -298,6 +298,7 @@ class Patient:
             "mp": f"This is to inform you that patient {user['name']} has granted you access to view their Medical Prescription data. You can verify this using the button below",
             "vi": f"This is to inform you that patient {user['name']} has granted you access to view their Medical Health Vitals data. You can verify this using the button below",
             "dt": f"This is to inform you that patient {user['name']} has granted you access to view their Medical Recommended Diagnostics data. You can verify this using the button below",
+            "ph": f"This is to inform you that patient {user['name']} has granted you access to view their Personal and Health History data. You can verify this using the button below",
         }
         # creating the message object
         new_message = {
@@ -349,6 +350,7 @@ class Patient:
             "mp": f"This is to inform you that patient {user['name']} has granted you access to view and edit their Medical Presciption data. You can verify this using the button below",
             "vi": f"This is to inform you that patient {user['name']} has granted you access to view and edit their Medical Health Vitals data. You can verify this using the button below",
             "dt": f"This is to inform you that patient {user['name']} has granted you access to view and edit their Medical Recommended Diagnostics data. You can verify this using the button below",
+            "ph": f"This is to inform you that patient {user['name']} has granted you access to view and edit their Personal and Health History data. You can verify this using the button below",
         }
         # creating the message object
         new_message = {
@@ -378,6 +380,7 @@ class Patient:
             "mp": f"This is to inform you that patient {user['name']} has declined your request access their Medical Presciption data. You can trying sending the patient a message",
             "vi": f"This is to inform you that patient {user['name']} has declined your request access their Medical Health Vitals data. You can trying sending the patient a message",
             "dt": f"This is to inform you that patient {user['name']} has declined your request access their Medical Recommended Diagnostics data. You can trying sending the patient a message",
+            "ph": f"This is to inform you that patient {user['name']} has declined your request access their Personal and Health History data. You can trying sending the patient a message",
         }
         # creating the message object
         new_message = {
