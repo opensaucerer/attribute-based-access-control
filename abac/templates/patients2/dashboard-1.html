@@ -631,7 +631,7 @@
                   >
                     <div class="iq-card-header d-flex justify-content-between">
                       <div class="iq-header-title">
-                        <h4 class="card-title">Recent Activity</h4>
+                        <h4 class="card-title">Patients' Recent Activity</h4>
                       </div>
                       <div
                         class="iq-card-header-toolbar d-flex align-items-center"
@@ -671,45 +671,31 @@
                     </div>
                     <div class="iq-card-body">
                       <ul class="iq-timeline">
+                        {% if recents.count() < 1 %}
                         <li>
                           <div class="timeline-dots-fill bg-info"></div>
                           <h6 class="float-left mb-2 text-dark">
-                            <i class="ri-user-fill"></i> 10 min ago
+                            <!-- <i class="ri-user-fill"></i> -->
                           </h6>
                           <!-- <small class="float-right mt-1">Active</small> -->
                           <div class="d-inline-block w-100">
-                            <p>
-                              Lorem ipsum dolor sit amet, consectetur adipiscing
-                              elit. Quisque scelerisque
-                            </p>
+                            <p>There are currently no recent activities.</p>
                           </div>
                         </li>
+                        {% else %} {% for recent in list(recents)[:3] %}
                         <li>
-                          <div class="timeline-dots-fill bg-warning"></div>
+                          <div class="timeline-dots-fill bg-info"></div>
                           <h6 class="float-left mb-2 text-dark">
-                            <i class="ri-user-fill"></i> 15 min ago
+                            <i class="ri-user-fill"></i> {{
+                            timeago.format(recent['dateCreated'],
+                            datetime.utcnow()) }}
                           </h6>
-                          <!-- <small class="float-right mt-1">Offline</small> -->
+                          <!-- <small class="float-right mt-1">Active</small> -->
                           <div class="d-inline-block w-100">
-                            <p>
-                              Lorem ipsum dolor sit amet, consectetur adipiscing
-                              elit. Quisque scelerisque
-                            </p>
+                            <p>{{recent['eventName']}}</p>
                           </div>
                         </li>
-                        <li>
-                          <div class="timeline-dots-fill bg-danger"></div>
-                          <h6 class="float-left mb-2 text-dark">
-                            <i class="ri-user-fill"></i> 18 min ago
-                          </h6>
-                          <!-- <small class="float-right mt-1">Away</small> -->
-                          <div class="d-inline-block w-100">
-                            <p>
-                              Lorem ipsum dolor sit amet, consectetur adipiscing
-                              elit. Quisque scelerisque
-                            </p>
-                          </div>
-                        </li>
+                        {% endfor %} {% endif %}
                       </ul>
                     </div>
                   </div>
@@ -726,18 +712,18 @@
                 <div class="iq-card-body">
                   <div class="row">
                     <div class="col-sm-6">
-                      <h3>$40K</h3>
+                      <!-- <h3>$40K</h3> -->
                     </div>
                   </div>
                   <div id="chart-7"></div>
                   <div class="row text-center mt-3">
                     <div class="col-sm-6">
                       <h6 class="text-truncate d-block">Last Month</h6>
-                      <p class="m-0">358</p>
+                      <p class="m-0">8</p>
                     </div>
                     <div class="col-sm-6">
                       <h6 class="text-truncate d-block">Current Month</h6>
-                      <p class="m-0">194</p>
+                      <p class="m-0">4</p>
                     </div>
                   </div>
                 </div>

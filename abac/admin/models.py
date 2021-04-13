@@ -41,6 +41,19 @@ class Admin:
 
         return True
 
+    # route for registering recent activities
+    @staticmethod
+    def recent(data):
+        data['public_id'] = uuid4().hex
+        data['dateCreated'] = datetime.utcnow()
+        mongo.db.recents.insert_one(data)
+        return True
+
+     # route for registering recent activities
+    @staticmethod
+    def recents():
+        return mongo.db.recents.find()
+
     # creating a user session
     @staticmethod
     def init_session(user):

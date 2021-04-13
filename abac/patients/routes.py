@@ -45,6 +45,10 @@ def signup():
         return render_template('patients/register.html', url=url, errors=errors)
     patient = Patient(name, email, password, address, number, gender)
     patient.signup()
+    data = {
+        "eventName": f"{form['name']} Registered as a New Patient"
+    }
+    Admin.recent(data)
 
     return redirect(url_for('patients.login'))
 
@@ -174,6 +178,10 @@ def editPassword(user):
     try:
         user = user['public_id']
         response = Patient().update_password(user, data)
+        data = {
+            "eventName": f"Patient {user['name']} Recently Requested a Password Change"
+        }
+        Admin.recent(data)
         return redirect(url_for('patients.dashboard'))
 
     except:
@@ -288,6 +296,11 @@ def grantRead(user):
         Patient().save_ph(pid, ciphertext)
         Patient.grantReadAccess(worker, user, record)
 
+    data = {
+        "eventName": f"Patient {user['name']} just granted a {worker['role']} access to view their EHR"
+    }
+    Admin.recent(data)
+
     return redirect(url_for('patients.inbox'))
 
 
@@ -364,6 +377,11 @@ def grantWrite(user):
         Patient().save_ph(pid, ciphertext)
         Patient.grantWriteAccess(worker, user, record)
 
+    data = {
+        "eventName": f"Patient {user['name']} just granted a {worker['role']} access to view and Edit their EHR"
+    }
+    Admin.recent(data)
+
     return redirect(url_for('patients.inbox'))
 
 
@@ -382,6 +400,11 @@ def declineAccess(user):
 
     Patient.declineAccess(worker, user, record)
     Patient.deleteRequest(user, worker, record)
+
+    data = {
+        "eventName": f"Patient {user['name']} just declined a {worker['role']} access to view or Edit their EHR"
+    }
+    Admin.recent(data)
 
     return redirect(url_for('patients.inbox'))
 
@@ -462,5 +485,12 @@ def bookAppointments(user):
 
     # booking the appointment
     Patient.book(form, user)
+
+    worker = Worker.get_worker(form['worker'])
+
+    data = {
+        "eventName": f"Patient {user['name']} just scheduled an appointment with {worker['role']} {worker['fname']} {worker['lname']}"
+    }
+    Admin.recent(data)
 
     return redirect(url_for("patients.viewAppointment"))

@@ -7,6 +7,8 @@ import json
 import textwrap
 from bson.json_util import dumps, loads
 from rsb import generateCipher
+import timeago
+from datetime import datetime
 
 # attaching the patients blueprint
 admin = Blueprint('admin', __name__)
@@ -69,8 +71,9 @@ def dashboard(user):
 
     # getting notifications
     unreads = Admin.get_unread(user['public_id'])
+    recents = Admin.recents()
 
-    return render_template('patients2/dashboard-1.html', unreads=unreads, user=user, data=data, workers=workers)
+    return render_template('patients2/dashboard-1.html', unreads=unreads, user=user, data=data, workers=workers, recents=recents, list=list, timeago=timeago, datetime=datetime)
 
 
 # the hospital stats route
