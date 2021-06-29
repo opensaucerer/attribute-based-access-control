@@ -18,6 +18,7 @@ class generateCipher():
         self.pk = open('./publickey.crt').read()
 
     def encrypt(self, data):
+        # changing the data to bytes
         data = data.encode('utf-8')
         encryptor = AES.new(self.key, self.mode, IV=self.IV)
         # setting the data bytes to equal the key bytes
