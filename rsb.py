@@ -45,6 +45,7 @@ class generateCipher():
         token = jwt.encode(data, self.sk, algorithm=self.alg)
         return token
 
+    # decoding the policy
     def decode(self, data):
         policy = jwt.decode(data, self.pk, algorithms=self.alg)
         return policy
@@ -57,12 +58,17 @@ policy = json.dumps([{
     'att': 'doctor+thepatientdoctor',
     'act': 'write'
 }])
+# generating a private key
 key = generateCipher.generate_key()
+# encoding the policy
 data = generateCipher(key).encode({"policy": policy})
 print(data)
+# generating the ciphertext
 ct = generateCipher(key).encrypt(data)
 print(ct)
+# decoding the cipher text
 pt = generateCipher(key).decrypt(ct)
 print(pt)
+# extracting the attribute policy out of the decoded ciphertext
 po = generateCipher(key).decode(pt)
 print(po)
