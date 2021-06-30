@@ -1,0 +1,790 @@
+<!DOCTYPE html>
+<html lang="en">
+  <!-- Mirrored from emr.dreamguystech.com/flow-board/ by HTTrack Website Copier/3.x [XR&CO'2014], Tue, 29 Jun 2021 19:34:20 GMT -->
+  <head>
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, user-scalable=0"
+    />
+    <title>EMR - Dashboard</title>
+
+    <link
+      rel="shortcut icon"
+      type="image/x-icon"
+      href="../static/favicons/favicon.png"
+    />
+
+    <link rel="stylesheet" href="../static/css/bootstrap.min.css" />
+
+    <link
+      rel="stylesheet"
+      href="../static/plugins/fontawesome/css/fontawesome.min.css"
+    />
+    <link
+      rel="stylesheet"
+      href="../static/plugins/fontawesome/css/all.min.css"
+    />
+
+    <link rel="stylesheet" href="../static/css/feather.css" />
+
+    <link rel="stylesheet" href="../static/css/style.css" />
+  </head>
+  <body>
+    <div class="main-wrapper">
+      <div class="header">
+        <div class="header-left">
+          <a href="index-2/" class="logo">
+            <img src="../static/img/logo.png" alt="Logo" />
+          </a>
+          <a href="index-2/" class="logo logo-small">
+            <img
+              src="../static/img/logo-small.png"
+              alt="Logo"
+              width="30"
+              height="30"
+            />
+          </a>
+        </div>
+
+        <a href="javascript:void(0);" id="toggle_btn">
+          <i class="fas fa-bars"></i>
+        </a>
+        <div class="top-nav-search">
+          <form>
+            <input type="text" class="form-control" placeholder="Search here" />
+            <button class="btn" type="submit">
+              <i class="fa fa-search"></i>
+            </button>
+          </form>
+        </div>
+
+        <a class="mobile_btn" id="mobile_btn"> <i class="fas fa-bars"></i> </a>
+
+        <ul class="nav user-menu">
+          <li class="nav-item dropdown has-arrow flag-nav mr-2">
+            <a
+              class="nav-link dropdown-toggle"
+              data-toggle="dropdown"
+              href="#"
+              role="button"
+            >
+              <img
+                src="../static/img/flags/us-1.png"
+                alt=""
+                width="32"
+                height="32"
+                class="rounded-circle"
+              />
+            </a>
+            <div class="dropdown-menu dropdown-menu-right">
+              <a href="javascript:void(0);" class="dropdown-item">
+                <img src="../static/img/flags/us.png" alt="" height="16" />
+                English
+              </a>
+              <a href="javascript:void(0);" class="dropdown-item">
+                <img src="../static/img/flags/fr.png" alt="" height="16" />
+                French
+              </a>
+              <a href="javascript:void(0);" class="dropdown-item">
+                <img src="../static/img/flags/es.png" alt="" height="16" />
+                Spanish
+              </a>
+              <a href="javascript:void(0);" class="dropdown-item">
+                <img src="../static/img/flags/de.png" alt="" height="16" />
+                German
+              </a>
+            </div>
+          </li>
+
+          <li class="nav-item dropdown">
+            <a href="#" class="nav-link notifications-item">
+              <i class="feather-bell"></i>
+              <span class="badge badge-pill">3</span>
+            </a>
+          </li>
+
+          <li class="nav-item dropdown">
+            <a href="chat/" class="dropdown-toggle nav-link chat-header">
+              <i class="feather-message-square"></i>
+              <span class="badge badge-pill header-chat">6</span>
+            </a>
+          </li>
+
+          <li class="nav-item dropdown has-arrow main-drop ml-md-3">
+            <a href="#" class="dropdown-toggle nav-link" data-toggle="dropdown">
+              <span class="user-img"
+                ><img src="../static/img/avatar.jpg" alt="" />
+                <span class="status online"></span
+              ></span>
+            </a>
+            <div class="dropdown-menu">
+              <a class="dropdown-item" href="profile/"
+                ><i class="feather-user"></i> My Profile</a
+              >
+              <a class="dropdown-item" href="login/"
+                ><i class="feather-power"></i> Logout</a
+              >
+            </div>
+          </li>
+        </ul>
+      </div>
+
+      <div class="sidebar" id="sidebar">
+        <div class="sidebar-inner slimscroll">
+          <div id="sidebar-menu" class="sidebar-menu">
+            <ul>
+              <li class="menu-title"><span>Main</span></li>
+              <li>
+                <a href="index-2/"
+                  ><i class="feather-home"></i><span>Dashboard</span></a
+                >
+              </li>
+              <li>
+                <a href="patients/"
+                  ><i class="feather-user"></i> <span>Patients</span></a
+                >
+              </li>
+              <li>
+                <a href="appointments/"
+                  ><i class="feather-list"></i> <span>Appointments</span
+                  ><span class="badge bg-success-text">2</span></a
+                >
+              </li>
+              <li class="active">
+                <a href="flow-board/"
+                  ><i class="feather-bar-chart"></i><span class="shape1"></span
+                  ><span class="shape2"></span> <span>Flow Board</span></a
+                >
+              </li>
+              <li>
+                <a href="recall-board/"
+                  ><i class="feather-calendar"></i> <span>Recall Board</span></a
+                >
+              </li>
+              <li>
+                <a href="chat/"
+                  ><i class="feather-message-circle"></i> <span>Messages</span
+                  ><span class="badge bg-orange-text">4</span></a
+                >
+              </li>
+              <li class="submenu">
+                <a href="#"
+                  ><i class="feather-disc"></i> <span> Procedures</span>
+                  <span class="menu-arrow"></span
+                ></a>
+                <ul style="display: none">
+                  <li>
+                    <a href="electronics-report/">Electronics Reports</a>
+                  </li>
+                  <li><a href="lab-documents/">Lab Documents</a></li>
+                </ul>
+              </li>
+              <li class="submenu">
+                <a href="javascript:void(0);"
+                  ><i class="feather-book"></i> <span>Reports</span>
+                  <span class="menu-arrow"></span
+                ></a>
+                <ul style="display: none">
+                  <li class="submenu">
+                    <a href="javascript:void(0);">
+                      <span>Clients</span> <span class="menu-arrow"></span
+                    ></a>
+                    <ul style="display: none">
+                      <li>
+                        <a href="client-list/"><span>List</span></a>
+                      </li>
+                      <li>
+                        <a href="client-rx/"> <span>RX</span></a>
+                      </li>
+                      <li>
+                        <a href="patient-list/">
+                          <span>Patient List Creation</span></a
+                        >
+                      </li>
+                      <li>
+                        <a href="clinical-report/">
+                          <span>Clinical</span></a
+                        >
+                      </li>
+                      <li>
+                        <a href="referals-report/">
+                          <span>Reference</span></a
+                        >
+                      </li>
+                      <li>
+                        <a href="immunization-registry/">
+                          <span>Immunization Registry</span></a
+                        >
+                      </li>
+                    </ul>
+                  </li>
+                  <li class="submenu">
+                    <a href="javascript:void(0);">
+                      <span>Clinics</span> <span class="menu-arrow"></span
+                    ></a>
+                    <ul style="display: none">
+                      <li>
+                        <a href="report-results/"
+                          ><span>Report Results</span></a
+                        >
+                      </li>
+                      <li>
+                        <a href="standard-measures/">
+                          <span>Standard Measures</span></a
+                        >
+                      </li>
+                      <li>
+                        <a href="quality-measures/">
+                          <span>Quality Measures (CQM)</span></a
+                        >
+                      </li>
+                      <li>
+                        <a href="automated-measures/">
+                          <span>Automated Measures (AMC)</span></a
+                        >
+                      </li>
+                      <li>
+                        <a href="amc-tracking/">
+                          <span>AMC Tracking</span></a
+                        >
+                      </li>
+                      <li>
+                        <a href="alert-log/"> <span>Alerts Log</span></a>
+                      </li>
+                    </ul>
+                  </li>
+                  <li class="submenu">
+                    <a href="javascript:void(0);">
+                      <span>Visits</span> <span class="menu-arrow"></span
+                    ></a>
+                    <ul style="display: none">
+                      <li>
+                        <a href="appointments-visit/"
+                          ><span>Appointments</span></a
+                        >
+                      </li>
+                      <li>
+                        <a href="flow-board-record/">
+                          <span>Patient Flow Board</span></a
+                        >
+                      </li>
+                    </ul>
+                  </li>
+                  <li class="submenu">
+                    <a href="javascript:void(0);">
+                      <span>Procedure</span> <span class="menu-arrow"></span
+                    ></a>
+                    <ul style="display: none">
+                      <li>
+                        <a href="pending-orders/"
+                          ><span>Pending Res</span></a
+                        >
+                      </li>
+                    </ul>
+                  </li>
+                  <li class="submenu">
+                    <a href="javascript:void(0);">
+                      <span>Insurance</span> <span class="menu-arrow"></span
+                    ></a>
+                    <ul style="display: none">
+                      <li>
+                        <a href="unique-insurance/"
+                          ><span>Unique SP</span></a
+                        >
+                      </li>
+                    </ul>
+                  </li>
+                </ul>
+              </li>
+              <li>
+                <a href="settings/"
+                  ><i class="feather-settings"></i> <span>Settings</span></a
+                >
+              </li>
+              <li class="submenu">
+                <a href="#"
+                  ><i class="feather-grid"></i> <span> Application</span>
+                  <span class="menu-arrow"></span
+                ></a>
+                <ul>
+                  <li><a href="calendar/">Calendar</a></li>
+                  <li><a href="inbox/">Email</a></li>
+                </ul>
+              </li>
+              <li class="menu-title">
+                <span>Pages</span>
+              </li>
+              <li>
+                <a href="profile/"
+                  ><i class="feather-user-plus"></i> <span>Profile</span></a
+                >
+              </li>
+              <li class="submenu">
+                <a href="#"
+                  ><i class="feather-lock"></i> <span> Authentication </span>
+                  <span class="menu-arrow"></span
+                ></a>
+                <ul>
+                  <li><a href="login/"> Login </a></li>
+                  <li><a href="register/"> Register </a></li>
+                  <li><a href="forgot-password/"> Forgot Password </a></li>
+                  <li><a href="lock-screen/"> Lock Screen </a></li>
+                </ul>
+              </li>
+              <li class="submenu">
+                <a href="#"
+                  ><i class="feather-alert-octagon"></i>
+                  <span> Error Pages </span> <span class="menu-arrow"></span
+                ></a>
+                <ul>
+                  <li><a href="error-404/">404 Error </a></li>
+                  <li><a href="error-500/">500 Error </a></li>
+                </ul>
+              </li>
+              <li>
+                <a href="users/"
+                  ><i class="feather-user"></i> <span>Users</span></a
+                >
+              </li>
+              <li>
+                <a href="blank-page/"
+                  ><i class="feather-file"></i> <span>Blank Page</span></a
+                >
+              </li>
+              <li>
+                <a href="maps-vector/"
+                  ><i class="feather-map-pin"></i> <span>Vector Maps</span></a
+                >
+              </li>
+              <li class="menu-title">
+                <span>UI Interface</span>
+              </li>
+              <li>
+                <a href="components/"
+                  ><i class="feather-layers"></i> <span>Components</span></a
+                >
+              </li>
+              <li class="submenu">
+                <a href="#"
+                  ><i class="feather-sidebar"></i> <span> Forms </span>
+                  <span class="menu-arrow"></span
+                ></a>
+                <ul>
+                  <li><a href="form-basic-inputs/">Basic Inputs </a></li>
+                  <li><a href="form-input-groups/">Input Groups </a></li>
+                  <li><a href="form-horizontal/">Horizontal Form </a></li>
+                  <li><a href="form-vertical/"> Vertical Form </a></li>
+                  <li><a href="form-mask/"> Form Mask </a></li>
+                  <li><a href="form-validation/"> Form Validation </a></li>
+                </ul>
+              </li>
+              <li class="submenu">
+                <a href="#"
+                  ><i class="feather-layout"></i> <span> Tables </span>
+                  <span class="menu-arrow"></span
+                ></a>
+                <ul>
+                  <li><a href="tables-basic/">Basic Tables </a></li>
+                  <li><a href="data-tables/">Data Table </a></li>
+                </ul>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <div class="page-wrapper">
+        <div class="content container-fluid">
+          <div class="page-header">
+            <div class="row align-items-center">
+              <div class="col">
+                <div class="d-flex align-items-center">
+                  <h5 class="page-title">Dashboard</h5>
+                  <ul class="breadcrumb ml-2">
+                    <li class="breadcrumb-item">
+                      <a href="index-2/"><i class="fas fa-home"></i></a>
+                    </li>
+                    <li class="breadcrumb-item">
+                      <a href="index-2/">Doctor Dashboard</a>
+                    </li>
+                    <li class="breadcrumb-item active">Flow Board</li>
+                  </ul>
+                </div>
+              </div>
+              <div class="col-auto text-right">
+                <a
+                  class="btn btn-white filter-btn"
+                  href="javascript:void(0);"
+                  id="filter_search"
+                >
+                  <i class="feather-filter"></i>
+                </a>
+              </div>
+            </div>
+          </div>
+
+          <form action="#" method="post" id="filter_inputs">
+            <input
+              type="hidden"
+              name="csrf_token_name"
+              value="4a0efd10c152f3f6117fec6b1be8e87e"
+            />
+            <div class="card filter-card">
+              <div class="card-body pb-0">
+                <div class="row filter-row">
+                  <div class="col-sm-6 col-md-3">
+                    <div class="form-group">
+                      <label>Patient ID</label>
+                      <input class="form-control" type="text" name="from" />
+                    </div>
+                  </div>
+                  <div class="col-sm-6 col-md-3">
+                    <div class="form-group">
+                      <label>Patient Name</label>
+                      <input class="form-control" type="text" name="from" />
+                    </div>
+                  </div>
+                  <div class="col-sm-6 col-md-3">
+                    <div class="form-group">
+                      <label>Appt Status</label>
+                      <input class="form-control" type="text" name="to" />
+                    </div>
+                  </div>
+                  <div class="col-sm-6 col-md-3">
+                    <div class="form-group">
+                      <label>Visit Type</label>
+                      <input class="form-control" type="text" name="to" />
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </form>
+
+          <div class="row">
+            <div class="col-sm-12">
+              <div class="card">
+                <div class="card-body">
+                  <div class="table-responsive">
+                    <table class="table mb-0">
+                      <thead>
+                        <tr>
+                          <th>ID</th>
+                          <th>Name</th>
+                          <th>Appt Date</th>
+                          <th>Appt Time</th>
+                          <th>Arrive Time</th>
+                          <th>Appt Status</th>
+                          <th>Current Status</th>
+                          <th>Visit Type</th>
+                          <th>Total Time</th>
+                          <th>Updated By</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr>
+                          <td>EMR125</td>
+                          <td>
+                            <img
+                              width="28"
+                              height="28"
+                              src="../static/img/profiles/avatar-07.jpg"
+                              class="rounded-circle m-r-5"
+                              alt=""
+                            />
+                            Brandon Stone
+                          </td>
+                          <td>11 Dec 2019</td>
+                          <td>10:00am-12:00am</td>
+                          <td>11:25am</td>
+                          <td class="text-danger">Arrived Late</td>
+                          <td>46 min</td>
+                          <td>New Patient</td>
+                          <td>1:05 hrs</td>
+                          <td>Dr.Jay Soni</td>
+                        </tr>
+                        <tr>
+                          <td>EMR233</td>
+                          <td>
+                            <img
+                              width="28"
+                              height="28"
+                              src="../static/img/profiles/avatar-06.jpg"
+                              class="rounded-circle m-r-5"
+                              alt=""
+                            />
+                            Terry Baker
+                          </td>
+                          <td>5 Dec 2019</td>
+                          <td>09:00am-11:00am</td>
+                          <td>10:15am</td>
+                          <td class="text-warning">Room 132</td>
+                          <td>75 min</td>
+                          <td>Old Patient</td>
+                          <td>0:35 hrs</td>
+                          <td>Dr.Sarah Smith</td>
+                        </tr>
+                        <tr>
+                          <td>EMR346</td>
+                          <td>
+                            <img
+                              width="28"
+                              height="28"
+                              src="../static/img/profiles/avatar-04.jpg"
+                              class="rounded-circle m-r-5"
+                              alt=""
+                            />
+                            Kyle Woodbury
+                          </td>
+                          <td>6 Jan 2020</td>
+                          <td>08:00am-10:00am</td>
+                          <td>08:00am</td>
+                          <td class="text-warning">Room 2</td>
+                          <td>55 min</td>
+                          <td>Old Patient</td>
+                          <td>0:15 hrs</td>
+                          <td>Dr.Sarah Smith</td>
+                        </tr>
+                        <tr>
+                          <td>EMR244</td>
+                          <td>
+                            <img
+                              width="28"
+                              height="28"
+                              src="../static/img/profiles/avatar-05.jpg"
+                              class="rounded-circle m-r-5"
+                              alt=""
+                            />
+                            Marie Gallardo
+                          </td>
+                          <td>19 Dec 2019</td>
+                          <td>10:00am-12:00am</td>
+                          <td>10:15am</td>
+                          <td class="text-success">Operation Theatre</td>
+                          <td>132 min</td>
+                          <td>Office Visit</td>
+                          <td>0:20 hrs</td>
+                          <td>Admin</td>
+                        </tr>
+                        <tr>
+                          <td>EMR789</td>
+                          <td>
+                            <img
+                              width="28"
+                              height="28"
+                              src="../static/img/profiles/avatar-03.jpg"
+                              class="rounded-circle m-r-5"
+                              alt=""
+                            />
+                            Maurice Guz
+                          </td>
+                          <td>15 Dec 2019</td>
+                          <td>09:00am-11:00am</td>
+                          <td>10:10am</td>
+                          <td class="text-success">ICU</td>
+                          <td>21 min</td>
+                          <td>Old Patient</td>
+                          <td>0:15 hrs</td>
+                          <td>Dr.John Deo</td>
+                        </tr>
+                        <tr>
+                          <td>EMR562</td>
+                          <td>
+                            <img
+                              width="28"
+                              height="28"
+                              src="../static/img/profiles/avatar-01.jpg"
+                              class="rounded-circle m-r-5"
+                              alt=""
+                            />
+                            Julia Sims
+                          </td>
+                          <td>11 Dec 2019</td>
+                          <td>10:00am-12:00am</td>
+                          <td>10:10am</td>
+                          <td class="text-danger">Arrived Late</td>
+                          <td>122 min</td>
+                          <td>New Patient</td>
+                          <td>0:45 hrs</td>
+                          <td>Dr.John Deo</td>
+                        </tr>
+                        <tr>
+                          <td>EMR863</td>
+                          <td>
+                            <img
+                              width="28"
+                              height="28"
+                              src="../static/img/profiles/avatar-02.jpg"
+                              class="rounded-circle m-r-5"
+                              alt=""
+                            />
+                            Linda Carp
+                          </td>
+                          <td>5 Dec 2019</td>
+                          <td>08:00am-10:00am</td>
+                          <td>09:00am</td>
+                          <td class="text-warning">Room 21</td>
+                          <td>64 min</td>
+                          <td>Office Visit</td>
+                          <td>1:20 hrs</td>
+                          <td>Receptionist</td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="notifications">
+        <div class="topnav-dropdown-header">
+          <span class="notification-title">Notifications</span>
+          <a href="javascript:void(0)" class="clear-noti">
+            <i class="feather-x-circle"></i>
+          </a>
+        </div>
+        <div class="noti-content">
+          <ul class="notification-list">
+            <li class="notification-message">
+              <a href="#">
+                <div class="media">
+                  <span class="avatar">
+                    <img
+                      alt=""
+                      src="../static/img/profiles/avatar-02.jpg"
+                      class="rounded-circle"
+                    />
+                  </span>
+                  <div class="media-body">
+                    <p class="noti-details">
+                      <span class="noti-title">John Doe</span> added new task
+                      <span class="noti-title"
+                        >Patient appointment booking</span
+                      >
+                    </p>
+                    <p class="noti-time">
+                      <span class="notification-time">4 mins ago</span>
+                    </p>
+                  </div>
+                </div>
+              </a>
+            </li>
+            <li class="notification-message">
+              <a href="#">
+                <div class="media">
+                  <span class="avatar">
+                    <img
+                      alt=""
+                      src="../static/img/profiles/avatar-03.jpg"
+                      class="rounded-circle"
+                    />
+                  </span>
+                  <div class="media-body">
+                    <p class="noti-details">
+                      <span class="noti-title">Tarah Shropshire</span> changed
+                      the task name
+                      <span class="noti-title"
+                        >Appointment booking with payment gateway</span
+                      >
+                    </p>
+                    <p class="noti-time">
+                      <span class="notification-time">6 mins ago</span>
+                    </p>
+                  </div>
+                </div>
+              </a>
+            </li>
+            <li class="notification-message">
+              <a href="#">
+                <div class="media">
+                  <span class="avatar">
+                    <img
+                      alt=""
+                      src="../static/img/profiles/avatar-06.jpg"
+                      class="rounded-circle"
+                    />
+                  </span>
+                  <div class="media-body">
+                    <p class="noti-details">
+                      <span class="noti-title">Misty Tison</span> added
+                      <span class="noti-title">Domenic Houston</span> and
+                      <span class="noti-title">Claire Mapes</span> to project
+                      <span class="noti-title">Doctor available module</span>
+                    </p>
+                    <p class="noti-time">
+                      <span class="notification-time">8 mins ago</span>
+                    </p>
+                  </div>
+                </div>
+              </a>
+            </li>
+            <li class="notification-message">
+              <a href="#">
+                <div class="media">
+                  <span class="avatar">
+                    <img
+                      alt=""
+                      src="../static/img/profiles/avatar-17.jpg"
+                      class="rounded-circle"
+                    />
+                  </span>
+                  <div class="media-body">
+                    <p class="noti-details">
+                      <span class="noti-title">Rolland Webber</span> completed
+                      task
+                      <span class="noti-title"
+                        >Patient and Doctor video conferencing</span
+                      >
+                    </p>
+                    <p class="noti-time">
+                      <span class="notification-time">12 mins ago</span>
+                    </p>
+                  </div>
+                </div>
+              </a>
+            </li>
+            <li class="notification-message">
+              <a href="#">
+                <div class="media">
+                  <span class="avatar">
+                    <img
+                      alt=""
+                      src="../static/img/profiles/avatar-13.jpg"
+                      class="rounded-circle"
+                    />
+                  </span>
+                  <div class="media-body">
+                    <p class="noti-details">
+                      <span class="noti-title">Bernardo Galaviz</span> added new
+                      task <span class="noti-title">Private chat module</span>
+                    </p>
+                    <p class="noti-time">
+                      <span class="notification-time">2 days ago</span>
+                    </p>
+                  </div>
+                </div>
+              </a>
+            </li>
+          </ul>
+        </div>
+        <div class="topnav-dropdown-footer">
+          <a href="javascript:void(0);">View all Notifications</a>
+        </div>
+      </div>
+    </div>
+
+    <script src="../static/js/jquery-3.6.0.min.js"></script>
+
+    <script src="../static/js/bootstrap.bundle.min.js"></script>
+
+    <script src="../static/plugins/slimscroll/jquery.slimscroll.min.js"></script>
+
+    <script src="../static/js/script.js"></script>
+  </body>
+
+  <!-- Mirrored from emr.dreamguystech.com/flow-board/ by HTTrack Website Copier/3.x [XR&CO'2014], Tue, 29 Jun 2021 19:34:20 GMT -->
+</html>

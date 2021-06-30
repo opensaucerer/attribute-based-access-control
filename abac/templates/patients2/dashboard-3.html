@@ -1,0 +1,684 @@
+<!DOCTYPE html>
+<html lang="en">
+  <!-- Mirrored from iqonic.design/themes/xray/html/dashboard-3.html by HTTrack Website Copier/3.x [XR&CO'2014], Thu, 01 Jul 2021 07:40:29 GMT -->
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, shrink-to-fit=no"
+    />
+    <title>Medicio | Patient Dashboard</title>
+    <!-- Favicon -->
+    <link
+      rel="shortcut icon"
+      href="../../static/patients/static/favicons/favicon.png"
+    />
+    <!-- Bootstrap CSS -->
+    <link
+      rel="stylesheet"
+      href="../../static/patients2/css/bootstrap.min.css"
+    />
+    <!-- Typography CSS -->
+    <link rel="stylesheet" href="../../static/patients2/css/typography.css" />
+    <!-- Style CSS -->
+    <link rel="stylesheet" href="../../static/patients2/css/style.css" />
+    <!-- Responsive CSS -->
+    <link rel="stylesheet" href="../../static/patients2/css/responsive.css" />
+    <!-- Full calendar -->
+    <link
+      href="../../static/patients2/fullcalendar/core/main.css"
+      rel="stylesheet"
+    />
+    <link
+      href="../../static/patients2/fullcalendar/daygrid/main.css"
+      rel="stylesheet"
+    />
+    <link
+      href="../../static/patients2/fullcalendar/timegrid/main.css"
+      rel="stylesheet"
+    />
+    <link
+      href="../../static/patients2/fullcalendar/list/main.css"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="../../static/patients2/js/flatpickr.js" />
+  </head>
+  <body>
+    <!-- loader Start -->
+    <div id="loading">
+      <div id="loading-center"></div>
+    </div>
+    <!-- loader END -->
+    <!-- Wrapper Start -->
+    <div class="wrapper">
+      <!-- Sidebar  -->
+      {% include 'patients2/patientnav.html' %}
+      <!-- Page Content  -->
+      <div id="content-page" class="content-page">
+        <!-- TOP Nav Bar -->
+        {% include 'patients2/patienttopnav.html' %}
+        <!-- TOP Nav Bar END -->
+        <div class="container-fluid">
+          <div class="row">
+            <div class="col-lg-4 row m-0 p-0">
+              <div class="col-sm-12">
+                <div
+                  class="
+                    iq-card
+                    iq-card-block
+                    iq-card-stretch
+                    iq-card-height
+                    iq-user-profile-block
+                  "
+                  style="height: 75%"
+                >
+                  <div class="iq-card-body">
+                    <div class="user-details-block">
+                      <div class="user-profile text-center">
+                        <img
+                          src="../../static/patients2/images/user/11.png"
+                          alt="profile-img"
+                          class="avatar-130 img-fluid"
+                        />
+                      </div>
+                      <div class="text-center mt-3">
+                        <h4><b>{{user['name']}}</b></h4>
+                        <p><b>{{user['age']}} years</b>, {{user['address']}}</p>
+                      </div>
+                      <ul
+                        class="
+                          doctoe-sedual
+                          d-flex
+                          align-items-center
+                          justify-content-between
+                          p-0
+                          mt-4
+                          mb-0
+                        "
+                      >
+                        <li class="text-center">
+                          <h6 class="text-primary">Weight</h6>
+                          <h3>N/A<span>kg</span></h3>
+                        </li>
+                        <li class="text-center">
+                          <h6 class="text-primary">Height</h6>
+                          <h3>N/A<span>cm</span></h3>
+                        </li>
+                        <!-- <li class="text-center">
+                          <h6 class="text-primary">Goal</h6>
+                          <h3 class="text-warning">N/A<span>kg</span></h3>
+                        </li> -->
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-sm-12">
+                <div
+                  class="iq-card iq-card-block iq-card-stretch iq-card-height"
+                >
+                  <div class="iq-card-body">
+                    <div class="patient-steps">
+                      <div
+                        class="
+                          d-flex
+                          align-items-center
+                          justify-content-between
+                        "
+                      >
+                        <div class="col-md-6">
+                          <div class="data-block">
+                            <p class="mb-0">Walked</p>
+                            <h5>4532 steps</h5>
+                          </div>
+                          <div class="data-block mt-3">
+                            <p class="mb-0">My Goal</p>
+                            <h5>6500 steps</h5>
+                          </div>
+                        </div>
+                        <div class="col-md-6">
+                          <div
+                            class="progress-round patient-progress mx-auto"
+                            data-value="80"
+                          >
+                            <span class="progress-left">
+                              <span
+                                class="progress-bar border-secondary"
+                              ></span>
+                            </span>
+                            <span class="progress-right">
+                              <span
+                                class="progress-bar border-secondary"
+                              ></span>
+                            </span>
+                            <div
+                              class="
+                                progress-value
+                                w-100
+                                h-100
+                                rounded-circle
+                                d-flex
+                                align-items-center
+                                justify-content-center
+                                text-center
+                              "
+                            >
+                              <div class="h4 mb-0">
+                                4532<br />
+                                <span class="font-size-14">left</span>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      <ul
+                        class="
+                          patient-role
+                          list-inline
+                          d-flex
+                          align-items-center
+                          p-0
+                          mt-4
+                          mb-0
+                        "
+                      >
+                        <li class="text-left">
+                          <h6 class="text-primary">Carbs</h6>
+                          <div
+                            class="iq-progress-bar-linear d-inline-block w-100"
+                          >
+                            <div class="iq-progress-bar">
+                              <span class="bg-primary" data-percent="85"></span>
+                            </div>
+                          </div>
+                        </li>
+                        <li class="text-left">
+                          <h6 class="text-primary">Protein</h6>
+                          <div
+                            class="iq-progress-bar-linear d-inline-block w-100"
+                          >
+                            <div class="iq-progress-bar">
+                              <span class="bg-danger" data-percent="65"></span>
+                            </div>
+                          </div>
+                        </li>
+                        <li class="text-left">
+                          <h6 class="text-primary">Fat</h6>
+                          <div
+                            class="iq-progress-bar-linear d-inline-block w-100"
+                          >
+                            <div class="iq-progress-bar">
+                              <span class="bg-info" data-percent="70"></span>
+                            </div>
+                          </div>
+                        </li>
+                      </ul>
+                    </div>
+                    <hr />
+                    <div class="patient-steps2">
+                      <div
+                        class="
+                          d-flex
+                          align-items-center
+                          justify-content-between
+                        "
+                      >
+                        <div class="col-md-6">
+                          <div class="data-block">
+                            <p class="mb-0">Burned</p>
+                            <h5>325 kcal</h5>
+                          </div>
+                          <div class="data-block mt-3">
+                            <p class="mb-0">My Goal</p>
+                            <h5>800 kcal</h5>
+                          </div>
+                        </div>
+                        <div class="col-md-6">
+                          <div
+                            class="progress-round patient-progress mx-auto"
+                            data-value="60"
+                          >
+                            <span class="progress-left">
+                              <span
+                                class="progress-bar border-secondary"
+                              ></span>
+                            </span>
+                            <span class="progress-right">
+                              <span
+                                class="progress-bar border-secondary"
+                              ></span>
+                            </span>
+                            <div
+                              class="
+                                progress-value
+                                w-100
+                                h-100
+                                rounded-circle
+                                d-flex
+                                align-items-center
+                                justify-content-center
+                                text-center
+                              "
+                            >
+                              <div class="h4 mb-0 text-warning">
+                                325<br />
+                                <span class="font-size-14 text-secondary"
+                                  >left</span
+                                >
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      <ul
+                        class="
+                          patient-role
+                          list-inline
+                          d-flex
+                          align-items-center
+                          p-0
+                          mt-4
+                          mb-0
+                        "
+                      >
+                        <li class="text-left">
+                          <h6 class="text-primary">Carbs</h6>
+                          <div
+                            class="iq-progress-bar-linear d-inline-block w-100"
+                          >
+                            <div class="iq-progress-bar">
+                              <span class="bg-primary" data-percent="50"></span>
+                            </div>
+                          </div>
+                        </li>
+                        <li class="text-left">
+                          <h6 class="text-primary">Protein</h6>
+                          <div
+                            class="iq-progress-bar-linear d-inline-block w-100"
+                          >
+                            <div class="iq-progress-bar">
+                              <span class="bg-danger" data-percent="60"></span>
+                            </div>
+                          </div>
+                        </li>
+                        <li class="text-left">
+                          <h6 class="text-primary">Fat</h6>
+                          <div
+                            class="iq-progress-bar-linear d-inline-block w-100"
+                          >
+                            <div class="iq-progress-bar">
+                              <span class="bg-info" data-percent="70"></span>
+                            </div>
+                          </div>
+                        </li>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-lg-8">
+              <div class="iq-card iq-card-block iq-card-stretch iq-card-height">
+                <div class="iq-card-body pb-0">
+                  <div class="row">
+                    <div class="col-sm-12">
+                      <div class="iq-card">
+                        <div
+                          class="iq-card-body bg-primary rounded pt-2 pb-2 pr-2"
+                        >
+                          <div
+                            class="
+                              d-flex
+                              align-items-center
+                              justify-content-between
+                            "
+                          >
+                            <p class="mb-0">
+                              Ensure to Adhere to Your Prescriptions for Better
+                              Results
+                            </p>
+                            <div class="rounded iq-card-icon bg-white">
+                              <img
+                                src="../../static/patients2/images/page-img/37.png"
+                                class="img-fluid"
+                                alt="icon"
+                              />
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="iq-card">
+                        <div class="iq-header-title">
+                          <h4 class="card-title text-primary">
+                            Recommened Exercises
+                          </h4>
+                        </div>
+                        <div class="iq-card-body pl-0 pr-0 pb-0">
+                          <div class="row">
+                            <div class="col-md-4">
+                              <div
+                                class="training-block d-flex align-items-center"
+                              >
+                                <div
+                                  class="
+                                    rounded-circle
+                                    iq-card-icon iq-bg-primary
+                                  "
+                                >
+                                  <img
+                                    src="../../static/patients2/images/page-img/34.png"
+                                    class="img-fluid"
+                                    alt="icon"
+                                  />
+                                </div>
+                                <div class="ml-3">
+                                  <h5 class="">Power Training</h5>
+                                  <p class="mb-0">395 kcal / h</p>
+                                </div>
+                              </div>
+                            </div>
+                            <div class="col-md-4">
+                              <div
+                                class="training-block d-flex align-items-center"
+                              >
+                                <div
+                                  class="
+                                    rounded-circle
+                                    iq-card-icon iq-bg-primary
+                                  "
+                                >
+                                  <img
+                                    src="../../static/patients2/images/page-img/35.png"
+                                    class="img-fluid"
+                                    alt="icon"
+                                  />
+                                </div>
+                                <div class="ml-3">
+                                  <h5 class="">Yoga Training</h5>
+                                  <p class="mb-0">395 kcal / h</p>
+                                </div>
+                              </div>
+                            </div>
+                            <div class="col-md-4">
+                              <div
+                                class="training-block d-flex align-items-center"
+                              >
+                                <div
+                                  class="
+                                    rounded-circle
+                                    iq-card-icon iq-bg-primary
+                                  "
+                                >
+                                  <img
+                                    src="../../static/patients2/images/page-img/36.png"
+                                    class="img-fluid"
+                                    alt="icon"
+                                  />
+                                </div>
+                                <div class="ml-3">
+                                  <h5 class="">Stretching</h5>
+                                  <p class="mb-0">395 kcal / h</p>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-lg-8">
+                      <div class="iq-card">
+                        <div
+                          class="
+                            iq-card-header
+                            d-flex
+                            justify-content-between
+                            p-0
+                            bg-white
+                          "
+                        >
+                          <div class="iq-header-title">
+                            <h4 class="card-title text-primary">
+                              Activity Statistic
+                            </h4>
+                          </div>
+                        </div>
+                        <div class="iq-card-body p-0">
+                          <div id="patient-chart-1"></div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-lg-4">
+                      <div class="iq-card mb-0">
+                        <div
+                          class="
+                            iq-card-header
+                            d-flex
+                            justify-content-between
+                            p-0
+                            bg-white
+                          "
+                        >
+                          <div class="iq-header-title">
+                            <h4 class="card-title text-primary">
+                              My Prescriptions
+                            </h4>
+                          </div>
+                          <div
+                            class="
+                              iq-card-header-toolbar
+                              d-flex
+                              align-items-center
+                            "
+                          >
+                            <div class="dropdown">
+                              <span
+                                class="dropdown-toggle iq-bg-primary btn"
+                                id="dropdownMenuButton4"
+                                data-toggle="dropdown"
+                              >
+                                <i class="ri-add-line m-0 text-primary"></i>
+                              </span>
+                              <div
+                                class="dropdown-menu dropdown-menu-right"
+                                aria-labelledby="dropdownMenuButton4"
+                              >
+                                <!-- <a class="dropdown-item" href="#"
+                                  ><i class="ri-eye-fill mr-2"></i>View</a
+                                >
+                                <a class="dropdown-item" href="#"
+                                  ><i class="ri-delete-bin-6-fill mr-2"></i
+                                  >Delete</a
+                                >
+                                <a class="dropdown-item" href="#"
+                                  ><i class="ri-pencil-fill mr-2"></i>Edit</a
+                                > -->
+                                <a class="dropdown-item" href="#"
+                                  ><i class="ri-printer-fill mr-2"></i>Print</a
+                                >
+                                <a class="dropdown-item" href="#"
+                                  ><i class="ri-file-download-fill mr-2"></i
+                                  >Download</a
+                                >
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="iq-card-body p-0">
+                          <table
+                            class="table mb-0 table-borderless table-box-shadow"
+                          >
+                            <thead>
+                              <tr>
+                                <th scope="col">Amoxcillin 250mg Tablet</th>
+                                <th scope="col">3 X 7 days</th>
+                              </tr>
+                            </thead>
+                            <tbody>
+                              <thead>
+                                <tr>
+                                  <th scope="col">Paracetamol 50mg</th>
+                                  <th scope="col">2 X 7 days</th>
+                                </tr>
+                              </thead>
+                              <thead>
+                                <tr>
+                                  <th scope="col">Ibruprofen 150mg Tablet</th>
+                                  <th scope="col">1 X 3 days</th>
+                                </tr>
+                              </thead>
+                              <thead>
+                                <tr>
+                                  <th scope="col">Vitamin C Tablet</th>
+                                  <th scope="col">2 X 7 days</th>
+                                </tr>
+                              </thead>
+                            </tbody>
+                          </table>
+                          <!-- <table
+                            class="
+                              table
+                              mb-0
+                              table-borderless
+                              mt-4
+                              table-box-shadow
+                            "
+                          >
+                            <thead>
+                              <tr>
+                                <th scope="col">Training</th>
+                                <th scope="col">Stretching</th>
+                              </tr>
+                            </thead>
+                            <tbody>
+                              <tr>
+                                <td>Burned</td>
+                                <td>180 kcal</td>
+                              </tr>
+                              <tr>
+                                <td>Spend</td>
+                                <td>30m</td>
+                              </tr>
+                            </tbody>
+                          </table> -->
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-md-6">
+                      <div class="iq-card">
+                        <div
+                          class="
+                            iq-card-header
+                            d-flex
+                            justify-content-between
+                            p-0
+                            bg-white
+                          "
+                        >
+                          <div class="iq-header-title">
+                            <h4 class="card-title text-primary">Heart Rate</h4>
+                          </div>
+                        </div>
+                        <div class="iq-card-body p-0">
+                          <div class="d-flex align-items-center">
+                            <div class="mr-3">
+                              <h4 class="">75 bpm</h4>
+                              <p class="mb-0 text-primary">Health Zone</p>
+                            </div>
+                            <div
+                              class="rounded-circle iq-card-icon iq-bg-primary"
+                            >
+                              <i class="ri-windy-fill"></i>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-md-6">
+                      <div class="iq-card">
+                        <div
+                          class="
+                            iq-card-header
+                            d-flex
+                            justify-content-between
+                            p-0
+                            bg-white
+                          "
+                        >
+                          <div class="iq-header-title">
+                            <h4 class="card-title text-primary">Temperature</h4>
+                          </div>
+                        </div>
+                        <div class="iq-card-body p-0">
+                          <div class="d-flex align-items-center">
+                            <div class="mr-3 text-left">
+                              <h4 class="">29<sup>o</sup>C</h4>
+                              <p class="mb-0 text-primary">Normal</p>
+                            </div>
+                            <div
+                              class="rounded-circle iq-card-icon iq-bg-primary"
+                            >
+                              <i class="ri-add-fill"></i>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- Footer -->
+        {% include 'patients2/patientfooter.html' %}
+        <!-- Footer END -->
+      </div>
+    </div>
+    <!-- Wrapper END -->
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="../../static/patients2/js/jquery.min.js"></script>
+    <script src="../../static/patients2/js/popper.min.js"></script>
+    <script src="../../static/patients2/js/bootstrap.min.js"></script>
+    <!-- Appear JavaScript -->
+    <script src="../../static/patients2/js/jquery.appear.js"></script>
+    <!-- Countdown JavaScript -->
+    <script src="../../static/patients2/js/countdown.min.js"></script>
+    <!-- Counterup JavaScript -->
+    <script src="../../static/patients2/js/waypoints.min.js"></script>
+    <script src="../../static/patients2/js/jquery.counterup.min.js"></script>
+    <!-- Wow JavaScript -->
+    <script src="../../static/patients2/js/wow.min.js"></script>
+    <!-- Apexcharts JavaScript -->
+    <script src="../../static/patients2/js/apexcharts.js"></script>
+    <!-- Slick JavaScript -->
+    <script src="../../static/patients2/js/slick.min.js"></script>
+    <!-- Select2 JavaScript -->
+    <script src="../../static/patients2/js/select2.min.js"></script>
+    <!-- Owl Carousel JavaScript -->
+    <script src="../../static/patients2/js/owl.carousel.min.js"></script>
+    <!-- Magnific Popup JavaScript -->
+    <script src="../../static/patients2/js/jquery.magnific-popup.min.js"></script>
+    <!-- Smooth Scrollbar JavaScript -->
+    <script src="../../static/patients2/js/smooth-scrollbar.js"></script>
+    <!-- lottie JavaScript -->
+    <script src="../../static/patients2/js/lottie.js"></script>
+    <!-- am core JavaScript -->
+    <script src="../../static/patients2/js/core.js"></script>
+    <!-- am charts JavaScript -->
+    <script src="../../static/patients2/js/charts.js"></script>
+    <!-- am animated JavaScript -->
+    <script src="../../static/patients2/js/animated.js"></script>
+    <!-- am kelly JavaScript -->
+    <script src="../../static/patients2/js/kelly.js"></script>
+    <!-- Flatpicker Js -->
+    <script src="../../static/patients2/js/flatpickr.js"></script>
+    <!-- Chart Custom JavaScript -->
+    <script src="../../static/patients2/js/chart-custom.js"></script>
+    <!-- Custom JavaScript -->
+    <script src="../../static/patients2/js/custom.js"></script>
+  </body>
+
+  <!-- Mirrored from iqonic.design/themes/xray/html/dashboard-3.html by HTTrack Website Copier/3.x [XR&CO'2014], Thu, 01 Jul 2021 07:40:38 GMT -->
+</html>

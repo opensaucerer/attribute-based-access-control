@@ -1,0 +1,427 @@
+<!DOCTYPE html>
+<html lang="en">
+  <!-- Mirrored from emr.dreamguystech.com/visit-history/ by HTTrack Website Copier/3.x [XR&CO'2014], Tue, 29 Jun 2021 19:34:43 GMT -->
+  <head>
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, user-scalable=0"
+    />
+    <title>EMR - Dashboard</title>
+
+    <link
+      rel="shortcut icon"
+      type="image/x-icon"
+      href="../static/favicons/favicon.png"
+    />
+
+    <link rel="stylesheet" href="../static/css/bootstrap.min.css" />
+
+    <link
+      rel="stylesheet"
+      href="../static/plugins/fontawesome/css/fontawesome.min.css"
+    />
+    <link
+      rel="stylesheet"
+      href="../static/plugins/fontawesome/css/all.min.css"
+    />
+
+    <link rel="stylesheet" href="../static/css/feather.css" />
+
+    <link rel="stylesheet" href="../static/css/select2.min.css" />
+
+    <link
+      rel="stylesheet"
+      href="../static/css/bootstrap-datetimepicker.min.css"
+    />
+
+    <link rel="stylesheet" href="../static/css/style.css" />
+  </head>
+  <body>
+    <div class="main-wrapper">
+      <div class="header">
+        <div class="header-left">
+          <a href="index-2/" class="logo">
+            <img src="../static/img/logo.png" alt="Logo" />
+          </a>
+          <a href="index-2/" class="logo logo-small">
+            <img
+              src="../static/img/logo-small.png"
+              alt="Logo"
+              width="30"
+              height="30"
+            />
+          </a>
+        </div>
+
+        <a href="javascript:void(0);" id="toggle_btn">
+          <i class="fas fa-bars"></i>
+        </a>
+        <div class="top-nav-search">
+          <form>
+            <input type="text" class="form-control" placeholder="Search here" />
+            <button class="btn" type="submit">
+              <i class="fa fa-search"></i>
+            </button>
+          </form>
+        </div>
+
+        <a class="mobile_btn" id="mobile_btn"> <i class="fas fa-bars"></i> </a>
+
+        <ul class="nav user-menu">
+          <li class="nav-item dropdown has-arrow flag-nav mr-2">
+            <a
+              class="nav-link dropdown-toggle"
+              data-toggle="dropdown"
+              href="#"
+              role="button"
+            >
+              <img
+                src="../static/img/flags/us-1.png"
+                alt=""
+                width="32"
+                height="32"
+                class="rounded-circle"
+              />
+            </a>
+            <div class="dropdown-menu dropdown-menu-right">
+              <a href="javascript:void(0);" class="dropdown-item">
+                <img src="../static/img/flags/us.png" alt="" height="16" />
+                English
+              </a>
+              <a href="javascript:void(0);" class="dropdown-item">
+                <img src="../static/img/flags/fr.png" alt="" height="16" />
+                French
+              </a>
+              <a href="javascript:void(0);" class="dropdown-item">
+                <img src="../static/img/flags/es.png" alt="" height="16" />
+                Spanish
+              </a>
+              <a href="javascript:void(0);" class="dropdown-item">
+                <img src="../static/img/flags/de.png" alt="" height="16" />
+                German
+              </a>
+            </div>
+          </li>
+
+          <li class="nav-item dropdown">
+            <a href="#" class="nav-link notifications-item">
+              <i class="feather-bell"></i>
+              <span class="badge badge-pill">3</span>
+            </a>
+          </li>
+
+          <li class="nav-item dropdown">
+            <a href="chat/" class="dropdown-toggle nav-link chat-header">
+              <i class="feather-message-square"></i>
+              <span class="badge badge-pill header-chat">6</span>
+            </a>
+          </li>
+
+          <li class="nav-item dropdown has-arrow main-drop ml-md-3">
+            <a href="#" class="dropdown-toggle nav-link" data-toggle="dropdown">
+              <span class="user-img"
+                ><img src="../static/img/avatar.jpg" alt="" />
+                <span class="status online"></span
+              ></span>
+            </a>
+            <div class="dropdown-menu">
+              <a class="dropdown-item" href="profile/"
+                ><i class="feather-user"></i> My Profile</a
+              >
+              <a class="dropdown-item" href="login/"
+                ><i class="feather-power"></i> Logout</a
+              >
+            </div>
+          </li>
+        </ul>
+      </div>
+
+      <div class="sidebar" id="sidebar">
+        <div class="sidebar-inner slimscroll">
+          <div id="sidebar-menu" class="sidebar-menu">
+            <ul>
+              <li class="menu-title"><span>Main</span></li>
+              <li>
+                <a href="index-2/"
+                  ><i class="feather-home"></i> <span>Back to Home</span></a
+                >
+              </li>
+              <li class="submenu">
+                <a href="#"
+                  ><i class="feather-user"></i><span> Patients</span>
+                  <span class="menu-arrow"></span
+                ></a>
+                <ul style="display: none">
+                  <li><a href="patients-profile/">Patient Profile</a></li>
+                  <li><a href="patients-history/">History</a></li>
+                  <li><a href="patients-report/">Report</a></li>
+                  <li><a href="patients-documents/">Documents</a></li>
+                  <li><a href="patients-transactions/">Transactions</a></li>
+                  <li><a href="patients-issues/">Issues</a></li>
+                  <li><a href="patients-data/">External Data</a></li>
+                </ul>
+              </li>
+              <li class="submenu active">
+                <a href="#"
+                  ><i class="feather-eye"></i><span class="shape1"></span
+                  ><span class="shape2"></span> <span> Visits</span>
+                  <span class="menu-arrow"></span
+                ></a>
+                <ul style="display: none">
+                  <li><a href="create-visit/">Create Visit</a></li>
+                  <li>
+                    <a href="visit-history/" class="active">Visit History</a>
+                  </li>
+                </ul>
+              </li>
+              <li class="submenu">
+                <a href="#"
+                  ><i class="feather-crosshair"></i> <span> Procedures</span>
+                  <span class="menu-arrow"></span
+                ></a>
+                <ul style="display: none">
+                  <li><a href="pending-review/">Pending Review</a></li>
+                  <li><a href="patients-results/">Patient Results</a></li>
+                </ul>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <div class="page-wrapper">
+        <div class="content container-fluid">
+          <div class="page-header">
+            <div class="row align-items-center">
+              <div class="col-md-12">
+                <div class="d-flex align-items-center">
+                  <h5 class="page-title">Dashboard</h5>
+                  <ul class="breadcrumb ml-2">
+                    <li class="breadcrumb-item">
+                      <a href="index-2/"><i class="fas fa-home"></i></a>
+                    </li>
+                    <li class="breadcrumb-item">
+                      <a href="index-2/">Doctor Dashboard</a>
+                    </li>
+                    <li class="breadcrumb-item active">Visit History</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-sm-12">
+              <div class="card">
+                <div class="card-body">
+                  <div class="table-responsive">
+                    <table class="table mb-0">
+                      <thead>
+                        <tr>
+                          <th>Date</th>
+                          <th>Reason</th>
+                          <th>Provider</th>
+                          <th>Billing</th>
+                          <th>Insurance</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr>
+                          <td>11 Dec 2020</td>
+                          <td>Sad</td>
+                          <td>Dr.Jay Soni</td>
+                          <td class="text-info">CPT4 - 99202</td>
+                          <td>Primary</td>
+                        </tr>
+                        <tr>
+                          <td>5 Dec 2020</td>
+                          <td>Vitals</td>
+                          <td>Dr.John Deo</td>
+                          <td class="text-info">ICD9 - 296.20</td>
+                          <td>Secondary</td>
+                        </tr>
+                        <tr>
+                          <td>6 Jan 2020</td>
+                          <td>SOAP</td>
+                          <td>Dr.John Deo</td>
+                          <td class="text-info">ICD9 - 125.10</td>
+                          <td>Secondary</td>
+                        </tr>
+                        <tr>
+                          <td>19 Dec 2020</td>
+                          <td>Fever</td>
+                          <td>Dr.Sarah Smith</td>
+                          <td class="text-info">CPT4 - 4589</td>
+                          <td>Primary</td>
+                        </tr>
+                        <tr>
+                          <td>15 Dec 2020</td>
+                          <td>Stomach Ache</td>
+                          <td>Dr.Jay Soni</td>
+                          <td class="text-info">ICD9 - 435.60</td>
+                          <td>Primary</td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="notifications">
+        <div class="topnav-dropdown-header">
+          <span class="notification-title">Notifications</span>
+          <a href="javascript:void(0)" class="clear-noti">
+            <i class="feather-x-circle"></i>
+          </a>
+        </div>
+        <div class="noti-content">
+          <ul class="notification-list">
+            <li class="notification-message">
+              <a href="#">
+                <div class="media">
+                  <span class="avatar">
+                    <img
+                      alt=""
+                      src="../static/img/profiles/avatar-02.jpg"
+                      class="rounded-circle"
+                    />
+                  </span>
+                  <div class="media-body">
+                    <p class="noti-details">
+                      <span class="noti-title">John Doe</span> added new task
+                      <span class="noti-title"
+                        >Patient appointment booking</span
+                      >
+                    </p>
+                    <p class="noti-time">
+                      <span class="notification-time">4 mins ago</span>
+                    </p>
+                  </div>
+                </div>
+              </a>
+            </li>
+            <li class="notification-message">
+              <a href="#">
+                <div class="media">
+                  <span class="avatar">
+                    <img
+                      alt=""
+                      src="../static/img/profiles/avatar-03.jpg"
+                      class="rounded-circle"
+                    />
+                  </span>
+                  <div class="media-body">
+                    <p class="noti-details">
+                      <span class="noti-title">Tarah Shropshire</span> changed
+                      the task name
+                      <span class="noti-title"
+                        >Appointment booking with payment gateway</span
+                      >
+                    </p>
+                    <p class="noti-time">
+                      <span class="notification-time">6 mins ago</span>
+                    </p>
+                  </div>
+                </div>
+              </a>
+            </li>
+            <li class="notification-message">
+              <a href="#">
+                <div class="media">
+                  <span class="avatar">
+                    <img
+                      alt=""
+                      src="../static/img/profiles/avatar-06.jpg"
+                      class="rounded-circle"
+                    />
+                  </span>
+                  <div class="media-body">
+                    <p class="noti-details">
+                      <span class="noti-title">Misty Tison</span> added
+                      <span class="noti-title">Domenic Houston</span> and
+                      <span class="noti-title">Claire Mapes</span> to project
+                      <span class="noti-title">Doctor available module</span>
+                    </p>
+                    <p class="noti-time">
+                      <span class="notification-time">8 mins ago</span>
+                    </p>
+                  </div>
+                </div>
+              </a>
+            </li>
+            <li class="notification-message">
+              <a href="#">
+                <div class="media">
+                  <span class="avatar">
+                    <img
+                      alt=""
+                      src="../static/img/profiles/avatar-17.jpg"
+                      class="rounded-circle"
+                    />
+                  </span>
+                  <div class="media-body">
+                    <p class="noti-details">
+                      <span class="noti-title">Rolland Webber</span> completed
+                      task
+                      <span class="noti-title"
+                        >Patient and Doctor video conferencing</span
+                      >
+                    </p>
+                    <p class="noti-time">
+                      <span class="notification-time">12 mins ago</span>
+                    </p>
+                  </div>
+                </div>
+              </a>
+            </li>
+            <li class="notification-message">
+              <a href="#">
+                <div class="media">
+                  <span class="avatar">
+                    <img
+                      alt=""
+                      src="../static/img/profiles/avatar-13.jpg"
+                      class="rounded-circle"
+                    />
+                  </span>
+                  <div class="media-body">
+                    <p class="noti-details">
+                      <span class="noti-title">Bernardo Galaviz</span> added new
+                      task <span class="noti-title">Private chat module</span>
+                    </p>
+                    <p class="noti-time">
+                      <span class="notification-time">2 days ago</span>
+                    </p>
+                  </div>
+                </div>
+              </a>
+            </li>
+          </ul>
+        </div>
+        <div class="topnav-dropdown-footer">
+          <a href="#">View all Notifications</a>
+        </div>
+      </div>
+    </div>
+
+    <script src="../static/js/jquery-3.6.0.min.js"></script>
+
+    <script src="../static/js/bootstrap.bundle.min.js"></script>
+
+    <script src="../static/plugins/moment/moment.min.js"></script>
+    <script src="../static/js/bootstrap-datetimepicker.min.js"></script>
+
+    <script src="../static/plugins/slimscroll/jquery.slimscroll.min.js"></script>
+
+    <script src="../static/js/select2.min.js"></script>
+
+    <script src="../static/js/script.js"></script>
+  </body>
+
+  <!-- Mirrored from emr.dreamguystech.com/visit-history/ by HTTrack Website Copier/3.x [XR&CO'2014], Tue, 29 Jun 2021 19:34:43 GMT -->
+</html>

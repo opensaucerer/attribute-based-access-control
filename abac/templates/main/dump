@@ -1,0 +1,574 @@
+    <!-- Doctors Section-->
+    <section class="doctors bg-light">
+      <div class="container text-center">
+        <h2 class="text-uppercase lined lined-center">
+          Our <span class="text-primary">Doctors</span>
+        </h2>
+        <p class="text-muted mb-5">
+          Lorem ipsum dolor sit amet, consectetuer. Proin gravida nibh vel velit
+          auctor aliquetenean.
+        </p>
+        <div class="row">
+          <!-- Doctor-->
+          <div class="col-xl-3 col-md-6 mb-4 mb-xl-0">
+            <div class="card doctor border-0">
+              <div class="card-body p-0 shadow-sm">
+                <div class="position-relative">
+                  <img
+                    class="img-fluid border-top border-md border-primary"
+                    src="../../static/main/static/img/doctor-1.png"
+                    alt=""
+                  />
+                  <div class="doctor-overlay">
+                    <ul class="list-inline mb-0 doctor-social">
+                      <li class="list-inline-item">
+                        <a class="doctor-social-link" href="#"
+                          ><i class="fab fa-facebook-f"></i
+                        ></a>
+                      </li>
+                      <li class="list-inline-item">
+                        <a class="doctor-social-link" href="#"
+                          ><i class="fab fa-twitter"></i
+                        ></a>
+                      </li>
+                      <li class="list-inline-item">
+                        <a class="doctor-social-link" href="#"
+                          ><i class="fab fa-instagram"></i
+                        ></a>
+                      </li>
+                      <li class="list-inline-item">
+                        <a class="doctor-social-link" href="#"
+                          ><i class="fab fa-youtube"></i
+                        ></a>
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+                <div class="p-4">
+                  <h6 class="mb-0">Dr Patricia Butron</h6>
+                  <p class="text-muted text-small mb-0">
+                    Senior Dr. at Delmont
+                  </p>
+                </div>
+                <a class="btn btn-block btn-primary" href="/signin"
+                  >Make appointmet</a
+                >
+              </div>
+            </div>
+          </div>
+          <!-- Doctor-->
+          <div class="col-xl-3 col-md-6 mb-4 mb-xl-0">
+            <div class="card doctor border-0">
+              <div class="card-body p-0 shadow-sm">
+                <div class="position-relative">
+                  <img
+                    class="img-fluid border-top border-md border-primary"
+                    src="../../static/main/static/img/doctor-2.png"
+                    alt=""
+                  />
+                  <div class="doctor-overlay">
+                    <ul class="list-inline mb-0 doctor-social">
+                      <li class="list-inline-item">
+                        <a class="doctor-social-link" href="#"
+                          ><i class="fab fa-facebook-f"></i
+                        ></a>
+                      </li>
+                      <li class="list-inline-item">
+                        <a class="doctor-social-link" href="#"
+                          ><i class="fab fa-twitter"></i
+                        ></a>
+                      </li>
+                      <li class="list-inline-item">
+                        <a class="doctor-social-link" href="#"
+                          ><i class="fab fa-instagram"></i
+                        ></a>
+                      </li>
+                      <li class="list-inline-item">
+                        <a class="doctor-social-link" href="#"
+                          ><i class="fab fa-youtube"></i
+                        ></a>
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+                <div class="p-4">
+                  <h6 class="mb-0">Dr John Abraham</h6>
+                  <p class="text-muted text-small mb-0">
+                    Cardiologist Specialist
+                  </p>
+                </div>
+                <a class="btn btn-block btn-primary" href="/signin"
+                  >Make appointmet</a
+                >
+              </div>
+            </div>
+          </div>
+          <!-- Doctor-->
+          <div class="col-xl-3 col-md-6 mb-4 mb-xl-0">
+            <div class="card doctor border-0">
+              <div class="card-body p-0 shadow-sm">
+                <div class="position-relative">
+                  <img
+                    class="img-fluid border-top border-md border-primary"
+                    src="../../static/main/static/img/doctor-3.png"
+                    alt=""
+                  />
+                  <div class="doctor-overlay">
+                    <ul class="list-inline mb-0 doctor-social">
+                      <li class="list-inline-item">
+                        <a class="doctor-social-link" href="#"
+                          ><i class="fab fa-facebook-f"></i
+                        ></a>
+                      </li>
+                      <li class="list-inline-item">
+                        <a class="doctor-social-link" href="#"
+                          ><i class="fab fa-twitter"></i
+                        ></a>
+                      </li>
+                      <li class="list-inline-item">
+                        <a class="doctor-social-link" href="#"
+                          ><i class="fab fa-instagram"></i
+                        ></a>
+                      </li>
+                      <li class="list-inline-item">
+                        <a class="doctor-social-link" href="#"
+                          ><i class="fab fa-youtube"></i
+                        ></a>
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+                <div class="p-4">
+                  <h6 class="mb-0">Dr Addison Smith</h6>
+                  <p class="text-muted text-small mb-0">Neurology Specialist</p>
+                </div>
+                <a class="btn btn-block btn-primary" href="/signin"
+                  >Make appointmet</a
+                >
+              </div>
+            </div>
+          </div>
+          <!-- Doctor-->
+          <div class="col-xl-3 col-md-6 mb-4 mb-xl-0">
+            <div class="card doctor border-0">
+              <div class="card-body p-0 shadow-sm">
+                <div class="position-relative">
+                  <img
+                    class="img-fluid border-top border-md border-primary"
+                    src="../../static/main/static/img/doctor-4.png"
+                    alt=""
+                  />
+                  <div class="doctor-overlay">
+                    <ul class="list-inline mb-0 doctor-social">
+                      <li class="list-inline-item">
+                        <a class="doctor-social-link" href="#"
+                          ><i class="fab fa-facebook-f"></i
+                        ></a>
+                      </li>
+                      <li class="list-inline-item">
+                        <a class="doctor-social-link" href="#"
+                          ><i class="fab fa-twitter"></i
+                        ></a>
+                      </li>
+                      <li class="list-inline-item">
+                        <a class="doctor-social-link" href="#"
+                          ><i class="fab fa-instagram"></i
+                        ></a>
+                      </li>
+                      <li class="list-inline-item">
+                        <a class="doctor-social-link" href="#"
+                          ><i class="fab fa-youtube"></i
+                        ></a>
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+                <div class="p-4">
+                  <h6 class="mb-0">Dr Aiken Ward</h6>
+                  <p class="text-muted text-small mb-0">Senior Рathologist</p>
+                </div>
+                <a class="btn btn-block btn-primary" href="/signin"
+                  >Make appointmet</a
+                >
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- Opening Hours-->
+    <section class="opening-hours overflow-hidden">
+      <div class="container">
+        <h2 class="text-uppercase lined">
+          Working <span class="text-primary">Hours</span>
+        </h2>
+        <p class="text-muted mb-5">
+          Lorem ipsum dolor sit amet, consectetuer. Proin gravida nibh vel velit
+          auctor aliquetenean.
+        </p>
+        <div class="row align-items-center">
+          <div class="col-lg-6 mb-5 mb-lg-0">
+            <div class="card shadow-sm border-0">
+              <div class="card-body border-top border-md border-primary p-5">
+                <ul class="list-unstyled mb-0">
+                  <li
+                    class="
+                      d-flex
+                      align-items-center
+                      justify-content-between
+                      pb-3
+                      px-4
+                    "
+                  >
+                    <strong class="h6 mb-0">Monday </strong
+                    ><span class="mb-0">9:00 am - 06:00 pm</span>
+                  </li>
+                  <li
+                    class="
+                      d-flex
+                      align-items-center
+                      justify-content-between
+                      py-3
+                      bg-light
+                      px-4
+                    "
+                  >
+                    <strong class="h6 mb-0">Tuesday </strong
+                    ><span class="mb-0">9:00 am - 06:00 pm</span>
+                  </li>
+                  <li
+                    class="
+                      d-flex
+                      align-items-center
+                      justify-content-between
+                      py-3
+                      px-4
+                    "
+                  >
+                    <strong class="h6 mb-0">Wednesday </strong
+                    ><span class="mb-0">9:00 am - 06:00 pm</span>
+                  </li>
+                  <li
+                    class="
+                      d-flex
+                      align-items-center
+                      justify-content-between
+                      py-3
+                      bg-light
+                      px-4
+                    "
+                  >
+                    <strong class="h6 mb-0">Friday</strong
+                    ><span class="mb-0">9:00 am - 06:00 pm</span>
+                  </li>
+                  <li
+                    class="
+                      d-flex
+                      align-items-center
+                      justify-content-between
+                      py-3
+                      px-4
+                    "
+                  >
+                    <strong class="h6 mb-0">Saturday</strong
+                    ><strong class="h6 mb-0 text-uppercase text-primary"
+                      >Closed</strong
+                    >
+                  </li>
+                  <li
+                    class="
+                      d-flex
+                      align-items-center
+                      justify-content-between
+                      py-3
+                      bg-light
+                      px-4
+                    "
+                  >
+                    <strong class="h6 mb-0">Sunday</strong
+                    ><strong class="h6 mb-0 text-uppercase text-primary"
+                      >Closed</strong
+                    >
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+          <div class="col-lg-6 text-center">
+            <i class="fas fa-first-aid fa-4x text-primary mb-4"> </i>
+            <h3 class="h4">Emergency Case</h3>
+            <p class="text-muted mb-3 px-lg-5">
+              If you need a doctor urgently outside of medicenter opening hours,
+              call emergency appointment number for emergency service.
+            </p>
+            <div class="text-primary">
+              <a
+                class="btn btn-outline-primary h5 px-4 py-3"
+                href="tel:080024667921"
+              >
+                <i class="fas fa-phone-square mr-2"></i>+ 0800 2466 7921</a
+              >
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+
+
+
+    <!-- Statistics Section-->
+    <section class="statistics py-5 bg-primary">
+      <div class="container text-white">
+        <div class="row">
+          <div class="col-lg-3 col-md-6 mb-4 mb-lg-0">
+            <div
+              class="
+                d-flex
+                align-items-center
+                justify-content-center justify-content-md-start
+              "
+            >
+              <h2 class="text-lg mr-3 mb-0">15</h2>
+              <p class="lead line-height-sm mb-0">years of <br />experience</p>
+            </div>
+          </div>
+          <div class="col-lg-3 col-md-6 mb-4 mb-lg-0">
+            <div
+              class="
+                d-flex
+                align-items-center
+                justify-content-center justify-content-md-start
+              "
+            >
+              <h2 class="text-lg mr-3 mb-0">79</h2>
+              <p class="lead line-height-sm mb-0">visited <br />conferences</p>
+            </div>
+          </div>
+          <div class="col-lg-3 col-md-6 mb-4 mb-lg-0">
+            <div
+              class="
+                d-flex
+                align-items-center
+                justify-content-center justify-content-md-start
+              "
+            >
+              <h2 class="text-lg mr-3 mb-0">452</h2>
+              <p class="lead line-height-sm mb-0">smiling <br />clients</p>
+            </div>
+          </div>
+          <div class="col-lg-3 col-md-6">
+            <div
+              class="
+                d-flex
+                align-items-center
+                justify-content-center justify-content-md-start
+              "
+            >
+              <h2 class="text-lg mr-3 mb-0">14</h2>
+              <p class="lead line-height-sm mb-0">
+                master <br />certifications
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- Doctors Section-->
+    <section class="doctors bg-light">
+      <div class="container text-center">
+        <h2 class="text-uppercase lined lined-center">
+          Our <span class="text-primary">Doctors</span>
+        </h2>
+        <p class="text-muted mb-5">
+          Lorem ipsum dolor sit amet, consectetuer. Proin gravida nibh vel velit
+          auctor aliquetenean.
+        </p>
+        <div class="row">
+          <!-- Doctor-->
+          <div class="col-xl-3 col-md-6 mb-4 mb-xl-0">
+            <div class="card doctor border-0">
+              <div class="card-body p-0 shadow-sm">
+                <div class="position-relative">
+                  <img
+                    class="img-fluid border-top border-md border-primary"
+                    src="../../static/main/static/img/doctor-1.png"
+                    alt=""
+                  />
+                  <div class="doctor-overlay">
+                    <ul class="list-inline mb-0 doctor-social">
+                      <li class="list-inline-item">
+                        <a class="doctor-social-link" href="#"
+                          ><i class="fab fa-facebook-f"></i
+                        ></a>
+                      </li>
+                      <li class="list-inline-item">
+                        <a class="doctor-social-link" href="#"
+                          ><i class="fab fa-twitter"></i
+                        ></a>
+                      </li>
+                      <li class="list-inline-item">
+                        <a class="doctor-social-link" href="#"
+                          ><i class="fab fa-instagram"></i
+                        ></a>
+                      </li>
+                      <li class="list-inline-item">
+                        <a class="doctor-social-link" href="#"
+                          ><i class="fab fa-youtube"></i
+                        ></a>
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+                <div class="p-4">
+                  <h6 class="mb-0">Dr Patricia Butron</h6>
+                  <p class="text-muted text-small mb-0">
+                    Senior Dr. at Delmont
+                  </p>
+                </div>
+                <a class="btn btn-block btn-primary" href="#"
+                  >Make appointmet</a
+                >
+              </div>
+            </div>
+          </div>
+          <!-- Doctor-->
+          <div class="col-xl-3 col-md-6 mb-4 mb-xl-0">
+            <div class="card doctor border-0">
+              <div class="card-body p-0 shadow-sm">
+                <div class="position-relative">
+                  <img
+                    class="img-fluid border-top border-md border-primary"
+                    src="../../static/main/static/img/doctor-2.png"
+                    alt=""
+                  />
+                  <div class="doctor-overlay">
+                    <ul class="list-inline mb-0 doctor-social">
+                      <li class="list-inline-item">
+                        <a class="doctor-social-link" href="#"
+                          ><i class="fab fa-facebook-f"></i
+                        ></a>
+                      </li>
+                      <li class="list-inline-item">
+                        <a class="doctor-social-link" href="#"
+                          ><i class="fab fa-twitter"></i
+                        ></a>
+                      </li>
+                      <li class="list-inline-item">
+                        <a class="doctor-social-link" href="#"
+                          ><i class="fab fa-instagram"></i
+                        ></a>
+                      </li>
+                      <li class="list-inline-item">
+                        <a class="doctor-social-link" href="#"
+                          ><i class="fab fa-youtube"></i
+                        ></a>
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+                <div class="p-4">
+                  <h6 class="mb-0">Dr John Abraham</h6>
+                  <p class="text-muted text-small mb-0">
+                    Cardiologist Specialist
+                  </p>
+                </div>
+                <a class="btn btn-block btn-primary" href="#"
+                  >Make appointmet</a
+                >
+              </div>
+            </div>
+          </div>
+          <!-- Doctor-->
+          <div class="col-xl-3 col-md-6 mb-4 mb-xl-0">
+            <div class="card doctor border-0">
+              <div class="card-body p-0 shadow-sm">
+                <div class="position-relative">
+                  <img
+                    class="img-fluid border-top border-md border-primary"
+                    src="../../static/main/static/img/doctor-3.png"
+                    alt=""
+                  />
+                  <div class="doctor-overlay">
+                    <ul class="list-inline mb-0 doctor-social">
+                      <li class="list-inline-item">
+                        <a class="doctor-social-link" href="#"
+                          ><i class="fab fa-facebook-f"></i
+                        ></a>
+                      </li>
+                      <li class="list-inline-item">
+                        <a class="doctor-social-link" href="#"
+                          ><i class="fab fa-twitter"></i
+                        ></a>
+                      </li>
+                      <li class="list-inline-item">
+                        <a class="doctor-social-link" href="#"
+                          ><i class="fab fa-instagram"></i
+                        ></a>
+                      </li>
+                      <li class="list-inline-item">
+                        <a class="doctor-social-link" href="#"
+                          ><i class="fab fa-youtube"></i
+                        ></a>
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+                <div class="p-4">
+                  <h6 class="mb-0">Dr Addison Smith</h6>
+                  <p class="text-muted text-small mb-0">Neurology Specialist</p>
+                </div>
+                <a class="btn btn-block btn-primary" href="#"
+                  >Make appointmet</a
+                >
+              </div>
+            </div>
+          </div>
+          <!-- Doctor-->
+          <div class="col-xl-3 col-md-6 mb-4 mb-xl-0">
+            <div class="card doctor border-0">
+              <div class="card-body p-0 shadow-sm">
+                <div class="position-relative">
+                  <img
+                    class="img-fluid border-top border-md border-primary"
+                    src="../../static/main/static/img/doctor-4.png"
+                    alt=""
+                  />
+                  <div class="doctor-overlay">
+                    <ul class="list-inline mb-0 doctor-social">
+                      <li class="list-inline-item">
+                        <a class="doctor-social-link" href="#"
+                          ><i class="fab fa-facebook-f"></i
+                        ></a>
+                      </li>
+                      <li class="list-inline-item">
+                        <a class="doctor-social-link" href="#"
+                          ><i class="fab fa-twitter"></i
+                        ></a>
+                      </li>
+                      <li class="list-inline-item">
+                        <a class="doctor-social-link" href="#"
+                          ><i class="fab fa-instagram"></i
+                        ></a>
+                      </li>
+                      <li class="list-inline-item">
+                        <a class="doctor-social-link" href="#"
+                          ><i class="fab fa-youtube"></i
+                        ></a>
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+                <div class="p-4">
+                  <h6 class="mb-0">Dr Aiken Ward</h6>
+                  <p class="text-muted text-small mb-0">Senior Рathologist</p>
+                </div>
+                <a class="btn btn-block btn-primary" href="#"
+                  >Make appointmet</a
+                >
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>

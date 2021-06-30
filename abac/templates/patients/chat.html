@@ -1,0 +1,1108 @@
+<!DOCTYPE html>
+<html lang="en">
+  <!-- Mirrored from emr.dreamguystech.com/chat/ by HTTrack Website Copier/3.x [XR&CO'2014], Tue, 29 Jun 2021 19:34:13 GMT -->
+  <head>
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, user-scalable=0"
+    />
+    <title>EMR - Dashboard</title>
+
+    <link rel="shortcut icon" href="../static/favicons/favicon.png" />
+
+    <link rel="stylesheet" href="../static/css/bootstrap.min.css" />
+
+    <link
+      rel="stylesheet"
+      href="../static/plugins/fontawesome/css/fontawesome.min.css"
+    />
+    <link
+      rel="stylesheet"
+      href="../static/plugins/fontawesome/css/all.min.css"
+    />
+
+    <link rel="stylesheet" href="../static/css/feather.css" />
+
+    <link rel="stylesheet" href="../static/css/style.css" />
+  </head>
+  <body>
+    <div class="main-wrapper">
+      <div class="header">
+        <div class="header-left">
+          <a href="index-2/" class="logo">
+            <img src="../static/img/logo.png" alt="Logo" />
+          </a>
+          <a href="index-2/" class="logo logo-small">
+            <img
+              src="../static/img/logo-small.png"
+              alt="Logo"
+              width="30"
+              height="30"
+            />
+          </a>
+        </div>
+
+        <a href="javascript:void(0);" id="toggle_btn">
+          <i class="fas fa-bars"></i>
+        </a>
+        <div class="top-nav-search">
+          <form>
+            <input type="text" class="form-control" placeholder="Search here" />
+            <button class="btn" type="submit">
+              <i class="fa fa-search"></i>
+            </button>
+          </form>
+        </div>
+
+        <a class="mobile_btn" id="mobile_btn"> <i class="fas fa-bars"></i> </a>
+
+        <ul class="nav user-menu">
+          <li class="nav-item dropdown has-arrow flag-nav mr-2">
+            <a
+              class="nav-link dropdown-toggle"
+              data-toggle="dropdown"
+              href="#"
+              role="button"
+            >
+              <img
+                src="../static/img/flags/us-1.png"
+                alt=""
+                width="32"
+                height="32"
+                class="rounded-circle"
+              />
+            </a>
+            <div class="dropdown-menu dropdown-menu-right">
+              <a href="javascript:void(0);" class="dropdown-item">
+                <img src="../static/img/flags/us.png" alt="" height="16" />
+                English
+              </a>
+              <a href="javascript:void(0);" class="dropdown-item">
+                <img src="../static/img/flags/fr.png" alt="" height="16" />
+                French
+              </a>
+              <a href="javascript:void(0);" class="dropdown-item">
+                <img src="../static/img/flags/es.png" alt="" height="16" />
+                Spanish
+              </a>
+              <a href="javascript:void(0);" class="dropdown-item">
+                <img src="../static/img/flags/de.png" alt="" height="16" />
+                German
+              </a>
+            </div>
+          </li>
+
+          <li class="nav-item dropdown">
+            <a href="#" class="nav-link notifications-item">
+              <i class="feather-bell"></i>
+              <span class="badge badge-pill">3</span>
+            </a>
+          </li>
+
+          <li class="nav-item dropdown">
+            <a href="chat/" class="dropdown-toggle nav-link chat-header">
+              <i class="feather-message-square"></i>
+              <span class="badge badge-pill header-chat">6</span>
+            </a>
+          </li>
+
+          <li class="nav-item dropdown has-arrow main-drop ml-md-3">
+            <a href="#" class="dropdown-toggle nav-link" data-toggle="dropdown">
+              <span class="user-img"
+                ><img src="../static/img/avatar.jpg" alt="" />
+                <span class="status online"></span
+              ></span>
+            </a>
+            <div class="dropdown-menu">
+              <a class="dropdown-item" href="profile/"
+                ><i class="feather-user"></i> My Profile</a
+              >
+              <a class="dropdown-item" href="login/"
+                ><i class="feather-power"></i> Logout</a
+              >
+            </div>
+          </li>
+        </ul>
+      </div>
+
+      <div class="sidebar" id="sidebar">
+        <div class="sidebar-inner slimscroll">
+          <div id="sidebar-menu" class="sidebar-menu">
+            <ul>
+              <li class="menu-title"><span>Main</span></li>
+              <li>
+                <a href="index-2/"
+                  ><i class="feather-home"></i><span>Dashboard</span></a
+                >
+              </li>
+              <li>
+                <a href="patients/"
+                  ><i class="feather-user"></i> <span>Patients</span></a
+                >
+              </li>
+              <li>
+                <a href="appointments/"
+                  ><i class="feather-list"></i> <span>Appointments</span
+                  ><span class="badge bg-success-text">2</span></a
+                >
+              </li>
+              <li>
+                <a href="flow-board/"
+                  ><i class="feather-bar-chart"></i> <span>Flow Board</span></a
+                >
+              </li>
+              <li>
+                <a href="recall-board/"
+                  ><i class="feather-calendar"></i> <span>Recall Board</span></a
+                >
+              </li>
+              <li class="active">
+                <a href="chat/"
+                  ><i class="feather-message-circle"></i
+                  ><span class="shape1"></span><span class="shape2"></span>
+                  <span>Messages</span>
+                </a>
+              </li>
+              <li class="submenu">
+                <a href="#"
+                  ><i class="feather-disc"></i> <span> Procedures</span>
+                  <span class="menu-arrow"></span
+                ></a>
+                <ul style="display: none">
+                  <li>
+                    <a href="electronics-report/">Electronics Reports</a>
+                  </li>
+                  <li><a href="lab-documents/">Lab Documents</a></li>
+                </ul>
+              </li>
+              <li class="submenu">
+                <a href="javascript:void(0);"
+                  ><i class="feather-book"></i> <span>Reports</span>
+                  <span class="menu-arrow"></span
+                ></a>
+                <ul style="display: none">
+                  <li class="submenu">
+                    <a href="javascript:void(0);">
+                      <span>Clients</span> <span class="menu-arrow"></span
+                    ></a>
+                    <ul style="display: none">
+                      <li>
+                        <a href="client-list/"><span>List</span></a>
+                      </li>
+                      <li>
+                        <a href="client-rx/"> <span>RX</span></a>
+                      </li>
+                      <li>
+                        <a href="patient-list/">
+                          <span>Patient List Creation</span></a
+                        >
+                      </li>
+                      <li>
+                        <a href="clinical-report/">
+                          <span>Clinical</span></a
+                        >
+                      </li>
+                      <li>
+                        <a href="referals-report/">
+                          <span>Reference</span></a
+                        >
+                      </li>
+                      <li>
+                        <a href="immunization-registry/">
+                          <span>Immunization Registry</span></a
+                        >
+                      </li>
+                    </ul>
+                  </li>
+                  <li class="submenu">
+                    <a href="javascript:void(0);">
+                      <span>Clinics</span> <span class="menu-arrow"></span
+                    ></a>
+                    <ul style="display: none">
+                      <li>
+                        <a href="report-results/"
+                          ><span>Report Results</span></a
+                        >
+                      </li>
+                      <li>
+                        <a href="standard-measures/">
+                          <span>Standard Measures</span></a
+                        >
+                      </li>
+                      <li>
+                        <a href="quality-measures/">
+                          <span>Quality Measures (CQM)</span></a
+                        >
+                      </li>
+                      <li>
+                        <a href="automated-measures/">
+                          <span>Automated Measures (AMC)</span></a
+                        >
+                      </li>
+                      <li>
+                        <a href="amc-tracking/">
+                          <span>AMC Tracking</span></a
+                        >
+                      </li>
+                      <li>
+                        <a href="alert-log/"> <span>Alerts Log</span></a>
+                      </li>
+                    </ul>
+                  </li>
+                  <li class="submenu">
+                    <a href="javascript:void(0);">
+                      <span>Visits</span> <span class="menu-arrow"></span
+                    ></a>
+                    <ul style="display: none">
+                      <li>
+                        <a href="appointments-visit/"
+                          ><span>Appointments</span></a
+                        >
+                      </li>
+                      <li>
+                        <a href="flow-board-record/">
+                          <span>Patient Flow Board</span></a
+                        >
+                      </li>
+                    </ul>
+                  </li>
+                  <li class="submenu">
+                    <a href="javascript:void(0);">
+                      <span>Procedure</span> <span class="menu-arrow"></span
+                    ></a>
+                    <ul style="display: none">
+                      <li>
+                        <a href="pending-orders/"
+                          ><span>Pending Res</span></a
+                        >
+                      </li>
+                    </ul>
+                  </li>
+                  <li class="submenu">
+                    <a href="javascript:void(0);">
+                      <span>Insurance</span> <span class="menu-arrow"></span
+                    ></a>
+                    <ul style="display: none">
+                      <li>
+                        <a href="unique-insurance/"
+                          ><span>Unique SP</span></a
+                        >
+                      </li>
+                    </ul>
+                  </li>
+                </ul>
+              </li>
+              <li>
+                <a href="settings/"
+                  ><i class="feather-settings"></i> <span>Settings</span></a
+                >
+              </li>
+              <li class="submenu">
+                <a href="#"
+                  ><i class="feather-grid"></i> <span> Application</span>
+                  <span class="menu-arrow"></span
+                ></a>
+                <ul>
+                  <li><a href="calendar/">Calendar</a></li>
+                  <li><a href="inbox/">Email</a></li>
+                </ul>
+              </li>
+              <li class="menu-title">
+                <span>Pages</span>
+              </li>
+              <li>
+                <a href="profile/"
+                  ><i class="feather-user-plus"></i> <span>Profile</span></a
+                >
+              </li>
+              <li class="submenu">
+                <a href="#"
+                  ><i class="feather-lock"></i> <span> Authentication </span>
+                  <span class="menu-arrow"></span
+                ></a>
+                <ul>
+                  <li><a href="login/"> Login </a></li>
+                  <li><a href="register/"> Register </a></li>
+                  <li><a href="forgot-password/"> Forgot Password </a></li>
+                  <li><a href="lock-screen/"> Lock Screen </a></li>
+                </ul>
+              </li>
+              <li class="submenu">
+                <a href="#"
+                  ><i class="feather-alert-octagon"></i>
+                  <span> Error Pages </span> <span class="menu-arrow"></span
+                ></a>
+                <ul>
+                  <li><a href="error-404/">404 Error </a></li>
+                  <li><a href="error-500/">500 Error </a></li>
+                </ul>
+              </li>
+              <li>
+                <a href="users/"
+                  ><i class="feather-user"></i> <span>Users</span></a
+                >
+              </li>
+              <li>
+                <a href="blank-page/"
+                  ><i class="feather-file"></i> <span>Blank Page</span></a
+                >
+              </li>
+              <li>
+                <a href="maps-vector/"
+                  ><i class="feather-map-pin"></i> <span>Vector Maps</span></a
+                >
+              </li>
+              <li class="menu-title">
+                <span>UI Interface</span>
+              </li>
+              <li>
+                <a href="components/"
+                  ><i class="feather-layers"></i> <span>Components</span></a
+                >
+              </li>
+              <li class="submenu">
+                <a href="#"
+                  ><i class="feather-sidebar"></i> <span> Forms </span>
+                  <span class="menu-arrow"></span
+                ></a>
+                <ul>
+                  <li><a href="form-basic-inputs/">Basic Inputs </a></li>
+                  <li><a href="form-input-groups/">Input Groups </a></li>
+                  <li><a href="form-horizontal/">Horizontal Form </a></li>
+                  <li><a href="form-vertical/"> Vertical Form </a></li>
+                  <li><a href="form-mask/"> Form Mask </a></li>
+                  <li><a href="form-validation/"> Form Validation </a></li>
+                </ul>
+              </li>
+              <li class="submenu">
+                <a href="#"
+                  ><i class="feather-layout"></i> <span> Tables </span>
+                  <span class="menu-arrow"></span
+                ></a>
+                <ul>
+                  <li><a href="tables-basic/">Basic Tables </a></li>
+                  <li><a href="data-tables/">Data Table </a></li>
+                </ul>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <div class="page-wrapper">
+        <div class="content container-fluid">
+          <div class="row">
+            <div class="col-sm-12">
+              <div class="chat-window">
+                <div class="chat-cont-left">
+                  <div class="chat-header">
+                    <span>Chats</span>
+                    <a href="javascript:void(0)" class="chat-compose">
+                      <i class="material-icons">control_point</i>
+                    </a>
+                  </div>
+                  <form class="chat-search">
+                    <div class="input-group">
+                      <div class="input-group-prepend">
+                        <i class="fas fa-search"></i>
+                      </div>
+                      <input
+                        type="text"
+                        class="form-control"
+                        placeholder="Search"
+                      />
+                    </div>
+                  </form>
+                  <div class="chat-users-list">
+                    <div class="chat-scroll">
+                      <a href="javascript:void(0);" class="media mt-0">
+                        <div class="media-img-wrap">
+                          <div class="avatar avatar-away">
+                            <img
+                              src="../static/img/profiles/avatar-03.jpg"
+                              alt="User Image"
+                              class="avatar-img rounded-circle"
+                            />
+                          </div>
+                        </div>
+                        <div class="media-body">
+                          <div>
+                            <div class="user-name">Marie Gallardo Canales</div>
+                            <div class="user-last-chat">Hey, How are you?</div>
+                          </div>
+                          <div>
+                            <div class="last-chat-time block">2 min</div>
+                            <div class="badge badge-primary badge-pill">15</div>
+                          </div>
+                        </div>
+                      </a>
+                      <a
+                        href="javascript:void(0);"
+                        class="media read-chat active"
+                      >
+                        <div class="media-img-wrap">
+                          <div class="avatar avatar-online">
+                            <img
+                              src="../static/img/profiles/avatar-04.jpg"
+                              alt="User Image"
+                              class="avatar-img rounded-circle"
+                            />
+                          </div>
+                        </div>
+                        <div class="media-body">
+                          <div>
+                            <div class="user-name">Barbara Moore</div>
+                            <div class="user-last-chat">
+                              I'll call you later
+                            </div>
+                          </div>
+                          <div>
+                            <div class="last-chat-time block">8:01 PM</div>
+                          </div>
+                        </div>
+                      </a>
+                      <a href="javascript:void(0);" class="media">
+                        <div class="media-img-wrap">
+                          <div class="avatar avatar-away">
+                            <img
+                              src="../static/img/profiles/avatar-05.jpg"
+                              alt="User Image"
+                              class="avatar-img rounded-circle"
+                            />
+                          </div>
+                        </div>
+                        <div class="media-body">
+                          <div>
+                            <div class="user-name">Greg Lynch</div>
+                            <div class="user-last-chat">
+                              Give me a full explanation about our project
+                            </div>
+                          </div>
+                          <div>
+                            <div class="last-chat-time block">7:30 PM</div>
+                            <div class="badge badge-primary badge-pill">3</div>
+                          </div>
+                        </div>
+                      </a>
+                      <a href="javascript:void(0);" class="media read-chat">
+                        <div class="media-img-wrap">
+                          <div class="avatar avatar-online">
+                            <img
+                              src="../static/img/profiles/avatar-06.jpg"
+                              alt="User Image"
+                              class="avatar-img rounded-circle"
+                            />
+                          </div>
+                        </div>
+                        <div class="media-body">
+                          <div>
+                            <div class="user-name">Karlene Chaidez</div>
+                            <div class="user-last-chat">
+                              That's very good UI design
+                            </div>
+                          </div>
+                          <div>
+                            <div class="last-chat-time block">6:59 PM</div>
+                          </div>
+                        </div>
+                      </a>
+                      <a href="javascript:void(0);" class="media read-chat">
+                        <div class="media-img-wrap">
+                          <div class="avatar avatar-offline">
+                            <img
+                              src="../static/img/profiles/avatar-07.jpg"
+                              alt="User Image"
+                              class="avatar-img rounded-circle"
+                            />
+                          </div>
+                        </div>
+                        <div class="media-body">
+                          <div>
+                            <div class="user-name">John Blair</div>
+                            <div class="user-last-chat">
+                              Yesterday i completed the task
+                            </div>
+                          </div>
+                          <div>
+                            <div class="last-chat-time block">11:21 AM</div>
+                          </div>
+                        </div>
+                      </a>
+                      <a href="javascript:void(0);" class="media read-chat">
+                        <div class="media-img-wrap">
+                          <div class="avatar avatar-online">
+                            <img
+                              src="../static/img/profiles/avatar-08.jpg"
+                              alt="User Image"
+                              class="avatar-img rounded-circle"
+                            />
+                          </div>
+                        </div>
+                        <div class="media-body">
+                          <div>
+                            <div class="user-name">Russell Copeland</div>
+                            <div class="user-last-chat">
+                              What is the major functionality?
+                            </div>
+                          </div>
+                          <div>
+                            <div class="last-chat-time block">10:05 AM</div>
+                          </div>
+                        </div>
+                      </a>
+                      <a href="javascript:void(0);" class="media read-chat">
+                        <div class="media-img-wrap">
+                          <div class="avatar avatar-away">
+                            <img
+                              src="../static/img/profiles/avatar-09.jpg"
+                              alt="User Image"
+                              class="avatar-img rounded-circle"
+                            />
+                          </div>
+                        </div>
+                        <div class="media-body">
+                          <div>
+                            <div class="user-name">Leatha Bailey</div>
+                            <div class="user-last-chat">
+                              This has allowed me to showcase not only my
+                              technical skills
+                            </div>
+                          </div>
+                          <div>
+                            <div class="last-chat-time block">Yesterday</div>
+                          </div>
+                        </div>
+                      </a>
+                      <a href="javascript:void(0);" class="media read-chat">
+                        <div class="media-img-wrap">
+                          <div class="avatar avatar-offline">
+                            <img
+                              src="../static/img/profiles/avatar-10.jpg"
+                              alt="User Image"
+                              class="avatar-img rounded-circle"
+                            />
+                          </div>
+                        </div>
+                        <div class="media-body">
+                          <div>
+                            <div class="user-name">Joseph Collins</div>
+                            <div class="user-last-chat">
+                              Let's talk briefly in the evening.
+                            </div>
+                          </div>
+                          <div>
+                            <div class="last-chat-time block">Sunday</div>
+                          </div>
+                        </div>
+                      </a>
+                      <a href="javascript:void(0);" class="media read-chat">
+                        <div class="media-img-wrap">
+                          <div class="avatar avatar-online">
+                            <img
+                              src="../static/img/profiles/avatar-11.jpg"
+                              alt="User Image"
+                              class="avatar-img rounded-circle"
+                            />
+                          </div>
+                        </div>
+                        <div class="media-body">
+                          <div>
+                            <div class="user-name">Brandon Stone Floyd</div>
+                            <div class="user-last-chat">
+                              Do you have any collections? If so, what of?
+                            </div>
+                          </div>
+                          <div>
+                            <div class="last-chat-time block">Saturday</div>
+                          </div>
+                        </div>
+                      </a>
+                      <a href="javascript:void(0);" class="media read-chat">
+                        <div class="media-img-wrap">
+                          <div class="avatar avatar-away">
+                            <img
+                              src="../static/img/profiles/avatar-12.jpg"
+                              alt="User Image"
+                              class="avatar-img rounded-circle"
+                            />
+                          </div>
+                        </div>
+                        <div class="media-body">
+                          <div>
+                            <div class="user-name">Alex Campbell</div>
+                            <div class="user-last-chat">
+                              Connect the two modules with in 1 day.
+                            </div>
+                          </div>
+                          <div>
+                            <div class="last-chat-time block">Friday</div>
+                          </div>
+                        </div>
+                      </a>
+                    </div>
+                  </div>
+                </div>
+                <div class="chat-cont-right">
+                  <div class="chat-header">
+                    <a
+                      id="back_user_list"
+                      href="javascript:void(0)"
+                      class="back-user-list"
+                    >
+                      <i class="material-icons">chevron_left</i>
+                    </a>
+                    <div class="media">
+                      <div class="media-img-wrap">
+                        <div class="avatar avatar-online">
+                          <img
+                            src="../static/img/profiles/avatar-02.jpg"
+                            alt="User Image"
+                            class="avatar-img rounded-circle"
+                          />
+                        </div>
+                      </div>
+                      <div class="media-body">
+                        <div class="user-name">Brian Johnson</div>
+                        <div class="user-status">online</div>
+                      </div>
+                    </div>
+                    <div class="chat-options">
+                      <a href="javascript:void(0)">
+                        <i class="feather-more-horizontal"></i>
+                      </a>
+                    </div>
+                  </div>
+                  <div class="chat-body">
+                    <div class="chat-scroll">
+                      <ul class="list-unstyled">
+                        <li class="media sent">
+                          <div class="media-body">
+                            <div class="msg-box">
+                              <div>
+                                <p>Hello. What can I do for you?</p>
+                                <ul class="chat-msg-info">
+                                  <li>
+                                    <div class="chat-time">
+                                      <span>8:30 AM</span>
+                                    </div>
+                                  </li>
+                                </ul>
+                              </div>
+                            </div>
+                          </div>
+                        </li>
+                        <li class="media received">
+                          <div class="avatar">
+                            <img
+                              src="../static/img/profiles/avatar-02.jpg"
+                              alt="User Image"
+                              class="avatar-img rounded-circle"
+                            />
+                          </div>
+                          <div class="media-body">
+                            <div class="msg-box">
+                              <div>
+                                <p>I'm just looking around.</p>
+                                <p>
+                                  Will you tell me something about yourself?
+                                </p>
+                                <ul class="chat-msg-info">
+                                  <li>
+                                    <div class="chat-time">
+                                      <span>8:35 AM</span>
+                                    </div>
+                                  </li>
+                                </ul>
+                              </div>
+                            </div>
+                            <div class="msg-box">
+                              <div>
+                                <p>Are you there? That time!</p>
+                                <ul class="chat-msg-info">
+                                  <li>
+                                    <div class="chat-time">
+                                      <span>8:40 AM</span>
+                                    </div>
+                                  </li>
+                                </ul>
+                              </div>
+                            </div>
+                            <div class="msg-box">
+                              <div>
+                                <div class="chat-msg-attachments">
+                                  <div class="chat-attachment">
+                                    <img
+                                      src="../static/img/img-01.jpg"
+                                      alt=""
+                                    />
+                                    <div class="chat-attach-caption">
+                                      placeholder.jpg
+                                    </div>
+                                    <a href="#" class="chat-attach-download">
+                                      <i class="fas fa-download"></i>
+                                    </a>
+                                  </div>
+                                  <div class="chat-attachment">
+                                    <img
+                                      src="../static/img/img-01.jpg"
+                                      alt=""
+                                    />
+                                    <div class="chat-attach-caption">
+                                      placeholder.jpg
+                                    </div>
+                                    <a href="#" class="chat-attach-download">
+                                      <i class="fas fa-download"></i>
+                                    </a>
+                                  </div>
+                                </div>
+                                <ul class="chat-msg-info">
+                                  <li>
+                                    <div class="chat-time">
+                                      <span>8:41 AM</span>
+                                    </div>
+                                  </li>
+                                </ul>
+                              </div>
+                            </div>
+                          </div>
+                        </li>
+                        <li class="media sent">
+                          <div class="media-body">
+                            <div class="msg-box">
+                              <div>
+                                <p>Where?</p>
+                                <ul class="chat-msg-info">
+                                  <li>
+                                    <div class="chat-time">
+                                      <span>8:42 AM</span>
+                                    </div>
+                                  </li>
+                                </ul>
+                              </div>
+                            </div>
+                            <div class="msg-box">
+                              <div>
+                                <p>
+                                  OK, my name is Limingqiang. I like singing,
+                                  playing basketballand so on.
+                                </p>
+                                <ul class="chat-msg-info">
+                                  <li>
+                                    <div class="chat-time">
+                                      <span>8:42 AM</span>
+                                    </div>
+                                  </li>
+                                </ul>
+                              </div>
+                            </div>
+                            <div class="msg-box">
+                              <div>
+                                <div class="chat-msg-attachments">
+                                  <div class="chat-attachment">
+                                    <img
+                                      src="../static/img/img-01.jpg"
+                                      alt=""
+                                    />
+                                    <div class="chat-attach-caption">
+                                      placeholder.jpg
+                                    </div>
+                                    <a href="#" class="chat-attach-download">
+                                      <i class="fas fa-download"></i>
+                                    </a>
+                                  </div>
+                                </div>
+                                <ul class="chat-msg-info">
+                                  <li>
+                                    <div class="chat-time">
+                                      <span>8:50 AM</span>
+                                    </div>
+                                  </li>
+                                </ul>
+                              </div>
+                            </div>
+                          </div>
+                        </li>
+                        <li class="media received">
+                          <div class="avatar">
+                            <img
+                              src="../static/img/profiles/avatar-02.jpg"
+                              alt="User Image"
+                              class="avatar-img rounded-circle"
+                            />
+                          </div>
+                          <div class="media-body">
+                            <div class="msg-box">
+                              <div>
+                                <p>You wait for notice.</p>
+                                <p>Consectetuorem ipsum dolor sit?</p>
+                                <p>Ok?</p>
+                                <ul class="chat-msg-info">
+                                  <li>
+                                    <div class="chat-time">
+                                      <span>8:55 PM</span>
+                                    </div>
+                                  </li>
+                                </ul>
+                              </div>
+                            </div>
+                          </div>
+                        </li>
+                        <li class="chat-date">Today</li>
+                        <li class="media received">
+                          <div class="avatar">
+                            <img
+                              src="../static/img/profiles/avatar-02.jpg"
+                              alt="User Image"
+                              class="avatar-img rounded-circle"
+                            />
+                          </div>
+                          <div class="media-body">
+                            <div class="msg-box">
+                              <div>
+                                <p>
+                                  Lorem ipsum dolor sit amet, consectetur
+                                  adipiscing elit,
+                                </p>
+                                <ul class="chat-msg-info">
+                                  <li>
+                                    <div class="chat-time">
+                                      <span>10:17 AM</span>
+                                    </div>
+                                  </li>
+                                  <li><a href="#">Edit</a></li>
+                                </ul>
+                              </div>
+                            </div>
+                          </div>
+                        </li>
+                        <li class="media sent">
+                          <div class="media-body">
+                            <div class="msg-box">
+                              <div>
+                                <p>Lorem ipsum dollar sit</p>
+                                <div class="chat-msg-actions dropdown">
+                                  <a
+                                    href="#"
+                                    data-toggle="dropdown"
+                                    aria-haspopup="true"
+                                    aria-expanded="false"
+                                  >
+                                    <i class="fe fe-elipsis-v"></i>
+                                  </a>
+                                  <div
+                                    class="dropdown-menu dropdown-menu-right"
+                                  >
+                                    <a class="dropdown-item" href="#">Delete</a>
+                                  </div>
+                                </div>
+                                <ul class="chat-msg-info">
+                                  <li>
+                                    <div class="chat-time">
+                                      <span>10:19 AM</span>
+                                    </div>
+                                  </li>
+                                  <li><a href="#">Edit</a></li>
+                                </ul>
+                              </div>
+                            </div>
+                          </div>
+                        </li>
+                        <li class="media received">
+                          <div class="avatar">
+                            <img
+                              src="../static/img/profiles/avatar-02.jpg"
+                              alt="User Image"
+                              class="avatar-img rounded-circle"
+                            />
+                          </div>
+                          <div class="media-body">
+                            <div class="msg-box">
+                              <div>
+                                <div class="msg-typing">
+                                  <span></span>
+                                  <span></span>
+                                  <span></span>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </li>
+                      </ul>
+                    </div>
+                  </div>
+                  <div class="chat-footer">
+                    <div class="input-group">
+                      <div class="input-group-prepend">
+                        <div class="btn-file btn">
+                          <i class="fas fa-paperclip"></i>
+                          <input type="file" />
+                        </div>
+                      </div>
+                      <input
+                        type="text"
+                        class="input-msg-send form-control"
+                        placeholder="Type something"
+                      />
+                      <div class="input-group-append">
+                        <button type="button" class="btn msg-send-btn">
+                          <i class="feather-send"></i>
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="notifications">
+        <div class="topnav-dropdown-header">
+          <span class="notification-title">Notifications</span>
+          <a href="javascript:void(0)" class="clear-noti">
+            <i class="feather-x-circle"></i>
+          </a>
+        </div>
+        <div class="noti-content">
+          <ul class="notification-list">
+            <li class="notification-message">
+              <a href="#">
+                <div class="media">
+                  <span class="avatar">
+                    <img
+                      alt=""
+                      src="../static/img/profiles/avatar-02.jpg"
+                      class="rounded-circle"
+                    />
+                  </span>
+                  <div class="media-body">
+                    <p class="noti-details">
+                      <span class="noti-title">John Doe</span> added new task
+                      <span class="noti-title"
+                        >Patient appointment booking</span
+                      >
+                    </p>
+                    <p class="noti-time">
+                      <span class="notification-time">4 mins ago</span>
+                    </p>
+                  </div>
+                </div>
+              </a>
+            </li>
+            <li class="notification-message">
+              <a href="#">
+                <div class="media">
+                  <span class="avatar">
+                    <img
+                      alt=""
+                      src="../static/img/profiles/avatar-03.jpg"
+                      class="rounded-circle"
+                    />
+                  </span>
+                  <div class="media-body">
+                    <p class="noti-details">
+                      <span class="noti-title">Tarah Shropshire</span> changed
+                      the task name
+                      <span class="noti-title"
+                        >Appointment booking with payment gateway</span
+                      >
+                    </p>
+                    <p class="noti-time">
+                      <span class="notification-time">6 mins ago</span>
+                    </p>
+                  </div>
+                </div>
+              </a>
+            </li>
+            <li class="notification-message">
+              <a href="#">
+                <div class="media">
+                  <span class="avatar">
+                    <img
+                      alt=""
+                      src="../static/img/profiles/avatar-06.jpg"
+                      class="rounded-circle"
+                    />
+                  </span>
+                  <div class="media-body">
+                    <p class="noti-details">
+                      <span class="noti-title">Misty Tison</span> added
+                      <span class="noti-title">Domenic Houston</span> and
+                      <span class="noti-title">Claire Mapes</span> to project
+                      <span class="noti-title">Doctor available module</span>
+                    </p>
+                    <p class="noti-time">
+                      <span class="notification-time">8 mins ago</span>
+                    </p>
+                  </div>
+                </div>
+              </a>
+            </li>
+            <li class="notification-message">
+              <a href="#">
+                <div class="media">
+                  <span class="avatar">
+                    <img
+                      alt=""
+                      src="../static/img/profiles/avatar-17.jpg"
+                      class="rounded-circle"
+                    />
+                  </span>
+                  <div class="media-body">
+                    <p class="noti-details">
+                      <span class="noti-title">Rolland Webber</span> completed
+                      task
+                      <span class="noti-title"
+                        >Patient and Doctor video conferencing</span
+                      >
+                    </p>
+                    <p class="noti-time">
+                      <span class="notification-time">12 mins ago</span>
+                    </p>
+                  </div>
+                </div>
+              </a>
+            </li>
+            <li class="notification-message">
+              <a href="#">
+                <div class="media">
+                  <span class="avatar">
+                    <img
+                      alt=""
+                      src="../static/img/profiles/avatar-13.jpg"
+                      class="rounded-circle"
+                    />
+                  </span>
+                  <div class="media-body">
+                    <p class="noti-details">
+                      <span class="noti-title">Bernardo Galaviz</span> added new
+                      task <span class="noti-title">Private chat module</span>
+                    </p>
+                    <p class="noti-time">
+                      <span class="notification-time">2 days ago</span>
+                    </p>
+                  </div>
+                </div>
+              </a>
+            </li>
+          </ul>
+        </div>
+        <div class="topnav-dropdown-footer">
+          <a href="javascript:void(0);">View all Notifications</a>
+        </div>
+      </div>
+    </div>
+
+    <script src="../static/js/jquery-3.6.0.min.js"></script>
+
+    <script src="../static/js/bootstrap.bundle.min.js"></script>
+
+    <script src="../static/plugins/slimscroll/jquery.slimscroll.min.js"></script>
+
+    <script src="../static/js/script.js"></script>
+  </body>
+
+  <!-- Mirrored from emr.dreamguystech.com/chat/ by HTTrack Website Copier/3.x [XR&CO'2014], Tue, 29 Jun 2021 19:34:16 GMT -->
+</html>

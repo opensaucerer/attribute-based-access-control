@@ -1,0 +1,14 @@
+---------------------------------------------------------------
+ CREDITS
+---------------------------------------------------------------
+
+    - Bootstrap 4    -    https://getbootstrap.com
+    - Font Awesome   -    https://fontawesome.com/start
+
+
+
+---------------------------------------------------------------
+ IMAGES
+---------------------------------------------------------------
+
+    - All images credits go to  pexels.com & Pixapay.com and they are free to use under their license. 
