@@ -108,31 +108,16 @@
                       >
                     </h5>
                   </div>
+
                   <a href="#" class="iq-sub-card">
                     <div class="media align-items-center">
-                      <div class="">
-                        <img
-                          class="avatar-40 rounded"
-                          src="images/user/01.jpg"
-                          alt=""
-                        />
-                      </div>
-                      <div class="media-body ml-3">
-                        <h6 class="mb-0">Emma Watson Bini</h6>
-                        <small class="float-right font-size-12">Just Now</small>
-                        <p class="mb-0">95 MB</p>
-                      </div>
-                    </div>
-                  </a>
-                  <a href="#" class="iq-sub-card">
-                    <div class="media align-items-center">
-                      <div class="">
+                      <!-- <div class="">
                         <img
                           class="avatar-40 rounded"
                           src="images/user/02.jpg"
                           alt=""
                         />
-                      </div>
+                      </div> -->
                       <div class="media-body ml-3">
                         <h6 class="mb-0">New customer is join</h6>
                         <small class="float-right font-size-12"
@@ -144,13 +129,13 @@
                   </a>
                   <a href="#" class="iq-sub-card">
                     <div class="media align-items-center">
-                      <div class="">
+                      <!-- <div class="">
                         <img
                           class="avatar-40 rounded"
                           src="images/user/03.jpg"
                           alt=""
                         />
-                      </div>
+                      </div> -->
                       <div class="media-body ml-3">
                         <h6 class="mb-0">Two customer is left</h6>
                         <small class="float-right font-size-12"
@@ -162,13 +147,13 @@
                   </a>
                   <a href="#" class="iq-sub-card">
                     <div class="media align-items-center">
-                      <div class="">
+                      <!-- <div class="">
                         <img
                           class="avatar-40 rounded"
                           src="images/user/04.jpg"
                           alt=""
                         />
-                      </div>
+                      </div> -->
                       <div class="media-body ml-3">
                         <h6 class="mb-0">New Mail from Fenny</h6>
                         <small class="float-right font-size-12"
@@ -182,7 +167,7 @@
               </div>
             </div>
           </li>
-          <li class="nav-item dropdown">
+          <!-- <li class="nav-item dropdown">
             <a href="#" class="search-toggle iq-waves-effect">
               <i class="ri-mail-open-fill"></i>
               <span class="bg-primary count-mail"></span>
@@ -276,7 +261,7 @@
                 </div>
               </div>
             </div>
-          </li>
+          </li> -->
         </ul>
       </div>
       <ul class="navbar-list">
@@ -285,11 +270,19 @@
             href="#"
             class="search-toggle iq-waves-effect d-flex align-items-center"
           >
+            {% if user['gender'] == 'male' %}
             <img
-              src="../../static/patients2/images/user/1.jpg"
+              src="../../static/patients2/images/user/09.jpg"
+              alt="profile-pic"
               class="img-fluid rounded mr-3"
-              alt="user"
             />
+            {% else %}
+            <img
+              class="img-fluid rounded mr-3"
+              src="../../static/patients2/images/user/11.png"
+              alt="profile-pic"
+            />
+            {% endif %}
             <div class="caption">
               <h6 class="mb-0 line-height">{{user['name']}}</h6>
               <span class="font-size-12">Online</span>

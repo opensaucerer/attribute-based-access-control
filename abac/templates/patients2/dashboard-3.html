@@ -76,11 +76,19 @@
                   <div class="iq-card-body">
                     <div class="user-details-block">
                       <div class="user-profile text-center">
+                        {% if user['gender'] == 'male' %}
                         <img
-                          src="../../static/patients2/images/user/11.png"
-                          alt="profile-img"
                           class="avatar-130 img-fluid"
+                          src="../../static/patients2/images/user/09.jpg"
+                          alt="profile-pic"
                         />
+                        {% else %}
+                        <img
+                          class="avatar-130 img-fluid"
+                          src="../../static/patients2/images/user/11.png"
+                          alt="profile-pic"
+                        />
+                        {% endif %}
                       </div>
                       <div class="text-center mt-3">
                         <h4><b>{{user['name']}}</b></h4>

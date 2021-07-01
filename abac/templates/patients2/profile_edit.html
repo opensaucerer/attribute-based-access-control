@@ -110,11 +110,19 @@
                           <div class="form-group row align-items-center">
                             <div class="col-md-12">
                               <div class="profile-img-edit">
+                                {% if user['gender'] == 'male' %}
+                                <img
+                                  class="profile-pic"
+                                  src="../../static/patients2/images/user/09.jpg"
+                                  alt="profile-pic"
+                                />
+                                {% else %}
                                 <img
                                   class="profile-pic"
                                   src="../../static/patients2/images/user/11.png"
                                   alt="profile-pic"
                                 />
+                                {% endif %}
                                 <!-- <div class="p-image">
                                   <i class="ri-pencil-line upload-button"></i>
                                   <input
