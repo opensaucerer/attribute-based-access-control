@@ -24,9 +24,12 @@ def create_app(config_class=Config):
     bcrypt.init_app(app)
     cors.init_app(app)
 
-    from abac.main.routes import main
+    from abac.main.routes import main, page_not_found
     from abac.patients.routes import patients
+    from abac.admin.routes import admin
+    app.register_error_handler(404, page_not_found)
     app.register_blueprint(main)
     app.register_blueprint(patients, url_prefix='/patients')
+    app.register_blueprint(admin, url_prefix='/admin')
 
     return app

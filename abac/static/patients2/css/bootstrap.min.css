@@ -5554,7 +5554,7 @@ a.badge-dark:focus {
 	border-radius: 0
 }
 
-.alert {
+/* .alert {
 	position: relative;
 	padding: .75rem 1.25rem;
 	margin-bottom: 1rem;
@@ -5692,7 +5692,7 @@ a.badge-dark:focus {
 
 .alert-dark .alert-link {
 	color: #040505
-}
+} */
 
 @-webkit-keyframes progress-bar-stripes {
 	from {

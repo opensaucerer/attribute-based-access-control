@@ -6,33 +6,37 @@ import safe
 
 
 # the User class
-class Patient:
+class Admin:
     # initializing the class
-    def __init__(self, name=None, email=None, password=None, address=None, number=None, gender=None):
-        self.name = name
+    def __init__(self, fname=None, lname=None, email=None, password=None, address=None, number=None, gender=None, role=None):
+        self.fname = fname
+        self.lname = lname
         self.email = email
         self.password = password
         self.address = address
         self.number = number
         self.gender = gender
+        self.role = role
 
     # signup helper function
-    def signup(self):
+    def register(self):
 
         try:
             user = {
                 'public_id': uuid4().hex,
-                'name': self.name.title().strip(),
+                'fname': self.fname.capitalize().strip(),
+                'lname': self.lname.capitalize().strip(),
                 'email': self.email.lower(),
                 'password': bcrypt.generate_password_hash(
                     self.password).decode('utf-8'),
                 'number': self.number,
                 'address': self.address,
                 'gender': self.gender,
+                'role': self.role,
                 'dateCreated': datetime.utcnow()
             }
 
-            mongo.db.patients.insert_one(user)
+            mongo.db.workers.insert_one(user)
         except:
             return False
 
@@ -41,17 +45,17 @@ class Patient:
     # creating a user session
     @staticmethod
     def init_session(user):
-        session['is_authenticated'] = True
+        session['admin_authenticated'] = True
         del user['password']
         del user['_id']
-        session['current_user'] = user
+        session['admin_user'] = user
         session.permanent = True
         return user
 
     # signin helper function
     def signin(self, signin_data):
         # querying user from db with username
-        user = mongo.db.patients.find_one(
+        user = mongo.db.admin.find_one(
             {"username": signin_data['identifier'].lower()})
 
         # validating user and password
@@ -60,7 +64,7 @@ class Patient:
 
         else:
             # querying user from db  with email
-            user = mongo.db.patients.find_one(
+            user = mongo.db.admin.find_one(
                 {"email": signin_data['identifier'].lower()})
 
             # validating user and password
@@ -72,25 +76,25 @@ class Patient:
     # signout helper function
     @staticmethod
     def signout():
-        if session['is_authenticated'] and session['current_user']:
-            session['is_authenticated'] = False
-            del session['current_user']
+        if session['admin_authenticated'] and session['admin_user']:
+            session['admin_authenticated'] = False
+            del session['admin_user']
         return True
 
     # email validator helper function
     @staticmethod
     def check_email(email):
-        return mongo.db.patients.find_one({"email": email.lower()})
+        return mongo.db.workers.find_one({"email": email.lower()})
 
     # number validator helper function
     @staticmethod
     def check_number(number):
-        return mongo.db.patients.find_one({"number": number})
+        return mongo.db.workers.find_one({"number": number})
 
     # user retrieval helper function
     @staticmethod
     def get_user(public_id):
-        return mongo.db.patients.find_one({"public_id": public_id})
+        return mongo.db.workers.find_one({"public_id": public_id})
 
     # profile update helper function
     def update_profile(self, id, data):
@@ -102,7 +106,7 @@ class Patient:
             if len(updateData) > 0:
                 update = {"$set": updateData}
                 filterData = {'public_id': user['public_id']}
-                mongo.db.patients.update_one(filterData, update)
+                mongo.db.workers.update_one(filterData, update)
 
             # getting the new data of the user
             userUpdate = self.get_user(id)
@@ -123,7 +127,9 @@ class Patient:
             # return response
         return response
 
-    # get all patients
+    # get all workers
     @staticmethod
-    def get_patients():
-        return mongo.db.patients.find()
+    def get_workers(role=None):
+        if role:
+            return mongo.db.workers.find({"role": role})
+        return mongo.db.workers.find()

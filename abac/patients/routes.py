@@ -1,4 +1,4 @@
-from flask import Blueprint, render_template, request, url_for, redirect, flash
+from flask import Blueprint, render_template, request, url_for, redirect, flash, session
 from abac.patients.models import Patient
 from abac.patients.utils import login_required, already_logged_in
 
@@ -8,6 +8,7 @@ patients = Blueprint('patients', __name__)
 
 # the signup route
 @patients.get('/signup/')
+@already_logged_in
 def register():
     url = '/patients/signup/'
     return render_template('patients/register.html', url=url)
@@ -23,15 +24,19 @@ def signup():
     name = form['name']
     email = form['email']
     password = form['password']
+    re_password = form['re_password']
     address = form['address']
     number = form['number']
     gender = form['gender']
     errors = {}
     # handling form validation
+    if password != re_password:
+        errors['password'] = 'Passwords do not match'
     if Patient.check_email(email):
         errors['email'] = 'That email is already in use'
     if Patient.check_number(number):
         errors['number'] = 'That phone number is already in use'
+    if len(errors) > 0:
         return render_template('patients/register.html', url=url, errors=errors)
     patient = Patient(name, email, password, address, number, gender)
     patient.signup()
@@ -42,14 +47,15 @@ def signup():
 # the signin route
 @patients.get('/signin/')
 @already_logged_in
-def login():
+def signin():
     url = '/patients/signin/'
     return render_template('patients/login.html', url=url)
 
 
 # the signin post route
 @patients.post('/signin/')
-def signin():
+@already_logged_in
+def login():
     # handling form validation
     form = request.form
     data = {
@@ -59,12 +65,12 @@ def signin():
     user = Patient().signin(data)
 
     if user == False:
-        print('FALSE DATA')
+
         flash('Invalid Signin Details', "danger")
         return redirect(url_for('patients.signin'))
     else:
         username = user['name'].split(' ')[0]
-        flash(f'Welcome back {username}', "success")
+        # flash(f'Welcome back {username}', "success")
         return redirect(url_for('patients.dashboard'))
 
 
@@ -81,6 +87,7 @@ def logout(user):
 @patients.get('/dashboard/')
 @login_required
 def dashboard(user):
+    print(session)
     return render_template('patients2/dashboard-3.html', user=user)
 
 
