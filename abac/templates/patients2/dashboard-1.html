@@ -211,132 +211,38 @@
                     id="doster-list-slide"
                     class="d-flex flex-wrap align-items-center p-0"
                   >
-                    <li class="doctor-list-item col-md-3 text-center p-2">
+                    {% for worker in workers %}
+                    <li class="doctor-list-item col-md-4 text-center p-2">
                       <div class="doctor-list-item-inner rounded">
                         <div class="donter-profile">
+                          {% if worker['gender'] == 'male' %}
                           <img
-                            src="../../static/patients2/images/user/05.jpg"
+                            src="../../../static/patients2/images/user/12.jpg"
+                            alt="profile-pic"
                             class="img-fluid rounded-circle"
-                            alt="user-img"
                           />
+                          {% else %}
+                          <img
+                            class="img-fluid rounded-circle"
+                            src="../../../static/patients2/images/user/07.jpg"
+                            alt="profile-pic"
+                          />
+                          {% endif %}
                         </div>
                         <div class="doctor-detail mt-3">
-                          <h5>Dr. Paul Molive</h5>
-                          <h6>Doctor</h6>
+                          <h5>{{worker['fname']}} {{worker['lname']}}</h5>
+                          <h6>{{worker['role'].capitalize()}}</h6>
                         </div>
                         <hr />
                         <div class="doctor-description">
-                          <p class="mb-0 text-center pl-2 pr-2">
-                            California Hospital Medical Center
-                          </p>
+                          <a href="/doctors/profile" class="btn btn-primary"
+                            >View Profile</a
+                          >
                         </div>
                       </div>
                     </li>
-                    <li class="doctor-list-item col-md-3 text-center p-2">
-                      <div class="doctor-list-item-inner rounded">
-                        <div class="donter-profile">
-                          <img
-                            src="../../static/patients2/images/user/06.jpg"
-                            class="img-fluid rounded-circle"
-                            alt="user-img"
-                          />
-                        </div>
-                        <div class="doctor-detail mt-3">
-                          <h5>Dr. Paul Molive</h5>
-                          <h6>Nurse</h6>
-                        </div>
-                        <hr />
-                        <div class="doctor-description">
-                          <p class="mb-0 text-center pl-2 pr-2">
-                            California Hospital Medical Center
-                          </p>
-                        </div>
-                      </div>
-                    </li>
-                    <li class="doctor-list-item col-md-3 text-center p-2">
-                      <div class="doctor-list-item-inner rounded">
-                        <div class="donter-profile">
-                          <img
-                            src="../../static/patients2/images/user/07.jpg"
-                            class="img-fluid rounded-circle"
-                            alt="user-img"
-                          />
-                        </div>
-                        <div class="doctor-detail mt-3">
-                          <h5>Dr. Paul Molive</h5>
-                          <h6>Surgeon</h6>
-                        </div>
-                        <hr />
-                        <div class="doctor-description">
-                          <p class="mb-0 text-center pl-2 pr-2">
-                            California Hospital Medical Center
-                          </p>
-                        </div>
-                      </div>
-                    </li>
-                    <li class="doctor-list-item col-md-3 text-center p-2">
-                      <div class="doctor-list-item-inner rounded">
-                        <div class="donter-profile">
-                          <img
-                            src="../../static/patients2/images/user/08.jpg"
-                            class="img-fluid rounded-circle"
-                            alt="user-img"
-                          />
-                        </div>
-                        <div class="doctor-detail mt-3">
-                          <h5>Dr. Paul Molive</h5>
-                          <h6>Doctor</h6>
-                        </div>
-                        <hr />
-                        <div class="doctor-description">
-                          <p class="mb-0 text-center pl-2 pr-2">
-                            California Hospital Medical Center
-                          </p>
-                        </div>
-                      </div>
-                    </li>
-                    <li class="doctor-list-item col-md-3 text-center p-2">
-                      <div class="doctor-list-item-inner rounded">
-                        <div class="donter-profile">
-                          <img
-                            src="../../static/patients2/images/user/09.jpg"
-                            class="img-fluid rounded-circle"
-                            alt="user-img"
-                          />
-                        </div>
-                        <div class="doctor-detail mt-3">
-                          <h5>Dr. Paul Molive</h5>
-                          <h6>Surgeon</h6>
-                        </div>
-                        <hr />
-                        <div class="doctor-description">
-                          <p class="mb-0 text-center pl-2 pr-2">
-                            California Hospital Medical Center
-                          </p>
-                        </div>
-                      </div>
-                    </li>
-                    <li class="doctor-list-item col-md-3 text-center p-2">
-                      <div class="doctor-list-item-inner rounded">
-                        <div class="donter-profile">
-                          <img
-                            src="../../static/patients2/images/user/10.jpg"
-                            class="img-fluid rounded-circle"
-                            alt="user-img"
-                          />
-                        </div>
-                        <div class="doctor-detail mt-3">
-                          <h5>Dr. Paul Molive</h5>
-                          <h6>OT Assistent</h6>
-                        </div>
-                        <hr />
-                        <div class="doctor-description">
-                          <p class="mb-0 text-center pl-2 pr-2">
-                            California Hospital Medical Center
-                          </p>
-                        </div>
-                      </div>
-                    </li>
+
+                    {% endfor %}
                   </ul>
                 </div>
               </div>
@@ -928,6 +834,8 @@
       </div>
     </div>
     <!-- Wrapper END -->
+
+    <script></script>
 
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->

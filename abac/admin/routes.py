@@ -48,6 +48,7 @@ def logout(user):
 @admin.get('/dashboard/')
 @admin_login_required
 def dashboard(user):
+    # getting the workers and patient count
     doctors = Admin.get_workers('doctor').count()
     pharmacists = Admin.get_workers('pharmacist').count()
     nurses = Admin.get_workers('nurse').count()
@@ -58,8 +59,10 @@ def dashboard(user):
         "nc": nurses,
         "pac": patients
     }
+    # getting the hospital staff
+    workers = Admin.get_workers()
 
-    return render_template('patients2/dashboard-1.html', user=user, data=data)
+    return render_template('patients2/dashboard-1.html', user=user, data=data, workers=workers)
 
 
 # the hospital stats route
@@ -120,5 +123,5 @@ def addWorker(user):
 @admin_login_required
 def listWorkers(user):
     workers = Admin.get_workers()
-    url = '/admin/workers/add/'
-    return render_template('patients2/doctor-list.html', user=user, url=url, workers=workers)
+
+    return render_template('patients2/doctor-list.html', user=user, workers=workers)
