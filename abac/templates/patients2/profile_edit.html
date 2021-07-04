@@ -14,6 +14,14 @@
       rel="shortcut icon"
       href="../../static/patients/static/favicons/favicon.png"
     />
+
+    <!-- Halfmoon JS -->
+    <script
+      async
+      src="https://cdn.jsdelivr.net/gh/halfmoonui/halfmoon@1.0.3/js/halfmoon.min.js"
+    ></script>
+    <link rel="stylesheet" href="../../static/patients2/css/alert.css" />
+
     <!-- Bootstrap CSS -->
     <link
       rel="stylesheet"
@@ -48,7 +56,7 @@
                 <div class="iq-card-body p-0">
                   <div class="iq-edit-list">
                     <ul class="iq-edit-profile d-flex nav nav-pills">
-                      <li class="col-md-3 p-0">
+                      <li class="col-md-6 p-0">
                         <a
                           class="nav-link active"
                           data-toggle="pill"
@@ -57,7 +65,7 @@
                           Personal Information
                         </a>
                       </li>
-                      <li class="col-md-3 p-0">
+                      <li class="col-md-6 p-0">
                         <a
                           class="nav-link"
                           data-toggle="pill"
@@ -66,7 +74,7 @@
                           Change Password
                         </a>
                       </li>
-                      <li class="col-md-3 p-0">
+                      <!-- <li class="col-md-3 p-0">
                         <a
                           class="nav-link"
                           data-toggle="pill"
@@ -83,15 +91,57 @@
                         >
                           Manage Contact
                         </a>
-                      </li>
+                      </li> -->
                     </ul>
                   </div>
                 </div>
               </div>
             </div>
+
             <div class="col-lg-12">
               <div class="iq-edit-list-data">
                 <div class="tab-content">
+                  <div class="sticky-alerts">
+                    <!-- Collecting flashed messages -->
+                    {% with messages =
+                    get_flashed_messages(with_categories=true) %}
+
+                    <!-- checking if there are flashed messages -->
+                    {% if messages %}
+                    <!-- Looping thorugh the flashed messages -->
+                    {% for category,message in messages %}
+
+                    <!-- Rending the gotten message -->
+                    <script>
+                      window.onload = function () {
+                        halfmoon.toastAlert('precompiled-alert-1', 4000);
+                      };
+                    </script>
+
+                    <div
+                      id="precompiled-alert-1"
+                      class="alert alert-{{ category }} filled-sm"
+                    >
+                      <button
+                        class="close"
+                        data-dismiss="alert"
+                        type="button"
+                        aria-label="Close"
+                      >
+                        <span aria-hidden="true">×</span>
+                      </button>
+                      <p class="text-center">{{ message }}</p>
+                    </div>
+                    <!-- Rending the gotten message end -->
+                    {% endfor %}
+                    <!-- Looping thorugh the flashed messages end -->
+                    {% endif %}
+                    <!-- checking if there are flashed messages end -->
+
+                    {% endwith %}
+                    <!-- Collecting flashed messages end -->
+                  </div>
+
                   <div
                     class="tab-pane fade active show"
                     id="personal-information"
@@ -356,7 +406,7 @@
                         </div>
                       </div>
                       <div class="iq-card-body">
-                        <form>
+                        <form action="/patients/edit_password/" method="POST">
                           <div class="form-group">
                             <label for="cpass">Current Password:</label>
                             <a href="javascripe:void();" class="float-right"
@@ -367,7 +417,15 @@
                               class="form-control"
                               id="cpass"
                               value=""
+                              name="cpass"
                             />
+                            {% if errors %} {% if 'cpass' in errors %}
+
+                            <small class="text-danger"
+                              >{{errors['cpass']}}</small
+                            >
+
+                            {% endif %} {% endif %}
                           </div>
                           <div class="form-group">
                             <label for="npass">New Password:</label>
@@ -375,6 +433,7 @@
                               type="Password"
                               class="form-control"
                               id="npass"
+                              name="npass"
                               value=""
                             />
                           </div>
@@ -384,10 +443,23 @@
                               type="Password"
                               class="form-control"
                               id="vpass"
+                              name="vpass"
                               value=""
                             />
+                            {% if errors %} {% if 'vpass' in errors %}
+
+                            <small class="text-danger"
+                              >{{errors['vpass']}}</small
+                            >
+
+                            {% endif %} {% endif %}
+                            <small class="text-danger"></small>
                           </div>
-                          <button type="submit" class="btn btn-primary mr-2">
+                          <button
+                            id="passbtn"
+                            type="submit"
+                            class="btn btn-primary mr-2"
+                          >
                             Submit
                           </button>
                           <button type="reset" class="btn iq-bg-danger">
@@ -397,7 +469,7 @@
                       </div>
                     </div>
                   </div>
-                  <div class="tab-pane fade" id="emailandsms" role="tabpanel">
+                  <!-- <div class="tab-pane fade" id="emailandsms" role="tabpanel">
                     <div class="iq-card">
                       <div
                         class="iq-card-header d-flex justify-content-between"
@@ -594,7 +666,7 @@
                         </form>
                       </div>
                     </div>
-                  </div>
+                  </div> -->
                 </div>
               </div>
             </div>
@@ -605,6 +677,28 @@
         <!-- Footer END -->
       </div>
     </div>
+
+    <script>
+      var repass = document.querySelector('#vpass');
+      const button = document.querySelector('#passbtn');
+      const msg = document.querySelector('.text-danger');
+
+      repass.oninput = function () {
+        var pass = document.querySelector('#npass').value;
+
+        valid = pass === repass.value;
+
+        if (valid) {
+          button.removeAttribute('disabled');
+          msg.textContent = '';
+          pass;
+        } else {
+          button.setAttribute('disabled', 'true');
+          msg.textContent = 'Passwords do not match';
+        }
+      };
+    </script>
+
     <!-- Wrapper END -->
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->

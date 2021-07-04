@@ -126,3 +126,25 @@ def postEditProfile(user):
         return redirect(url_for('patients.dashboard'))
     except:
         return redirect(url_for('patients.editProfile'))
+
+
+# the patient password update profile
+@patients.post('/edit_password/')
+@login_required
+def editPassword(user):
+
+    # collecting form data
+    form = request.form
+    data = {
+        "cpass": form['cpass'],
+        "npass": form['npass'],
+    }
+    # updating the user password
+    try:
+        user = user['public_id']
+        response = Patient().update_password(user, data)
+        return redirect(url_for('patients.dashboard'))
+
+    except:
+        flash('Invalid Password Provided', 'danger')
+        return redirect(url_for('patients.editProfile'))

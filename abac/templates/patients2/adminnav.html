@@ -67,33 +67,6 @@
           ><span class="badge badge-danger">New</span></a
         >
       </li> -->
-        <li class="iq-menu-title">
-          <i class="ri-subtract-line"></i><span>Apps</span>
-        </li>
-        <li>
-          <a
-            href="#mailbox"
-            class="iq-waves-effect collapsed"
-            data-toggle="collapse"
-            aria-expanded="false"
-            ><i class="ri-mail-open-fill"></i><span>Email</span
-            ><i class="ri-arrow-right-s-line iq-arrow-right"></i
-          ></a>
-          <ul
-            id="mailbox"
-            class="iq-submenu collapse"
-            data-parent="#iq-sidebar-toggle"
-          >
-            <li>
-              <a href="app/index.html"><i class="ri-inbox-fill"></i>Inbox</a>
-            </li>
-            <li>
-              <a href="app/email-compose.html"
-                ><i class="ri-edit-2-fill"></i>Email Compose</a
-              >
-            </li>
-          </ul>
-        </li>
 
         <li class="active">
           <a
@@ -101,7 +74,7 @@
             class="iq-waves-effect collapsed"
             data-toggle="collapse"
             aria-expanded="true"
-            ><i class="ri-user-3-fill"></i><span>Health Workers</span
+            ><i class="ri-user-3-fill"></i><span>Workers & Patients</span
             ><i class="ri-arrow-right-s-line iq-arrow-right"></i
           ></a>
           <ul
@@ -120,17 +93,46 @@
               >
             </li>
             <li>
-              <a href="/admin/workers/profile/"
-                ><i class="ri-profile-fill"></i>Worker's Profile</a
+              <a href="/admin/patients/list/"
+                ><i class="ri-profile-fill"></i>Patients & EHR</a
               >
             </li>
-            <li>
+            <!-- <li>
               <a href="/admin/workers/edit/"
-                ><i class="ri-file-edit-fill"></i> Edit Workers</a
+                ><i class="ri-file-edit-fill"></i>Patients & EHR</a
+              >
+            </li> -->
+          </ul>
+        </li>
+
+        <li class="iq-menu-title">
+          <i class="ri-subtract-line"></i><span>Apps</span>
+        </li>
+        <li>
+          <a
+            href="#mailbox"
+            class="iq-waves-effect collapsed"
+            data-toggle="collapse"
+            aria-expanded="false"
+            ><i class="ri-mail-open-fill"></i><span>Message</span
+            ><i class="ri-arrow-right-s-line iq-arrow-right"></i
+          ></a>
+          <ul
+            id="mailbox"
+            class="iq-submenu collapse"
+            data-parent="#iq-sidebar-toggle"
+          >
+            <li>
+              <a href="/admin/inbox/"><i class="ri-inbox-fill"></i>Inbox</a>
+            </li>
+            <li>
+              <a href="/admin/compose/"
+                ><i class="ri-edit-2-fill"></i>Compose Message</a
               >
             </li>
           </ul>
         </li>
+
         <li>
           <a href="/admin/calendar/" class="iq-waves-effect"
             ><i class="ri-calendar-event-fill"></i><span>Calendar</span></a

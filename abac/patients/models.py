@@ -127,3 +127,39 @@ class Patient:
     @staticmethod
     def get_patients():
         return mongo.db.patients.find()
+
+    # password update helper function
+    def update_password(self, id, data):
+
+        updateData = {}
+
+        user = self.get_user(id)
+        # checking the old password
+        if not (bcrypt.check_password_hash(user['password'], data['cpass'])):
+            raise ValueError
+
+        # hashing the new password
+        newPassword = bcrypt.generate_password_hash(
+            data['npass']).decode("utf-8")
+
+        # adding password to the db
+        mongo.db.patients.update_one(
+            {'public_id': id}, {'$set': {'password': newPassword}})
+
+    # helper functions for getting patient records
+
+    @staticmethod
+    def get_mp(id):
+        # medicine prescription
+        return mongo.db.medicine.find({'public_id': id})
+
+    @staticmethod
+    def get_vi(id):
+        # patient vitals
+        return mongo.db.vitals.find({'public_id': id})
+
+    @staticmethod
+    def get_dt(id):
+        # diagnostics tests
+        return mongo.db.tests.find({'public_id': id})
+    # helper functions for getting patient records end

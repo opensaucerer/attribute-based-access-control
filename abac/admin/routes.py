@@ -2,6 +2,8 @@ from flask import Blueprint, render_template, request, url_for, redirect, flash
 from abac.admin.models import Admin
 from abac.patients.models import Patient
 from abac.admin.utils import admin_login_required, admin_already_logged_in
+import json
+from bson.json_util import dumps, loads
 
 # attaching the patients blueprint
 admin = Blueprint('admin', __name__)
@@ -125,3 +127,81 @@ def listWorkers(user):
     workers = Admin.get_workers()
 
     return render_template('patients2/doctor-list.html', user=user, workers=workers)
+
+
+# the list patients route
+@admin.get('/patients/list/')
+@admin_login_required
+def listPatients(user):
+    patients = Patient.get_patients()
+
+    return render_template('patients2/patient-list.html', user=user, patients=patients)
+
+
+# the retrieve record categories route
+@admin.get('/patients/records/')
+@admin_login_required
+def getRecord(user):
+    # getting the query parameters
+    id = request.args.get('id')
+    # getting the patient
+    patient = Patient.get_user(id)
+
+    return render_template('patients2/select-record.html', user=user, patient=patient)
+
+
+# the view records route
+@admin.get('/patients/view/')
+@admin_login_required
+def viewRecord(user):
+    # getting the query parameters
+    id = request.args.get('id')
+    data = request.args.get('data')
+    # getting the patient
+    patient = Patient.get_user(id)
+
+    """
+    mp ---- medicine prescriptions
+    vi ---- vitals
+    dt ---- diagnostic tests
+    """
+
+    if data == 'mp':
+        view = 'Medicine Prescriptions'
+        records = Patient.get_mp(id)
+    elif data == 'vi':
+        records = Patient.get_vi(id)
+        view = 'Vitals'
+    elif data == 'dt':
+        records = Patient.get_dt(id)
+        view = 'Recommended Diagnostic Tests'
+
+    return render_template('patients2/data-table.html', user=user, patient=patient, view=view, data=data, records=records, json=json)
+
+
+# the edit records route
+@admin.get('/patients/edit/')
+@admin_login_required
+def editRecord(user):
+    # getting the query parameters
+    id = request.args.get('id')
+    data = request.args.get('data')
+    patient = Patient.get_user(id)
+
+    """
+    mp ---- medicine prescriptions
+    vi ---- vitals
+    dt ---- diagnostic tests
+    """
+
+    if data == 'mp':
+        view = 'Medicine Prescriptions'
+        records = Patient.get_mp(id)
+    elif data == 'vi':
+        records = Patient.get_vi(id)
+        view = 'Vitals'
+    elif data == 'dt':
+        records = Patient.get_dt(id)
+        view = 'Recommended Diagnostic Tests'
+
+    return render_template('patients2/select-record.html', user=user, patient=patient)

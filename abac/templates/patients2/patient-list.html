@@ -8,7 +8,7 @@
       name="viewport"
       content="width=device-width, initial-scale=1, shrink-to-fit=no"
     />
-    <title>Medicio | All Health Workers</title>
+    <title>Medicio | All Patients</title>
     <!-- Favicon -->
     <link
       rel="shortcut icon"
@@ -54,34 +54,34 @@
               <div class="iq-card">
                 <div class="iq-card-header d-flex justify-content-between">
                   <div class="iq-header-title">
-                    <h4 class="card-title">Workers List</h4>
+                    <h4 class="card-title">Patients List</h4>
                   </div>
                 </div>
               </div>
             </div>
-            {% for worker in workers %}
+            {% for patient in patients %}
             <div class="col-sm-6 col-md-3">
               <div class="iq-card">
                 <div class="iq-card-body text-center">
                   <div class="doc-profile">
-                    {% if worker['gender'] == 'male' %}
+                    {% if patient['gender'] == 'male' %}
                     <img
-                      src="../../../static/patients2/images/user/12.jpg"
+                      src="../../../static/patients2/images/user/09.jpg"
                       alt="profile-pic"
                       class="rounded-circle img-fluid avatar-80"
                     />
                     {% else %}
                     <img
                       class="rounded-circle img-fluid avatar-80"
-                      src="../../../static/patients2/images/user/07.jpg"
+                      src="../../../static/patients2/images/user/11.png"
                       alt="profile-pic"
                     />
                     {% endif %}
                   </div>
                   <div class="iq-doc-info mt-3">
-                    <h4>{{worker['fname']}} {{worker['lname']}}</h4>
-                    <p class="mb-0">{{worker['role'].capitalize()}}</p>
-                    <a href="javascript:void();">{{worker['email']}}</a>
+                    <h4>{{patient['name']}}</h4>
+                    <p class="mb-0">{{patient['age']}} years</p>
+                    <a href="javascript:void();">{{patient['email']}}</a>
                   </div>
                   <!-- <div class="iq-doc-description mt-2">
                     <p class="mb-0">
@@ -102,8 +102,10 @@
                       </li>
                     </ul> -->
                   </div>
-                  <a href="/doctors/profile" class="btn btn-primary"
-                    >View Profile</a
+                  <a
+                    href="/admin/patients/records/?id={{patient['public_id']}}"
+                    class="btn btn-primary"
+                    >Edit Records</a
                   >
                 </div>
               </div>
