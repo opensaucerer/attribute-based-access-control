@@ -8,7 +8,7 @@
       name="viewport"
       content="width=device-width, initial-scale=1, shrink-to-fit=no"
     />
-    <title>Medicio | Edit Patient Records</title>
+    <title>Medicio | Edit EHR Record</title>
     <!-- Favicon -->
     <link
       rel="shortcut icon"
@@ -53,7 +53,9 @@
               <div class="iq-card">
                 <div class="iq-card-header d-flex justify-content-between">
                   <div class="iq-header-title">
-                    <h4 class="card-title">Edit Patient Records</h4>
+                    <h4 class="card-title">
+                      {{patient['name'].split(' ')[0]}}'s {{view}}
+                    </h4>
                   </div>
                 </div>
                 <div class="iq-card-body">
@@ -73,38 +75,37 @@
                     >
                       <thead>
                         <tr>
-                          <th>Name</th>
-                          <th>Age</th>
-                          <th>Company Name</th>
-                          <th>Country</th>
-                          <th>City</th>
-                          <th>Sort</th>
-                          <th>Remove</th>
+                          <!-- printing the key part -->
+                          {% if data == 'mp' %}
+                          <th>Medicine</th>
+
+                          {% elif data == 'vi' %}
+
+                          <th>Parameter</th>
+                          {% elif data == 'dt' %}
+                          <th>Recommended Test</th>
+
+                          {% endif %}
+
+                          <!-- printing the value part -->
+                          {% if data == 'mp' %}
+                          <th>Dosage</th>
+
+                          {% elif data == 'vi' %}
+
+                          <th>Value</th>
+                          {% elif data == 'dt' %}
+                          <th>Description</th>
+
+                          {% endif %}
                         </tr>
                       </thead>
                       <tbody>
+                        {% if records.count() < 1 %}
+
                         <tr>
-                          <td contenteditable="true">Gio Metric</td>
-                          <td contenteditable="true">25</td>
-                          <td contenteditable="true">Deepends</td>
-                          <td contenteditable="true">Spain</td>
-                          <td contenteditable="true">Madrid</td>
-                          <td>
-                            <span class="table-up"
-                              ><a href="#!" class="indigo-text"
-                                ><i
-                                  class="fa fa-long-arrow-up"
-                                  aria-hidden="true"
-                                ></i></a
-                            ></span>
-                            <span class="table-down"
-                              ><a href="#!" class="indigo-text"
-                                ><i
-                                  class="fa fa-long-arrow-down"
-                                  aria-hidden="true"
-                                ></i></a
-                            ></span>
-                          </td>
+                          <td contenteditable="true">N/A</td>
+                          <td contenteditable="true">N/A</td>
                           <td>
                             <span class="table-remove"
                               ><button
@@ -116,27 +117,14 @@
                             >
                           </td>
                         </tr>
+
+                        {% else %} {% for record in records %} {% for rec in
+                        json.loads(record) %}
+
                         <tr>
-                          <td contenteditable="true">Manny Petty</td>
-                          <td contenteditable="true">45</td>
-                          <td contenteditable="true">Insectus</td>
-                          <td contenteditable="true">France</td>
-                          <td contenteditable="true">San Francisco</td>
-                          <td>
-                            <span class="table-up"
-                              ><a href="#!" class="indigo-text"
-                                ><i
-                                  class="fa fa-long-arrow-up"
-                                  aria-hidden="true"
-                                ></i></a
-                            ></span>
-                            <span class="table-down"
-                              ><a href="#!" class="indigo-text"
-                                ><i
-                                  class="fa fa-long-arrow-down"
-                                  aria-hidden="true"
-                                ></i></a
-                            ></span>
+                          <td contenteditable="true">{{rec}}</td>
+                          <td contenteditable="true">
+                            {{json.loads(record)[rec]}}
                           </td>
                           <td>
                             <span class="table-remove"
@@ -149,74 +137,12 @@
                             >
                           </td>
                         </tr>
-                        <tr>
-                          <td contenteditable="true">Lucy Tania</td>
-                          <td contenteditable="true">26</td>
-                          <td contenteditable="true">Isotronic</td>
-                          <td contenteditable="true">Germany</td>
-                          <td contenteditable="true">Frankfurt am Main</td>
-                          <td>
-                            <span class="table-up"
-                              ><a href="#!" class="indigo-text"
-                                ><i
-                                  class="fa fa-long-arrow-up"
-                                  aria-hidden="true"
-                                ></i></a
-                            ></span>
-                            <span class="table-down"
-                              ><a href="#!" class="indigo-text"
-                                ><i
-                                  class="fa fa-long-arrow-down"
-                                  aria-hidden="true"
-                                ></i></a
-                            ></span>
-                          </td>
-                          <td>
-                            <span class="table-remove"
-                              ><button
-                                type="button"
-                                class="btn iq-bg-danger btn-rounded btn-sm my-0"
-                              >
-                                Remove
-                              </button></span
-                            >
-                          </td>
-                        </tr>
-                        <tr class="hide">
-                          <td contenteditable="true">Anna Mull</td>
-                          <td contenteditable="true">35</td>
-                          <td contenteditable="true">Portica</td>
-                          <td contenteditable="true">USA</td>
-                          <td contenteditable="true">Oregon</td>
-                          <td>
-                            <span class="table-up"
-                              ><a href="#!" class="indigo-text"
-                                ><i
-                                  class="fa fa-long-arrow-up"
-                                  aria-hidden="true"
-                                ></i></a
-                            ></span>
-                            <span class="table-down"
-                              ><a href="#!" class="indigo-text"
-                                ><i
-                                  class="fa fa-long-arrow-down"
-                                  aria-hidden="true"
-                                ></i></a
-                            ></span>
-                          </td>
-                          <td>
-                            <span class="table-remove"
-                              ><button
-                                type="button"
-                                class="btn iq-bg-danger btn-rounded btn-sm my-0"
-                              >
-                                Remove
-                              </button></span
-                            >
-                          </td>
-                        </tr>
+
+                        {% endfor %} {% endfor %} {% endif %}
                       </tbody>
                     </table>
+
+                    <button class="btn btn-primary">Update</button>
                   </div>
                 </div>
               </div>

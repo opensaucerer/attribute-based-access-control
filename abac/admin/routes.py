@@ -204,4 +204,4 @@ def editRecord(user):
         records = Patient.get_dt(id)
         view = 'Recommended Diagnostic Tests'
 
-    return render_template('patients2/select-record.html', user=user, patient=patient)
+    return render_template('patients2/table-editable.html', user=user, patient=patient, view=view, data=data, records=records, json=json)
