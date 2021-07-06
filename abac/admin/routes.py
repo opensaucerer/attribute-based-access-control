@@ -3,6 +3,7 @@ from abac.admin.models import Admin
 from abac.patients.models import Patient
 from abac.admin.utils import admin_login_required, admin_already_logged_in
 import json
+import textwrap
 from bson.json_util import dumps, loads
 
 # attaching the patients blueprint
@@ -161,6 +162,7 @@ def viewRecord(user):
     patient = Patient.get_user(id)
 
     """
+    Returning data based on health record type
     mp ---- medicine prescriptions
     vi ---- vitals
     dt ---- diagnostic tests
@@ -186,12 +188,17 @@ def editRecord(user):
     # getting the query parameters
     id = request.args.get('id')
     data = request.args.get('data')
+    # getting the patient
     patient = Patient.get_user(id)
+    # getting the workers
+    workers = Admin.get_workers()
 
     """
+    Returning data based on health record type
     mp ---- medicine prescriptions
     vi ---- vitals
     dt ---- diagnostic tests
+    
     """
 
     if data == 'mp':
@@ -204,4 +211,4 @@ def editRecord(user):
         records = Patient.get_dt(id)
         view = 'Recommended Diagnostic Tests'
 
-    return render_template('patients2/table-editable.html', user=user, patient=patient, view=view, data=data, records=records, json=json)
+    return render_template('patients2/table-editable.html', textwrap=textwrap, user=user, workers=workers, patient=patient, view=view, data=data, records=records, json=json)
