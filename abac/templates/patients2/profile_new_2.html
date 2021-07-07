@@ -47,11 +47,11 @@
     <!-- Wrapper Start -->
     <div class="wrapper">
       <!-- Sidebar  -->
-      {% include 'patients2/patientnav.html' %}
+      {% include 'patients2/workernav.html' %}
       <!-- Page Content  -->
       <div id="content-page" class="content-page">
         <!-- TOP Nav Bar -->
-        {% include 'patients2/patienttopnav.html' %}
+        {% include 'patients2/workertopnav.html' %}
         <!-- TOP Nav Bar END -->
         <div class="container-fluid">
           <div class="row">
@@ -62,7 +62,7 @@
                     <ul class="iq-edit-profile d-flex nav nav-pills">
                       <li class="col-md-12 p-0">
                         <a class="nav-link active" data-toggle="pill">
-                          Personal Information
+                          Patient Information
                         </a>
                       </li>
                       <!-- <li class="col-md-3 p-0">
@@ -118,7 +118,7 @@
                           <div class="form-group row align-items-center">
                             <div class="col-md-12">
                               <div class="profile-img-edit">
-                                {% if user['gender'] == 'male' %}
+                                {% if patient['gender'] == 'male' %}
                                 <img
                                   class="profile-pic"
                                   src="../../../static/patients2/images/user/09.jpg"
@@ -151,7 +151,7 @@
                                 class="form-control"
                                 id="fname"
                                 readonly
-                                value="{{user['name']}}"
+                                value="{{patient['name']}}"
                               />
                             </div>
                             <!-- <div class="form-group col-sm-6">
@@ -170,7 +170,7 @@
                                 readonly
                                 class="form-control"
                                 id="uname"
-                                value="{{user['email']}}"
+                                value="{{patient['email']}}"
                               />
                             </div>
                             <div class="form-group col-sm-6">
@@ -180,7 +180,7 @@
                                 readonly
                                 class="form-control"
                                 id="cname"
-                                value="{{user['address']}}"
+                                value="{{patient['address']}}"
                               />
                             </div>
                             <div class="form-group col-sm-6">
@@ -190,7 +190,7 @@
                                 readonly
                                 class="form-control"
                                 id="cname"
-                                value="{{user['number']}}"
+                                value="{{patient['number']}}"
                               />
                             </div>
                             <div class="form-group col-sm-6">
@@ -214,7 +214,7 @@
                                   class="custom-control-label"
                                   for="customRadio6"
                                 >
-                                  {{user['gender'].capitalize()}}
+                                  {{patient['gender'].capitalize()}}
                                 </label>
                               </div>
                               <!-- <div
@@ -316,7 +316,7 @@
                                 readonly
                                 class="form-control"
                                 id="cname"
-                                value="{{user['age']}}"
+                                value="{{patient['age']}}"
                               />
                             </div>
                             <div class="form-group col-sm-6">
@@ -326,7 +326,7 @@
                                 class="form-control"
                                 id="cname"
                                 readonly
-                                value="{{user['weight']}}"
+                                value="{{patient['weight']}}"
                                 name="weight"
                               />
                             </div>
@@ -337,7 +337,7 @@
                                 class="form-control"
                                 id="cname"
                                 readonly
-                                value="{{user['height']}}"
+                                value="{{patient['height']}}"
                                 name="height"
                               />
                             </div>

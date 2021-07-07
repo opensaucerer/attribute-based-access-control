@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+  <!-- Mirrored from iqonic.design/themes/xray/html/tables-basic.html by HTTrack Website Copier/3.x [XR&CO'2014], Thu, 01 Jul 2021 07:43:19 GMT -->
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, shrink-to-fit=no"
+    />
+    <title>Medicio | EHR Categories</title>
+    <!-- Favicon -->
+    <link
+      rel="shortcut icon"
+      href="../../../static/patients/static/favicons/favicon.png"
+    />
+    <!-- Bootstrap CSS -->
+    <link
+      rel="stylesheet"
+      href="../../../static/patients2/css/bootstrap.min.css"
+    />
+    <!-- Typography CSS -->
+    <link
+      rel="stylesheet"
+      href="../../../static/patients2/css/typography.css"
+    />
+    <!-- Style CSS -->
+    <link rel="stylesheet" href="../../../static/patients2/css/style.css" />
+    <!-- Responsive CSS -->
+    <link
+      rel="stylesheet"
+      href="../../../static/patients2/css/responsive.css"
+    />
+  </head>
+  <body>
+    <!-- loader Start -->
+    <div id="loading">
+      <div id="loading-center"></div>
+    </div>
+    <!-- loader END -->
+    <!-- Wrapper Start -->
+    <div class="wrapper">
+      <!-- Sidebar  -->
+      {% include 'patients2/workernav.html' %}
+      <!-- Page Content  -->
+      <div id="content-page" class="content-page">
+        <!-- TOP Nav Bar -->
+        {% include 'patients2/workertopnav.html' %}
+        <!-- TOP Nav Bar END -->
+        <div class="container-fluid">
+          <div class="row">
+            <div class="col-lg-12 col-lg-12">
+              <div class="iq-card">
+                <div class="iq-card-header d-flex justify-content-between">
+                  <div class="iq-header-title">
+                    <h4 class="card-title">
+                      {{patient['name']}}'s Health Records
+                    </h4>
+                  </div>
+                </div>
+                <div class="iq-card-body">
+                  <!-- <p>
+                    The <code>.table </code> class adds basic styling to a
+                    table.
+                  </p> -->
+                  <table class="table">
+                    <thead>
+                      <tr>
+                        <th scope="col">EHR Categories</th>
+                        <th scope="col">Description</th>
+                        <th scope="col" colspan="2" class="text-center">
+                          Action
+                        </th>
+                        <!-- <th scope="col"></th> -->
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <td><b>Medicine Prescriptions</b></td>
+                        <td>
+                          View and edit {{patient['name'].split(' ')[0]}}'s
+                          medicinal prescriptions
+                        </td>
+                        <td>
+                          <a
+                            href="/workers/patients/view/?id={{patient['public_id']}}&data=mp"
+                            class="btn btn-primary"
+                            >View</a
+                          >
+                        </td>
+                        <td>
+                          <a
+                            href="/workers/patients/edit/?id={{patient['public_id']}}&data=mp"
+                            class="btn btn-primary"
+                            >Edit</a
+                          >
+                        </td>
+                      </tr>
+                      <tr>
+                        <td><b>Patient Vitals</b></td>
+                        <td>
+                          Read and write {{patient['name'].split(' ')[0]}}'s
+                          vital statistics
+                        </td>
+                        <td>
+                          <a
+                            href="/workers/patients/view/?id={{patient['public_id']}}&data=vi"
+                            class="btn btn-primary"
+                            >View</a
+                          >
+                        </td>
+                        <td>
+                          <a
+                            href="/workers/patients/edit/?id={{patient['public_id']}}&data=vi"
+                            class="btn btn-primary"
+                            >Edit</a
+                          >
+                        </td>
+                      </tr>
+                      <tr>
+                        <td><b>Diagnostic Tests</b></td>
+                        <td>
+                          Recommened tests that will help improve overall health
+                        </td>
+                        <td>
+                          <a
+                            href="/workers/patients/view/?id={{patient['public_id']}}&data=dt"
+                            class="btn btn-primary"
+                            >View</a
+                          >
+                        </td>
+                        <td>
+                          <a
+                            href="/workers/patients/edit/?id={{patient['public_id']}}&data=dt"
+                            class="btn btn-primary"
+                            >Edit</a
+                          >
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- Footer -->
+        {% include 'patients2/patientfooter.html' %}
+
+        <!-- Footer END -->
+      </div>
+    </div>
+    <!-- Wrapper END -->
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="../../../static/patients2/js/jquery.min.js"></script>
+    <script src="../../../static/patients2/js/popper.min.js"></script>
+    <script src="../../../static/patients2/js/bootstrap.min.js"></script>
+    <!-- Appear JavaScript -->
+    <script src="../../../static/patients2/js/jquery.appear.js"></script>
+    <!-- Countdown JavaScript -->
+    <script src="../../../static/patients2/js/countdown.min.js"></script>
+    <!-- Counterup JavaScript -->
+    <script src="../../../static/patients2/js/waypoints.min.js"></script>
+    <script src="../../../static/patients2/js/jquery.counterup.min.js"></script>
+    <!-- Wow JavaScript -->
+    <script src="../../../static/patients2/js/wow.min.js"></script>
+    <!-- Apexcharts JavaScript -->
+    <script src="../../../static/patients2/js/apexcharts.js"></script>
+    <!-- Slick JavaScript -->
+    <script src="../../../static/patients2/js/slick.min.js"></script>
+    <!-- Select2 JavaScript -->
+    <script src="../../../static/patients2/js/select2.min.js"></script>
+    <!-- Owl Carousel JavaScript -->
+    <script src="../../../static/patients2/js/owl.carousel.min.js"></script>
+    <!-- Magnific Popup JavaScript -->
+    <script src="../../../static/patients2/js/jquery.magnific-popup.min.js"></script>
+    <!-- Smooth Scrollbar JavaScript -->
+    <script src="../../../static/patients2/js/smooth-scrollbar.js"></script>
+    <!-- lottie JavaScript -->
+    <script src="../../../static/patients2/js/lottie.js"></script>
+    <!-- Chart Custom JavaScript -->
+    <script src="../../../static/patients2/js/chart-custom.js"></script>
+    <!-- Custom JavaScript -->
+    <script src="../../../static/patients2/js/custom.js"></script>
+  </body>
+
+  <!-- Mirrored from iqonic.design/themes/xray/html/tables-basic.html by HTTrack Website Copier/3.x [XR&CO'2014], Thu, 01 Jul 2021 07:43:19 GMT -->
+</html>

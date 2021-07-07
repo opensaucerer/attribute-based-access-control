@@ -44,32 +44,62 @@ class generateCipher():
     # encoding the policy
     def encode(self, data):
         token = jwt.encode(data, self.sk, algorithm=self.alg)
-        return token
+        ct = self.encrypt(token)
+        return ct
 
     # decoding the policy
     def decode(self, data):
-        policy = jwt.decode(data, self.pk, algorithms=self.alg)
+        text = self.decrypt(data)
+        policy = jwt.decode(text, self.pk, algorithms=self.alg)
         return policy
 
+    # validating the user's access
+    @staticmethod
+    def validate(policies, att1, att2):
 
-policy = json.dumps([{
-    'att': 'patient+thepatientid',
-    'act': 'read'
-}, {
-    'att': 'doctor+thepatientdoctor',
-    'act': 'write'
-}])
-# generating a private key
-key = generateCipher.generate_key()
-# encoding the policy
-data = generateCipher(key).encode({"policy": policy})
-print(data)
-# generating the ciphertext
-ct = generateCipher(key).encrypt(data)
-print(ct)
-# decoding the cipher text
-pt = generateCipher(key).decrypt(ct)
-print(pt)
-# extracting the attribute policy out of the decoded ciphertext
-po = generateCipher(key).decode(pt)
-print(po)
+        for policy in policies:
+
+            att = policy['att']
+            act = policy['act']
+
+            if att1 in att:
+                print("You can access that data")
+                print(f'You have an access to {policy["act"]}')
+                if act == 'write':
+                    return 'rw'
+                elif act == 'read':
+                    return 'r'
+                else:
+                    return 'rw'
+            elif att1 in att:
+                print("You can access that data")
+                print(f'You have an access to {policy["act"]}')
+                if act == 'write':
+                    return 'rw'
+                elif act == 'read':
+                    return 'r'
+                else:
+                    return 'rw'
+                continue
+            else:
+                return None
+
+
+# policy = json.dumps([{
+#     'att': 'patient+thepatientid',
+#     'act': 'read'
+# }, {
+#     'att': 'doctor+thepatientdoctor',
+#     'act': 'write'
+# }])
+# # generating a private key
+# key = b'\xdd\x92\xff,\xe5\xff\x06U|y\xb2\xa9\x1c\x11u\x95'
+# generateCipher = generateCipher(key)
+
+# # encoding the policy
+# data = generateCipher.encode({"policy": policy})
+# print(data)
+# # extracting the attribute policy out of the decoded ciphertext
+# po = generateCipher.decode(data)
+# print(po)
+# print(type(po['policy']))

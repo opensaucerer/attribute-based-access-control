@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html lang="en">
+  <!-- Mirrored from iqonic.design/themes/xray/html/dashboard-1.html by HTTrack Website Copier/3.x [XR&CO'2014], Thu, 01 Jul 2021 07:40:06 GMT -->
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, shrink-to-fit=no"
+    />
+    <title>Medicio | Worker Dashboard</title>
+    <!-- Favicon -->
+    <link
+      rel="shortcut icon"
+      href="../../static/patients/static/favicons/favicon.png"
+    />
+    <!-- Bootstrap CSS -->
+    <link
+      rel="stylesheet"
+      href="../../static/patients2/css/bootstrap.min.css"
+    />
+    <!-- Typography CSS -->
+    <link rel="stylesheet" href="../../static/patients2/css/typography.css" />
+    <!-- Style CSS -->
+    <link rel="stylesheet" href="../../static/patients2/css/style.css" />
+    <!-- Responsive CSS -->
+    <link rel="stylesheet" href="../../static/patients2/css/responsive.css" />
+    <!-- Full calendar -->
+    <link
+      href="../../static/patients2/fullcalendar/core/main.css"
+      rel="stylesheet"
+    />
+    <link
+      href="../../static/patients2/fullcalendar/daygrid/main.css"
+      rel="stylesheet"
+    />
+    <link
+      href="../../static/patients2/fullcalendar/timegrid/main.css"
+      rel="stylesheet"
+    />
+    <link
+      href="../../static/patients2/fullcalendar/list/main.css"
+      rel="stylesheet"
+    />
+
+    <link
+      rel="stylesheet"
+      href="../../static/patients2/css/flatpickr.min.css"
+    />
+  </head>
+  <body>
+    <!-- loader Start -->
+    <div id="loading">
+      <div id="loading-center"></div>
+    </div>
+    <!-- loader END -->
+    <!-- Wrapper Start -->
+    <div class="wrapper">
+      <!-- Sidebar  -->
+      {% include 'patients2/workernav.html' %}
+      <!-- Page Content  -->
+      <div id="content-page" class="content-page">
+        <!-- TOP Nav Bar -->
+        {% include 'patients2/workertopnav.html' %}
+        <!-- TOP Nav Bar END -->
+        <div class="container-fluid">
+          <div class="row">
+            <div class="col-lg-12">
+              <div class="row">
+                <div class="col-md-6 col-lg-3">
+                  <div
+                    class="iq-card iq-card-block iq-card-stretch iq-card-height"
+                  >
+                    <div class="iq-card-body iq-bg-primary rounded">
+                      <div
+                        class="
+                          d-flex
+                          align-items-center
+                          justify-content-between
+                        "
+                      >
+                        <div class="rounded-circle iq-card-icon bg-primary">
+                          <i class="ri-user-fill"></i>
+                        </div>
+                        <div class="text-right">
+                          <h2 class="mb-0">
+                            <span class="counter">{{data['dc']}}</span>
+                          </h2>
+                          <h5 class="">Doctors</h5>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-md-6 col-lg-3">
+                  <div
+                    class="iq-card iq-card-block iq-card-stretch iq-card-height"
+                  >
+                    <div class="iq-card-body iq-bg-warning rounded">
+                      <div
+                        class="
+                          d-flex
+                          align-items-center
+                          justify-content-between
+                        "
+                      >
+                        <div class="rounded-circle iq-card-icon bg-warning">
+                          <i class="ri-women-fill"></i>
+                        </div>
+                        <div class="text-right">
+                          <h2 class="mb-0">
+                            <span class="counter">{{data['nc']}}</span>
+                          </h2>
+                          <h5 class="">Nurses</h5>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-md-6 col-lg-3">
+                  <div
+                    class="iq-card iq-card-block iq-card-stretch iq-card-height"
+                  >
+                    <div class="iq-card-body iq-bg-danger rounded">
+                      <div
+                        class="
+                          d-flex
+                          align-items-center
+                          justify-content-between
+                        "
+                      >
+                        <div class="rounded-circle iq-card-icon bg-danger">
+                          <i class="ri-group-fill"></i>
+                        </div>
+                        <div class="text-right">
+                          <h2 class="mb-0">
+                            <span class="counter">{{data['pac']}}</span>
+                          </h2>
+                          <h5 class="">Patients</h5>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-md-6 col-lg-3">
+                  <div
+                    class="iq-card iq-card-block iq-card-stretch iq-card-height"
+                  >
+                    <div class="iq-card-body iq-bg-info rounded">
+                      <div
+                        class="
+                          d-flex
+                          align-items-center
+                          justify-content-between
+                        "
+                      >
+                        <div class="rounded-circle iq-card-icon bg-info">
+                          <i class="ri-hospital-line"></i>
+                        </div>
+                        <div class="text-right">
+                          <h2 class="mb-0">
+                            <span class="counter">{{data['pc']}}</span>
+                          </h2>
+                          <h5 class="">Pharmacists</h5>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <!-- <div class="col-sm-12">
+              <div class="iq-card iq-card-block iq-card-stretch iq-card-height">
+                <div class="iq-card-header d-flex justify-content-between">
+                  <div class="iq-header-title">
+                    <h4 class="card-title">Hospital Survey</h4>
+                  </div>
+                </div>
+                <div class="iq-card-body pb-0 mt-3">
+                  <div class="row text-center">
+                    <div class="col-sm-3 col-6">
+                      <h4 class="margin-0">$ 305</h4>
+                      <p class="text-muted">Today's Income</p>
+                    </div>
+                    <div class="col-sm-3 col-6">
+                      <h4 class="margin-0">$ 999</h4>
+                      <p class="text-muted">This Week's Income</p>
+                    </div>
+                    <div class="col-sm-3 col-6">
+                      <h4 class="margin-0">$ 4999</h4>
+                      <p class="text-muted">This Month's Income</p>
+                    </div>
+                    <div class="col-sm-3 col-6">
+                      <h4 class="margin-0">$ 90,000</h4>
+                      <p class="text-muted">This Year's Income</p>
+                    </div>
+                  </div>
+                </div>
+                <div id="home-servey-chart"></div>
+              </div>
+            </div> -->
+            <div class="col-sm-12">
+              <div class="iq-card iq-card-block iq-card-stretch iq-card-height">
+                <div class="iq-card-header d-flex justify-content-between">
+                  <div class="iq-header-title">
+                    <h4 class="card-title">Hospital Staff</h4>
+                  </div>
+                </div>
+                <div class="iq-card-body">
+                  <ul
+                    id="doster-list-slide"
+                    class="d-flex flex-wrap align-items-center p-0"
+                  >
+                    {% for patient in patients %}
+                    <li class="doctor-list-item col-md-4 text-center p-2">
+                      <div class="doctor-list-item-inner rounded">
+                        <div class="donter-profile">
+                          {% if patient['gender'] == 'male' %}
+                          <img
+                            src="../../../static/patients2/images/user/09.jpg"
+                            alt="profile-pic"
+                            class="img-fluid rounded-circle"
+                          />
+                          {% else %}
+                          <img
+                            class="img-fluid rounded-circle"
+                            src="../../../static/patients2/images/user/11.jpg"
+                            alt="profile-pic"
+                          />
+                          {% endif %}
+                        </div>
+                        <div class="doctor-detail mt-3">
+                          <h5>{{patient['name']}}</h5>
+                          <h6>{{patient['email']}}</h6>
+                        </div>
+                        <hr />
+                        <div class="doctor-description">
+                          <a
+                            href="/workers/patients/profile/?id={{patient['public_id']}}"
+                            class="btn btn-primary"
+                            >View Profile</a
+                          >
+                        </div>
+                      </div>
+                    </li>
+
+                    {% endfor %}
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- Footer -->
+        {% include 'patients2/patientfooter.html' %}
+        <!-- Footer END -->
+      </div>
+    </div>
+    <!-- Wrapper END -->
+
+    <script></script>
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="../../static/patients2/js/jquery.min.js"></script>
+    <script src="../../static/patients2/js/popper.min.js"></script>
+    <script src="../../static/patients2/js/bootstrap.min.js"></script>
+    <!-- Appear JavaScript -->
+    <script src="../../static/patients2/js/jquery.appear.js"></script>
+    <!-- Countdown JavaScript -->
+    <script src="../../static/patients2/js/countdown.min.js"></script>
+    <!-- Counterup JavaScript -->
+    <script src="../../static/patients2/js/waypoints.min.js"></script>
+    <script src="../../static/patients2/js/jquery.counterup.min.js"></script>
+    <!-- Wow JavaScript -->
+    <script src="../../static/patients2/js/wow.min.js"></script>
+    <!-- Apexcharts JavaScript -->
+    <script src="../../static/patients2/js/apexcharts.js"></script>
+    <!-- Slick JavaScript -->
+    <script src="../../static/patients2/js/slick.min.js"></script>
+    <!-- Select2 JavaScript -->
+    <script src="../../static/patients2/js/select2.min.js"></script>
+    <!-- Owl Carousel JavaScript -->
+    <script src="../../static/patients2/js/owl.carousel.min.js"></script>
+    <!-- Magnific Popup JavaScript -->
+    <script src="../../static/patients2/js/jquery.magnific-popup.min.js"></script>
+    <!-- Smooth Scrollbar JavaScript -->
+    <script src="../../static/patients2/js/smooth-scrollbar.js"></script>
+    <!-- lottie JavaScript -->
+    <script src="../../static/patients2/js/lottie.js"></script>
+    <!-- am core JavaScript -->
+    <script src="../../static/patients2/js/core.js"></script>
+    <!-- am charts JavaScript -->
+    <script src="../../static/patients2/js/charts.js"></script>
+    <!-- am animated JavaScript -->
+    <script src="../../static/patients2/js/animated.js"></script>
+    <!-- am kelly JavaScript -->
+    <script src="../../static/patients2/js/kelly.js"></script>
+    <!-- Flatpicker Js -->
+    <script src="../../static/patients2/js/flatpickr.js"></script>
+    <!-- Chart Custom JavaScript -->
+    <script src="../../static/patients2/js/chart-custom.js"></script>
+    <!-- Custom JavaScript -->
+    <script src="../../static/patients2/js/custom.js"></script>
+  </body>
+
+  <!-- Mirrored from iqonic.design/themes/xray/html/dashboard-1.html by HTTrack Website Copier/3.x [XR&CO'2014], Thu, 01 Jul 2021 07:40:27 GMT -->
+</html>

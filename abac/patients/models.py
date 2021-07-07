@@ -2,7 +2,6 @@ from uuid import uuid4
 from abac import bcrypt, mongo
 from datetime import datetime
 from flask import session
-import safe
 
 
 # the User class
@@ -147,19 +146,93 @@ class Patient:
             {'public_id': id}, {'$set': {'password': newPassword}})
 
     # helper functions for getting patient records
-
     @staticmethod
     def get_mp(id):
         # medicine prescription
-        return mongo.db.medicine.find({'public_id': id})
+        return mongo.db.medicine.find_one({'patient': id})
 
     @staticmethod
     def get_vi(id):
         # patient vitals
-        return mongo.db.vitals.find({'public_id': id})
+        return mongo.db.vitals.find_one({'patient': id})
 
     @staticmethod
     def get_dt(id):
         # diagnostics tests
-        return mongo.db.tests.find({'public_id': id})
+        return mongo.db.tests.find_one({'patient': id})
     # helper functions for getting patient records end
+
+    # helper function for saving patient records
+    def save_mp(self, id, data):
+
+        obj = {
+            'patient': id,
+            'record': data
+        }
+        obj2 = {
+
+            'record': data
+        }
+
+        if self.get_mp(id):
+            update = {"$set": obj2}
+            filterData = {'patient': id}
+            mongo.db.medicine.update_one(filterData, update)
+        else:
+            mongo.db.medicine.insert_one(obj)
+
+        response = {
+            "status": True,
+            "message": "Record saved successfully",
+        }
+
+        return response
+
+    def save_vi(self, id, data):
+
+        obj = {
+            'patient': id,
+            'record': data
+        }
+        obj2 = {
+            'record': data
+        }
+
+        if self.get_vi(id):
+            update = {"$set": obj2}
+            filterData = {'patient': id}
+            mongo.db.vitals.update_one(filterData, update)
+        else:
+            mongo.db.vitals.insert_one(obj)
+
+        response = {
+            "status": True,
+            "message": "Record saved successfully",
+        }
+
+        return response
+
+    def save_dt(self, id, data):
+
+        obj = {
+            'patient': id,
+            'record': data
+        }
+        obj2 = {
+            'record': data
+        }
+
+        if self.get_dt(id):
+            update = {"$set": obj2}
+            filterData = {'patient': id}
+            mongo.db.tests.update_one(filterData, update)
+        else:
+            mongo.db.tests.insert_one(obj)
+
+        response = {
+            "status": True,
+            "message": "Record saved successfully",
+        }
+
+        return response
+    # helper function for saving patient records end

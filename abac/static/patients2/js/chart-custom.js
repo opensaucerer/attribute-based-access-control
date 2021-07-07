@@ -8584,17 +8584,26 @@ jQuery('#home-servey-chart').length &&
   });
 jQuery('#patient-chart-1').length &&
   am4core.ready(function () {
+    vi = jQuery('#vi').data('vi');
+    data = [];
+    categories = [];
+    for (let key in vi) {
+      categories.push(key);
+      n = vi[key];
+      data.push(parseInt(n.match(/\d+/)[0]));
+    }
+
     var options = {
       series: [
         {
-          name: 'Servings',
-          data: [44, 55, 41, 67, 22, 43, 21, 33, 45, 31],
+          name: 'Vitals',
+          data: data,
         },
       ],
       annotations: {
         points: [
           {
-            x: 'Bananas',
+            x: 'Vitals',
             seriesIndex: 0,
             label: {
               borderColor: '#775DD0',
@@ -8603,7 +8612,7 @@ jQuery('#patient-chart-1').length &&
                 color: '#fff',
                 background: '#323584',
               },
-              text: 'Bananas are good',
+              text: 'Your body  vitals',
             },
           },
         ],
@@ -8620,7 +8629,7 @@ jQuery('#patient-chart-1').length &&
         },
       },
       dataLabels: {
-        enabled: false,
+        enabled: true,
       },
       stroke: {
         width: 2,
@@ -8635,12 +8644,12 @@ jQuery('#patient-chart-1').length &&
         labels: {
           rotate: -45,
         },
-        categories: ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J'],
+        categories: categories,
         tickPlacement: 'on',
       },
       yaxis: {
         title: {
-          text: 'Servings',
+          text: 'Vitals',
         },
       },
       fill: {

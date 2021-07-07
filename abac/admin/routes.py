@@ -1,10 +1,11 @@
-from flask import Blueprint, render_template, request, url_for, redirect, flash
+from flask import Blueprint, render_template, request, url_for, redirect, flash, jsonify, current_app
 from abac.admin.models import Admin
 from abac.patients.models import Patient
 from abac.admin.utils import admin_login_required, admin_already_logged_in
 import json
 import textwrap
 from bson.json_util import dumps, loads
+from rsb import generateCipher
 
 # attaching the patients blueprint
 admin = Blueprint('admin', __name__)
@@ -161,22 +162,34 @@ def viewRecord(user):
     # getting the patient
     patient = Patient.get_user(id)
 
+    # instantiating the encryption algorithm
+    key = current_app.config['SECRET_KEY'].encode()
+    gc = generateCipher(key)
+
     """
     Returning data based on health record type
     mp ---- medicine prescriptions
     vi ---- vitals
     dt ---- diagnostic tests
     """
-
     if data == 'mp':
         view = 'Medicine Prescriptions'
         records = Patient.get_mp(id)
+        if records:
+            records = Patient.get_mp(id)['record']
+            records = gc.decode(records)['record']
     elif data == 'vi':
-        records = Patient.get_vi(id)
         view = 'Vitals'
+        records = Patient.get_vi(id)
+        if records:
+            records = Patient.get_vi(id)['record']
+            records = gc.decode(records)['record']
     elif data == 'dt':
-        records = Patient.get_dt(id)
         view = 'Recommended Diagnostic Tests'
+        records = Patient.get_dt(id)
+        if records:
+            records = Patient.get_dt(id)['record']
+            records = gc.decode(records)['record']
 
     return render_template('patients2/data-table.html', user=user, patient=patient, view=view, data=data, records=records, json=json)
 
@@ -193,6 +206,10 @@ def editRecord(user):
     # getting the workers
     workers = Admin.get_workers()
 
+    # instantiating the encryption algorithm
+    key = current_app.config['SECRET_KEY'].encode()
+    gc = generateCipher(key)
+
     """
     Returning data based on health record type
     mp ---- medicine prescriptions
@@ -204,11 +221,47 @@ def editRecord(user):
     if data == 'mp':
         view = 'Medicine Prescriptions'
         records = Patient.get_mp(id)
+        if records:
+            records = Patient.get_mp(id)['record']
+            records = gc.decode(records)['record']
     elif data == 'vi':
-        records = Patient.get_vi(id)
         view = 'Vitals'
+        records = Patient.get_vi(id)
+        if records:
+            records = Patient.get_vi(id)['record']
+            records = gc.decode(records)['record']
     elif data == 'dt':
-        records = Patient.get_dt(id)
         view = 'Recommended Diagnostic Tests'
+        records = Patient.get_dt(id)
+        if records:
+            records = Patient.get_dt(id)['record']
+            records = gc.decode(records)['record']
 
-    return render_template('patients2/table-editable.html', user=user, workers=workers, patient=patient, view=view, data=data, records=records, json=json)
+    return render_template('patients2/table-editable.html', user=user, workers=workers, patient=patient, view=view, data=data, records=records, json=json, len=len)
+
+
+# the edit records route
+@admin.post('/patients/records/save/')
+@admin_login_required
+def saveRecord(user):
+
+    data = request.get_json()
+
+    # instantiating the encryption algorithm
+    key = current_app.config['SECRET_KEY'].encode()
+    gc = generateCipher(key)
+
+    # turning the EHR into ciphertext
+    ciphertext = gc.encode(data)
+
+    # getting the type of record and patient to be updated
+    record = request.args.get('record')
+    pid = request.args.get('id')
+    if record == 'mp':
+        Patient().save_mp(pid, ciphertext)
+    elif record == 'vi':
+        Patient().save_vi(pid, ciphertext)
+    elif record == 'dt':
+        Patient().save_dt(pid, ciphertext)
+
+    return jsonify({"status": True, "message": "EHR Update Successfully"})

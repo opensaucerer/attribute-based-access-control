@@ -53,7 +53,11 @@
               <div class="iq-card">
                 <div class="iq-card-header d-flex justify-content-between">
                   <div class="iq-header-title">
-                    <h4 class="card-title">
+                    <h4
+                      id="pid"
+                      data-id="{{patient['public_id']}}"
+                      class="card-title"
+                    >
                       {{patient['name'].split(' ')[0]}}'s {{view}}
                     </h4>
                   </div>
@@ -68,6 +72,7 @@
                       </button>
                     </span>
                     <table
+                      id="rec-table"
                       class="
                         table table-bordered table-responsive-md table-striped
                         text-center
@@ -98,10 +103,12 @@
                           <th>Description</th>
 
                           {% endif %}
+
+                          <th></th>
                         </tr>
                       </thead>
                       <tbody id="rec-con">
-                        {% if records.count() < 1 %}
+                        {% if not records %}
 
                         <tr class="record">
                           <td contenteditable="true">N/A</td>
@@ -119,14 +126,11 @@
                           </td>
                         </tr>
 
-                        {% else %} {% for record in records %} {% for rec in
-                        json.loads(record) %}
+                        {% else %} {% for record in records %}
 
                         <tr class="record">
-                          <td contenteditable="true">{{rec}}</td>
-                          <td contenteditable="true">
-                            {{json.loads(record)[rec]}}
-                          </td>
+                          <td contenteditable="true">{{record}}</td>
+                          <td contenteditable="true">{{records[record]}}</td>
                           <td>
                             <span class="table-remove"
                               ><button
@@ -140,7 +144,7 @@
                           </td>
                         </tr>
 
-                        {% endfor %} {% endfor %} {% endif %}
+                        {% endfor %} {% endif %}
                       </tbody>
                     </table>
                   </div>
@@ -167,77 +171,81 @@
                   </span>
                 </div>
                 <div id="attrib" class="iq-card-body">
-                  <div class="new-user-info">
-                    <div id="att">
-                      <div id="att-con" class="row">
-                        <div class="form-group col-md-3">
-                          <label>Position</label>
-                          <select
-                            name="role"
-                            class="form-control"
-                            id="position"
-                            required
-                          >
-                            <option value="doctor">Select</option>
-                            <option value="doctor">Doctor</option>
-                            <option value="nurse">Nurse</option>
-                            <option value="pharmacist">Pharmacist</option>
-                          </select>
-                        </div>
-                        <div class="form-group col-md-2">
-                          <label>Operator</label>
-                          <select
-                            name="gender"
-                            class="form-control"
-                            id="operator"
-                            required
-                          >
-                            <option value="+">AND</option>
-                            <option value="-">OR</option>
-                          </select>
-                        </div>
-                        <div class="form-group col-md-3">
-                          <label>Name & ID</label>
-                          <select name="gender" class="form-control" id="name">
-                            {% for worker in workers %}
-                            <option value="{{worker['public_id']}}">
-                              {{worker['role']}}... {{worker['fname']}}
-                              {{worker['lname']}}
-                            </option>
+                  <form id="form">
+                    <div class="new-user-info">
+                      <div id="att">
+                        <div id="att-con" class="row">
+                          <div class="form-group col-md-3">
+                            <label>Position</label>
+                            <select
+                              name="role"
+                              class="form-control"
+                              id="position"
+                              required
+                            >
+                              <option value="none">Select</option>
+                              <option value="doctor">Doctor</option>
+                              <option value="nurse">Nurse</option>
+                              <option value="pharmacist">Pharmacist</option>
+                            </select>
+                          </div>
+                          <div class="form-group col-md-2">
+                            <label>Operator</label>
+                            <select
+                              name="gender"
+                              class="form-control"
+                              id="operator"
+                              required
+                            >
+                              <option value="+">AND</option>
+                              <option value="-">OR</option>
+                            </select>
+                          </div>
+                          <div class="form-group col-md-3">
+                            <label>Name & ID</label>
+                            <select name="name" class="form-control" id="name">
+                              <option value="none">Select</option>
 
-                            {% endfor %}
-                            <!-- <option value="male">Male</option> -->
-                          </select>
-                        </div>
-                        <div class="form-group col-md-3">
-                          <label>Action</label>
-                          <select
-                            name="gender"
-                            class="form-control"
-                            id="action"
-                            required
-                          >
-                            <option value="read">Read</option>
-                            <option value="write">Write</option>
-                            <option value="read+write">Read & Write</option>
-                          </select>
-                        </div>
-                        <div class="form-group col-md-1">
-                          <button
-                            type="button"
-                            id="remove"
-                            class="btn iq-bg-danger btn-rounded btn-sm my-0"
-                          >
-                            Remove
-                          </button>
+                              {% for worker in workers %}
+                              <option value="{{worker['public_id']}}">
+                                {{worker['role']}}... {{worker['fname']}}
+                                {{worker['lname']}}
+                              </option>
+
+                              {% endfor %}
+                              <!-- <option value="male">Male</option> -->
+                            </select>
+                          </div>
+                          <div class="form-group col-md-3">
+                            <label>Action</label>
+                            <select
+                              name="action"
+                              class="form-control"
+                              id="action"
+                              required
+                            >
+                              <option value="read">Read</option>
+                              <option value="write">Write</option>
+                              <option value="read+write">Read & Write</option>
+                            </select>
+                          </div>
+                          <div class="form-group col-md-1">
+                            <button
+                              type="button"
+                              id="remove"
+                              class="btn iq-bg-danger btn-rounded btn-sm my-0"
+                            >
+                              Remove
+                            </button>
+                          </div>
                         </div>
                       </div>
-                    </div>
 
-                    <button id="update" type="submit" class="btn btn-primary">
-                      Finalize Record Update
-                    </button>
-                  </div>
+                      <button id="update" type="submit" class="btn btn-primary">
+                        Finalize Record Update
+                      </button>
+                    </div>
+                  </form>
                 </div>
               </div>
             </div>
@@ -259,6 +267,7 @@
       const attCon = document.querySelector('#attrib');
       const attTemp = document.querySelector('#att-con').outerHTML;
       const update = document.querySelector('#update');
+      //const form = document.querySelector('#form');
 
       // new record cell layout
       const nRecord = `
@@ -302,11 +311,82 @@
       };
 
       //listening for click of update button
-      update.onclick = function (e) {
+      update.onclick = async function (e) {
         //preventing default behavior
         e.preventDefault();
+        let record = {};
+
+        // getting the records from the taable
         //getting the data and sorting it based on backend Schema
-        alert('shit');
+        let oTable = document.getElementById('rec-table');
+        let data = [...oTable.rows].map((t) =>
+          [...t.children].map((e, index, table) => {
+            //adding the elements into an object
+            record[table[0].innerText] = table[1].innerText;
+          })
+        );
+
+        //delete tab['Recommended Test'];
+        for (let key in record) {
+          delete record[key];
+          break;
+        }
+
+        //getting the encryption attributes
+        const position = document.querySelectorAll('#position');
+        const operator = document.querySelectorAll('#operator');
+        const name = document.querySelectorAll('#name');
+        const action = document.querySelectorAll('#action');
+
+        const iter = position.length;
+        const policy = [];
+
+        for (let i = 0; i < iter; i++) {
+          let att = `${position[i].value}${operator[i].value}${name[i].value}`;
+          let act = `${action[i].value}`;
+
+          // creating the object
+          const pol = {
+            att: `${position[i].value}${operator[i].value}${name[i].value}`,
+            act: `${action[i].value}`,
+          };
+          //adding to the policy array
+          policy.push(pol);
+        }
+
+        const body = {
+          record: record,
+          policy: policy,
+        };
+
+        update.innerHTML = '<i class="fa fa-spinner fa-spin"></i> Updating...';
+
+        const id = document.querySelector('#pid').dataset.id;
+        const recType = '{{data}}';
+
+        url =
+          window.location.origin +
+          `/admin/patients/records/save/?record=${recType}&id=${id}`;
+
+        const request = await fetch(url, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+
+          body: JSON.stringify(body),
+        });
+
+        const response = await request.json();
+
+        console.log(response);
+
+        if (response.status === true) {
+          window.location.href =
+            window.location.origin + '/admin/patients/list/';
+        } else {
+          update.innerHTML = 'Finalize Record Update';
+        }
       };
     </script>
 

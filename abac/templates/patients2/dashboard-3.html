@@ -107,12 +107,33 @@
                       >
                         <li class="text-center">
                           <h6 class="text-primary">Weight</h6>
-                          <h3>N/A<span>kg</span></h3>
+                          <h3>{{user['weight']}}<span>kg</span></h3>
                         </li>
                         <li class="text-center">
                           <h6 class="text-primary">Height</h6>
-                          <h3>N/A<span>cm</span></h3>
+                          <h3>{{user['height']}}<span>cm</span></h3>
                         </li>
+                        <!-- <li class="text-center">
+                          <h6 class="text-primary">Goal</h6>
+                          <h3 class="text-warning">N/A<span>kg</span></h3>
+                        </li> -->
+                      </ul>
+                      <ul
+                        class="
+                          doctoe-sedual
+                          d-flex
+                          align-items-center
+                          justify-content-between
+                          p-0
+                          mt-4
+                          mb-0
+                        "
+                      >
+                        <li class="text-center">
+                          <h6 class="text-primary">Gender</h6>
+                          <h3>{{user['gender'].capitalize()}}<span></span></h3>
+                        </li>
+
                         <!-- <li class="text-center">
                           <h6 class="text-primary">Goal</h6>
                           <h3 class="text-warning">N/A<span>kg</span></h3>
@@ -363,46 +384,8 @@
                         </div>
                         <div class="iq-card-body pl-0 pr-0 pb-0">
                           <div class="row">
-                            <div class="col-md-4">
-                              <div
-                                class="training-block d-flex align-items-center"
-                              >
-                                <div
-                                  class="
-                                    rounded-circle
-                                    iq-card-icon iq-bg-primary
-                                  "
-                                >
-                                  <i class="ri-hospital-fill"></i>
-                                </div>
-                                <div class="ml-3">
-                                  <h5 class="">Power Training</h5>
-                                  <p class="mb-0">395 kcal / h</p>
-                                </div>
-                              </div>
-                            </div>
-                            <div class="col-md-4">
-                              <div
-                                class="training-block d-flex align-items-center"
-                              >
-                                <div
-                                  class="
-                                    rounded-circle
-                                    iq-card-icon iq-bg-primary
-                                  "
-                                >
-                                  <img
-                                    src="../../static/patients2/images/page-img/35.png"
-                                    class="img-fluid"
-                                    alt="icon"
-                                  />
-                                </div>
-                                <div class="ml-3">
-                                  <h5 class="">Yoga Training</h5>
-                                  <p class="mb-0">395 kcal / h</p>
-                                </div>
-                              </div>
-                            </div>
+                            {% if not dt %}
+
                             <div class="col-md-4">
                               <div
                                 class="training-block d-flex align-items-center"
@@ -421,10 +404,33 @@
                                 </div>
                                 <div class="ml-3">
                                   <h5 class="">Stretching</h5>
+                                  <p class="mb-0">
+                                    Be sure to stretch a little
+                                  </p>
+                                </div>
+                              </div>
+                            </div>
+
+                            {% else %} {% for record in dt %}
+                            <div class="col-md-4">
+                              <div
+                                class="training-block d-flex align-items-center"
+                              >
+                                <div
+                                  class="
+                                    rounded-circle
+                                    iq-card-icon iq-bg-primary
+                                  "
+                                >
+                                  <i class="ri-hospital-fill"></i>
+                                </div>
+                                <div class="ml-3">
+                                  <h5 class="">{{record}}</h5>
                                   <p class="mb-0">395 kcal / h</p>
                                 </div>
                               </div>
                             </div>
+                            {% endfor %} {% endif %}
                           </div>
                         </div>
                       </div>
@@ -513,29 +519,31 @@
                           >
                             <thead>
                               <tr>
-                                <th scope="col">Amoxcillin 250mg Tablet</th>
-                                <th scope="col">3 X 7 days</th>
+                                <th scope="col"><b>Medicine</b></th>
+                                <th scope="col"><b>Dosage</b></th>
                               </tr>
                             </thead>
+
                             <tbody>
+                              {% if not mp %}
+
                               <thead>
                                 <tr>
-                                  <th scope="col">Paracetamol 50mg</th>
-                                  <th scope="col">2 X 7 days</th>
+                                  <th scope="col">N/A</th>
+                                  <th scope="col">N/A</th>
                                 </tr>
                               </thead>
+
+                              {% else %} {% for record in mp %}
+
                               <thead>
                                 <tr>
-                                  <th scope="col">Ibruprofen 150mg Tablet</th>
-                                  <th scope="col">1 X 3 days</th>
+                                  <th scope="col">{{record}}</th>
+                                  <th scope="col">{{mp[record]}}</th>
                                 </tr>
                               </thead>
-                              <thead>
-                                <tr>
-                                  <th scope="col">Vitamin C Tablet</th>
-                                  <th scope="col">2 X 7 days</th>
-                                </tr>
-                              </thead>
+
+                              {% endfor %} {% endif %}
                             </tbody>
                           </table>
                           <!-- <table
@@ -567,6 +575,9 @@
                         </div>
                       </div>
                     </div>
+
+                    {% if not vi %}
+
                     <div class="col-md-6">
                       <div class="iq-card">
                         <div
@@ -579,14 +590,14 @@
                           "
                         >
                           <div class="iq-header-title">
-                            <h4 class="card-title text-primary">Heart Rate</h4>
+                            <h4 class="card-title text-primary">N/A</h4>
                           </div>
                         </div>
                         <div class="iq-card-body p-0">
                           <div class="d-flex align-items-center">
                             <div class="mr-3">
-                              <h4 class="">75 bpm</h4>
-                              <p class="mb-0 text-primary">Health Zone</p>
+                              <h4 class="">N/A</h4>
+                              <!-- <p class="mb-0 text-primary">Health Zone</p> -->
                             </div>
                             <div
                               class="rounded-circle iq-card-icon iq-bg-primary"
@@ -597,7 +608,10 @@
                         </div>
                       </div>
                     </div>
-                    <div class="col-md-6">
+
+                    {% else %} {% for record in list(vi)[:2] %}
+
+                    <div class="col-md-6" id="vi" data-vi="{{json.dumps(vi)}}">
                       <div class="iq-card">
                         <div
                           class="
@@ -609,24 +623,26 @@
                           "
                         >
                           <div class="iq-header-title">
-                            <h4 class="card-title text-primary">Temperature</h4>
+                            <h4 class="card-title text-primary">{{record}}</h4>
                           </div>
                         </div>
                         <div class="iq-card-body p-0">
                           <div class="d-flex align-items-center">
-                            <div class="mr-3 text-left">
-                              <h4 class="">29<sup>o</sup>C</h4>
-                              <p class="mb-0 text-primary">Normal</p>
+                            <div class="mr-3">
+                              <h4 class="">{{vi[record]}}</h4>
+                              <!-- <p class="mb-0 text-primary">Health Zone</p> -->
                             </div>
                             <div
                               class="rounded-circle iq-card-icon iq-bg-primary"
                             >
-                              <i class="ri-add-fill"></i>
+                              <i class="ri-windy-fill"></i>
                             </div>
                           </div>
                         </div>
                       </div>
                     </div>
+
+                    {% endfor %} {% endif %}
                   </div>
                 </div>
               </div>
@@ -638,6 +654,7 @@
         <!-- Footer END -->
       </div>
     </div>
+
     <!-- Wrapper END -->
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->

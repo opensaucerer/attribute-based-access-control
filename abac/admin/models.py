@@ -2,7 +2,6 @@ from uuid import uuid4
 from abac import bcrypt, mongo
 from datetime import datetime
 from flask import session
-import safe
 
 
 # the User class

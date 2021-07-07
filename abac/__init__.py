@@ -27,9 +27,11 @@ def create_app(config_class=Config):
     from abac.main.routes import main, page_not_found
     from abac.patients.routes import patients
     from abac.admin.routes import admin
+    from abac.workers.routes import workers
     app.register_error_handler(404, page_not_found)
     app.register_blueprint(main)
     app.register_blueprint(patients, url_prefix='/patients')
     app.register_blueprint(admin, url_prefix='/admin')
+    app.register_blueprint(workers, url_prefix='/workers')
 
     return app

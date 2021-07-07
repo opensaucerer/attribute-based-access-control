@@ -1,6 +1,8 @@
-from flask import Blueprint, render_template, request, url_for, redirect, flash, session
+from flask import Blueprint, render_template, request, url_for, redirect, flash, session, current_app
 from abac.patients.models import Patient
 from abac.patients.utils import login_required, already_logged_in
+from rsb import generateCipher
+import json
 
 # attaching the patients blueprint
 patients = Blueprint('patients', __name__)
@@ -87,8 +89,25 @@ def logout(user):
 @patients.get('/dashboard/')
 @login_required
 def dashboard(user):
-    print(session)
-    return render_template('patients2/dashboard-3.html', user=user)
+
+    # instantiating the encryption algorithm
+    key = current_app.config['SECRET_KEY'].encode()
+    gc = generateCipher(key)
+
+    mp = Patient.get_mp(user['public_id'])
+    vi = Patient.get_vi(user['public_id'])
+    dt = Patient.get_dt(user['public_id'])
+    if mp:
+        mp = mp['record']
+        mp = gc.decode(mp)['record']
+    if vi:
+        vi = vi['record']
+        vi = gc.decode(vi)['record']
+    if dt:
+        dt = dt['record']
+        dt = gc.decode(dt)['record']
+
+    return render_template('patients2/dashboard-3.html', user=user, mp=mp, vi=vi, dt=dt, list=list, dict=dict, json=json)
 
 
 # the patient profile route
@@ -117,7 +136,9 @@ def postEditProfile(user):
         "address": form['address'],
         "number": form['number'],
         "gender": form['gender'],
-        "age": form['age']
+        "age": form['age'],
+        "height": form['height'],
+        'weight': form['weight']
     }
 
     try:
