@@ -61,7 +61,7 @@
                 <div class="iq-card-body">
                   <div id="table" class="table-editable">
                     <span class="table-add float-right mb-3 mr-2">
-                      <button class="btn btn-sm iq-bg-success">
+                      <button id="radd" class="btn btn-sm iq-bg-success">
                         <i class="ri-add-fill"
                           ><span class="pl-1">Add New</span></i
                         >
@@ -100,16 +100,17 @@
                           {% endif %}
                         </tr>
                       </thead>
-                      <tbody>
+                      <tbody id="rec-con">
                         {% if records.count() < 1 %}
 
-                        <tr>
+                        <tr class="record">
                           <td contenteditable="true">N/A</td>
                           <td contenteditable="true">N/A</td>
                           <td>
                             <span class="table-remove"
                               ><button
                                 type="button"
+                                id="remove"
                                 class="btn iq-bg-danger btn-rounded btn-sm my-0"
                               >
                                 Remove
@@ -121,7 +122,7 @@
                         {% else %} {% for record in records %} {% for rec in
                         json.loads(record) %}
 
-                        <tr>
+                        <tr class="record">
                           <td contenteditable="true">{{rec}}</td>
                           <td contenteditable="true">
                             {{json.loads(record)[rec]}}
@@ -130,6 +131,7 @@
                             <span class="table-remove"
                               ><button
                                 type="button"
+                                id="remove"
                                 class="btn iq-bg-danger btn-rounded btn-sm my-0"
                               >
                                 Remove
@@ -156,67 +158,83 @@
                       You can use operators (AND/OR) to combine attributes.
                     </p>
                   </div>
+                  <span class="table-add float-right mb-3 mr-2">
+                    <button id="aadd" class="btn btn-sm iq-bg-success">
+                      <i class="ri-add-fill"
+                        ><span class="pl-1">Add New</span></i
+                      >
+                    </button>
+                  </span>
                 </div>
-                <div class="iq-card-body">
+                <div id="attrib" class="iq-card-body">
                   <div class="new-user-info">
-                    <div class="row">
-                      <div class="form-group col-md-3">
-                        <label>Position</label>
-                        <select
-                          name="role"
-                          class="form-control"
-                          id="position"
-                          required
-                        >
-                          <option value="doctor">Select</option>
-                          <option value="doctor">Doctor</option>
-                          <option value="nurse">Nurse</option>
-                          <option value="pharmacist">Pharmacist</option>
-                        </select>
-                      </div>
-                      <div class="form-group col-md-3">
-                        <label>Operator</label>
-                        <select
-                          name="gender"
-                          class="form-control"
-                          id="operator"
-                          required
-                        >
-                          <option value="+">AND</option>
-                          <option value="-">OR</option>
-                        </select>
-                      </div>
-                      <div class="form-group col-md-3">
-                        <label>Name & ID</label>
-                        <select name="gender" class="form-control" id="name">
-                          {% for worker in workers %}
-                          <option value="{{worker['public_id']}}">
-                            <!-- {{worker['role']}} -->
-                            {{textwrap.shorten(worker['role'], width=3,
-                            placeholder='...')}} {{worker['fname']}}
-                            {{worker['lname']}}
-                          </option>
+                    <div id="att">
+                      <div id="att-con" class="row">
+                        <div class="form-group col-md-3">
+                          <label>Position</label>
+                          <select
+                            name="role"
+                            class="form-control"
+                            id="position"
+                            required
+                          >
+                            <option value="doctor">Select</option>
+                            <option value="doctor">Doctor</option>
+                            <option value="nurse">Nurse</option>
+                            <option value="pharmacist">Pharmacist</option>
+                          </select>
+                        </div>
+                        <div class="form-group col-md-2">
+                          <label>Operator</label>
+                          <select
+                            name="gender"
+                            class="form-control"
+                            id="operator"
+                            required
+                          >
+                            <option value="+">AND</option>
+                            <option value="-">OR</option>
+                          </select>
+                        </div>
+                        <div class="form-group col-md-3">
+                          <label>Name & ID</label>
+                          <select name="gender" class="form-control" id="name">
+                            {% for worker in workers %}
+                            <option value="{{worker['public_id']}}">
+                              {{worker['role']}}... {{worker['fname']}}
+                              {{worker['lname']}}
+                            </option>
 
-                          {% endfor %}
-                          <!-- <option value="male">Male</option> -->
-                        </select>
-                      </div>
-                      <div class="form-group col-md-3">
-                        <label>Action</label>
-                        <select
-                          name="gender"
-                          class="form-control"
-                          id="action"
-                          required
-                        >
-                          <option value="read">Read</option>
-                          <option value="write">Write</option>
-                          <option value="read+write">Read & Write</option>
-                        </select>
+                            {% endfor %}
+                            <!-- <option value="male">Male</option> -->
+                          </select>
+                        </div>
+                        <div class="form-group col-md-3">
+                          <label>Action</label>
+                          <select
+                            name="gender"
+                            class="form-control"
+                            id="action"
+                            required
+                          >
+                            <option value="read">Read</option>
+                            <option value="write">Write</option>
+                            <option value="read+write">Read & Write</option>
+                          </select>
+                        </div>
+                        <div class="form-group col-md-1">
+                          <button
+                            type="button"
+                            id="remove"
+                            class="btn iq-bg-danger btn-rounded btn-sm my-0"
+                          >
+                            Remove
+                          </button>
+                        </div>
                       </div>
                     </div>
 
-                    <button type="submit" class="btn btn-primary">
+                    <button id="update" type="submit" class="btn btn-primary">
                       Finalize Record Update
                     </button>
                   </div>
@@ -230,6 +248,68 @@
         <!-- Footer END -->
       </div>
     </div>
+
+    <!-- Setting up custom JavaScript -->
+    <script>
+      //getting the elements from the DOM
+
+      const rAdd = document.querySelector('#radd');
+      const aAdd = document.querySelector('#aadd');
+      const recCon = document.querySelector('#rec-con');
+      const attCon = document.querySelector('#attrib');
+      const attTemp = document.querySelector('#att-con').outerHTML;
+      const update = document.querySelector('#update');
+
+      // new record cell layout
+      const nRecord = `
+       <tr class="record">
+                          <td contenteditable="true">N/A</td>
+                          <td contenteditable="true">N/A</td>
+                          <td>
+                            <span class="table-remove"
+                              ><button
+                                type="button" id="remove"
+                                class="btn iq-bg-danger btn-rounded btn-sm my-0"
+                              >
+                                Remove
+                              </button></span
+                            >
+                          </td>
+                        </tr>
+      `;
+
+      //adding new record input cells
+      rAdd.onclick = function () {
+        document.querySelector('#rec-con').innerHTML += nRecord;
+      };
+      //removing record input cells
+      recCon.onclick = function (e) {
+        if (e.target.id === 'remove') {
+          e.target.parentElement.parentElement.parentElement.remove();
+        }
+      };
+
+      // adding new attribute cells
+      aAdd.onclick = function () {
+        document.querySelector('#att').innerHTML += attTemp;
+      };
+
+      //removing attribute cells
+      attCon.onclick = function (e) {
+        if (e.target.id === 'remove') {
+          e.target.parentElement.parentElement.remove();
+        }
+      };
+
+      //listening for click of update button
+      update.onclick = function (e) {
+        //preventing default behavior
+        e.preventDefault();
+        //getting the data and sorting it based on backend Schema
+        alert('shit');
+      };
+    </script>
+
     <!-- Wrapper END -->
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
