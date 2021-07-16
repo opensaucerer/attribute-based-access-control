@@ -47,7 +47,7 @@ class Admin:
         data['public_id'] = uuid4().hex
         data['dateCreated'] = datetime.utcnow()
         mongo.db.recents.insert_one(data)
-        return True
+        return Trueuer
 
      # route for registering recent activities
     @staticmethod

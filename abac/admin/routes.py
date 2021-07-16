@@ -100,8 +100,7 @@ def getAddWorker(user):
 @admin_login_required
 def addWorker(user):
     url = '/admin/workers/add/'
-    # handling form validation
-    form = request.form
+  
     # collecting form data
     form = request.form
     fname = form['fname']
@@ -203,6 +202,11 @@ def viewRecord(user):
     gc = generateCipher(key)
 
     """
+    ABAC --- ABE
+
+    
+
+    
     Returning data based on health record type
     mp ---- medicine prescriptions
     vi ---- vitals

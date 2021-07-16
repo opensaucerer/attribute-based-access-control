@@ -175,6 +175,7 @@ def getRecord(user):
     mp = Patient.get_mp(id)
     vi = Patient.get_vi(id)
     dt = Patient.get_dt(id)
+    ph = Patient.get_ph(id)
     vip = True
     mpp = True
     dtp = True
@@ -191,6 +192,10 @@ def getRecord(user):
         dt = dt['record']
         _dt = gc.decode(dt)['policy']
         dtp = gc.validate(_dt, att1, att2)
+    # if ph:
+    #     ph = ph['record']
+    #     _ph = gc.decode(ph)['policy']
+    #     dtp = gc.validate(_ph, att1, att2)
 
     # getting notifications
     unreads = Worker.get_unread(user['public_id'])
@@ -479,3 +484,11 @@ def completeAppointment(user):
     Worker.bookComplete(id)
 
     return redirect(url_for('workers.viewAppointment'))
+
+
+# view requested access routes
+@workers.get('/records/requests/')
+@worker_login_required
+def getRequests(user):
+    sents = Worker.getRequests(user['public_id'])
+    return render_template('patients2/requests.html', sents=sents)

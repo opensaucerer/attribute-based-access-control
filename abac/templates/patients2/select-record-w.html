@@ -105,7 +105,17 @@
                           >
                         </td>
 
-                        {% endif %} {% endif %} {% else %} {% if 'r' in mpp %}
+                        {% endif %} {% else %}
+
+                        <td colspan="2">
+                          <a
+                            href="/workers/request/?id={{patient['public_id']}}&data=mp"
+                            class="btn btn-primary"
+                            >Request Access</a
+                          >
+                        </td>
+
+                        {% endif %} {% else %} {% if 'r' in mpp %}
 
                         <td>
                           <a
@@ -156,7 +166,17 @@
                           >
                         </td>
 
-                        {% endif %} {% endif %} {% else %} {% if 'r' in vip %}
+                        {% endif %} {% else %}
+
+                        <td colspan="2">
+                          <a
+                            href="/workers/request/?id={{patient['public_id']}}&data=vi"
+                            class="btn btn-primary"
+                            >Request Access</a
+                          >
+                        </td>
+
+                        {% endif %} {% else %} {% if 'r' in vip %}
 
                         <td>
                           <a
@@ -206,7 +226,17 @@
                           >
                         </td>
 
-                        {% endif %} {% endif %} {% else %} {% if 'r' in dtp %}
+                        {% endif %} {% else %}
+
+                        <td colspan="2">
+                          <a
+                            href="/workers/request/?id={{patient['public_id']}}&data=dt"
+                            class="btn btn-primary"
+                            >Request Access</a
+                          >
+                        </td>
+
+                        {% endif %} {% else %} {% if 'r' in dtp %}
 
                         <td>
                           <a

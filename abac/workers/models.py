@@ -163,7 +163,13 @@ class Worker:
                 return True
         return True
 
+    # get access requests sent
+    @staticmethod
+    def getRequests(id):
+        mongo.db.requests.find_one({'workerId': id})
+
     # helper function for sending message
+
     @staticmethod
     def sendMessage(form, user):
 
