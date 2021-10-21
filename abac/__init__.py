@@ -20,7 +20,7 @@ cors = CORS()
 def create_app(config_class=Config):
     app = Flask(__name__)
     app.config.from_object(Config)
-    mongo.init_app(app)
+    mongo.init_app(app, ssl=True, ssl_cert_reqs='CERT_NONE')
     bcrypt.init_app(app)
     cors.init_app(app)
 

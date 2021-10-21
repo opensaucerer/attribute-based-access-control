@@ -1,6 +1,6 @@
 ################################################################################################
 
-Readme for Medicio | Bootstrap Medical Template by Bootstrap Temple - https://bootstraptemple.com
+Readme for Anointed Communications College | Bootstrap Medical Template by Bootstrap Temple - https://bootstraptemple.com
 
 ################################################################################################
 

@@ -100,7 +100,7 @@ def getAddWorker(user):
 @admin_login_required
 def addWorker(user):
     url = '/admin/workers/add/'
-  
+
     # collecting form data
     form = request.form
     fname = form['fname']
@@ -197,14 +197,13 @@ def viewRecord(user):
     # getting the patient
     patient = Patient.get_user(id)
 
+    start = datetime.utcnow()
     # instantiating the encryption algorithm
     key = current_app.config['SECRET_KEY'].encode()
     gc = generateCipher(key)
 
     """
     ABAC --- ABE
-
-    
 
     
     Returning data based on health record type
@@ -215,9 +214,17 @@ def viewRecord(user):
     if data == 'mp':
         view = 'Medical Prescriptions'
         records = Patient.get_mp(id)
+        time = datetime.utcnow() - start
+        with open(r'C:\Users\Samperfect\Downloads\Codes\Projects\abac\time.csv', 'a') as f:
+            f.write(f"retrieve ciphertext, {time.total_seconds()}\n")
+            f.close()
         if records:
             records = Patient.get_mp(id)['record']
             records = gc.decode(records)['record']
+            time = datetime.utcnow() - start
+            with open(r'C:\Users\Samperfect\Downloads\Codes\Projects\abac\time.csv', 'a') as f:
+                f.write(f"decode ciphertext, {time.total_seconds()}\n")
+                f.close()
     elif data == 'vi':
         view = 'Health Vitals'
         records = Patient.get_vi(id)
@@ -305,12 +312,19 @@ def saveRecord(user):
 
     data = request.get_json()
 
+    start = datetime.utcnow()
+
     # instantiating the encryption algorithm
     key = current_app.config['SECRET_KEY'].encode()
     gc = generateCipher(key)
 
     # turning the EHR into ciphertext
     ciphertext = gc.encode(data)
+
+    time = datetime.utcnow() - start
+    with open(r'C:\Users\Samperfect\Downloads\Codes\Projects\abac\time.csv', 'a') as f:
+        f.write(f"generate ciphertext, {time.total_seconds()}\n")
+        f.close()
 
     # getting the type of record and patient to be updated
     record = request.args.get('record')
@@ -324,6 +338,8 @@ def saveRecord(user):
         Patient().save_dt(pid, ciphertext)
     elif record == 'ph':
         Patient().save_ph(pid, ciphertext)
+
+    
 
     return jsonify({"status": True, "message": "EHR Update Successfully"})
 
